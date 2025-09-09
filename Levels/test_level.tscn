@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5v1r7k1yh3p7"]
 
-[ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://player.tscn" id="1_gojnm"]
+[ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Player/player.tscn" id="1_ormqy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gojnm"]
 size = Vector2(3800, 420)
 
 [node name="TestLevel" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_gojnm")]
+[node name="Player" parent="." instance=ExtResource("1_ormqy")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

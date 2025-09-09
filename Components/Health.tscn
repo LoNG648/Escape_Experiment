@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgd0fnxfoslpm"]
+
+[sub_resource type="GDScript" id="GDScript_ja86b"]
+script/source = "class_name Health
+extends Node
+
+var maxHealth: float
+var currentHealth: float
+
+func _init(maxHealth: int):
+	self.maxHealth = maxHealth
+	self.currentHealth = maxHealth
+"
+
+[node name="Health" type="Node"]
+script = SubResource("GDScript_ja86b")

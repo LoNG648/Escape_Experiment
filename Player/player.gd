@@ -1,11 +1,11 @@
 class_name player
 extends CharacterBody2D
 
-const SPEED = 750.0
-const JUMP_VELOCITY = -600.0
+const SPEED = 750.0 #Horizontal Speed
+const JUMP_VELOCITY = -600.0 #Jump Height and Speed
 
-@onready var Sprite: Sprite2D = $CharacterSprite
-@onready var Hitbox: CollisionShape2D = $Hitbox
+@onready var Sprite: Sprite2D = $CharacterSprite #Sprite Variable
+@onready var Hitbox: CollisionShape2D = $Hitbox #Hitbox Variable
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -16,18 +16,21 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 	#Handles crouch
 	if Input.is_action_just_pressed("Crouch"):
-		Sprite.scale.y = 0.5
+		Sprite.scale.y = 0.5 #Makes crouching change sprite
 		Sprite.position.y = 25
+		Hitbox.scale.y = 0.5 #Makes crouching change hitbox
+		Hitbox.position.y = 25
 	if Input.is_action_just_released("Crouch"):
 		get_tree().create_timer(0.3)
-		await get_tree().create_timer(0.3).timeout
-		Sprite.scale.y = 1
-		Sprite.position.y = 0.0
+		await get_tree().create_timer(0.3).timeout #Creates a 0.3 second delay
+		Sprite.scale.y = 1 #Resets sprite back to normal after delay
+		Sprite.position.y = 0
+		Hitbox.scale.y = 1 #Resets hitbox back to normal after delay
+		Hitbox.position.y = 0
 	#Get the input direction and handle the movement/deceleration
 	var direction := Input.get_axis("Move Left","Move Right")
 	if direction:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
 	move_and_slide()
