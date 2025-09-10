@@ -377,6 +377,7 @@ radius = 16.0
 height = 54.0
 
 [node name="complexenemy" type="CharacterBody2D"]
+scale = Vector2(2.5, 2.5)
 script = ExtResource("1_ad176")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -386,5 +387,14 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 0
 position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_vjjuq")
+
+[node name="RayCast2DFloor" type="RayCast2D" parent="."]
+position = Vector2(-17, 6)
+target_position = Vector2(0, 47)
+
+[node name="RayCast2DWall" type="RayCast2D" parent="."]
+position = Vector2(-17, 6)
+target_position = Vector2(-13, 0)

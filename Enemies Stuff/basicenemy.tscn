@@ -418,8 +418,10 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3pxrr"]
 radius = 12.0
+height = 31.0
 
 [node name="basicenemy" type="CharacterBody2D"]
+scale = Vector2(2.5, 2.5)
 script = ExtResource("1_ldolw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -429,5 +431,13 @@ autoplay = "idle"
 frame_progress = 0.0265271
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(1, 8)
+position = Vector2(1, 8.5)
 shape = SubResource("CapsuleShape2D_3pxrr")
+
+[node name="RayCast2DFloor" type="RayCast2D" parent="."]
+position = Vector2(14, 9)
+target_position = Vector2(0, 31)
+
+[node name="RayCast2DWall" type="RayCast2D" parent="."]
+position = Vector2(14, 9)
+target_position = Vector2(13, 0)
