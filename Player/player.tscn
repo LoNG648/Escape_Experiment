@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://vaeq3uf103py"]
 
-[ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Player/icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://ba8iqvap47p8y" path="res://Player/player.gd" id="1_onrkg"]
 [ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Components/HealthSystem.gd" id="3_btcbx"]
+[ext_resource type="SpriteFrames" uid="uid://23m0n6ww3ruh" path="res://Player/PlayerAnims.tres" id="4_gwnis"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(114, 116)
@@ -10,8 +10,9 @@ size = Vector2(114, 116)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_onrkg")
 
-[node name="CharacterSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_4flbx")
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("4_gwnis")
+animation = &"Walking"
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_onrkg")

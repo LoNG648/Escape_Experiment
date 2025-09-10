@@ -8,14 +8,15 @@ size = Vector2(3800, 420)
 [node name="TestLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ormqy")]
+position = Vector2(-1, 0)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="TestPlatform" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="PlatformCollision" type="CollisionShape2D" parent="TestPlatform"]
 position = Vector2(1584, 429)
 shape = SubResource("RectangleShape2D_gojnm")
 
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+[node name="PlatformColor" type="ColorRect" parent="TestPlatform"]
 offset_left = -319.0
 offset_top = 218.0
 offset_right = 3484.0

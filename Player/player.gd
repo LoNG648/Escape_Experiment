@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED = 750.0 #Horizontal Speed
 const JUMP_VELOCITY = -600.0 #Jump Height and Speed
 
-@onready var Sprite: Sprite2D = $CharacterSprite #Sprite Variable
+@onready var Sprite: AnimatedSprite2D = $AnimatedSprite2D #Sprite Variable
 @onready var Hitbox: CollisionShape2D = $Hitbox #Hitbox Variable
 
 func _physics_process(delta: float) -> void:

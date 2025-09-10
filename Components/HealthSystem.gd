@@ -14,7 +14,7 @@ func takedamage(damage: float) -> void:
 	if currentHealth <= 0:
 		Dying()
 	emit_signal("healthChanged", currentHealth)
-func Dying():
+func Dying() -> void:
 	get_tree().create_timer(1)
 	Died()
 func Died() -> void:
