@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Player/icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://ba8iqvap47p8y" path="res://Player/player.gd" id="1_onrkg"]
-[ext_resource type="Script" uid="uid://dt2puw21fcc3o" path="res://Components/Health.gd" id="3_btcbx"]
+[ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Components/HealthSystem.gd" id="3_btcbx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(114, 116)
@@ -20,5 +20,4 @@ shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_btcbx")
-maxHealth = 100.0
-metadata/_custom_type_script = "uid://dt2puw21fcc3o"
+metadata/_custom_type_script = "uid://ccjfqwc5vm62o"
