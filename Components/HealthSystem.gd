@@ -9,7 +9,6 @@ signal healthChanged(newHealth)
 func _ready() -> void:
 	print(maxHealth)
 	print(currentHealth)
-
 func takedamage(damage: float) -> void:
 	currentHealth -= damage
 	if currentHealth <= 0:
