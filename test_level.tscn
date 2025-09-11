@@ -1,13 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5v1r7k1yh3p7"]
+[gd_scene load_steps=6 format=3 uid="uid://c5v1r7k1yh3p7"]
 
 [ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://player.tscn" id="1_gojnm"]
+[ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://icon.svg" id="2_1c2mv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gojnm"]
 size = Vector2(3800, 420)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7g2b"]
+size = Vector2(200, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ptq8"]
+size = Vector2(200, 200)
+
 [node name="TestLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_gojnm")]
+collision_layer = 24577
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -20,3 +28,21 @@ offset_left = -319.0
 offset_top = 218.0
 offset_right = 3484.0
 offset_bottom = 643.0
+
+[node name="spiketrap" type="Node2D" parent="."]
+position = Vector2(500, 120)
+
+[node name="Sprite2D" type="Sprite2D" parent="spiketrap"]
+texture = ExtResource("2_1c2mv")
+
+[node name="triggerarea" type="Area2D" parent="spiketrap"]
+collision_layer = 8193
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spiketrap/triggerarea"]
+shape = SubResource("RectangleShape2D_f7g2b")
+
+[node name="killzone" type="Area2D" parent="spiketrap"]
+collision_layer = 16385
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spiketrap/killzone"]
+shape = SubResource("RectangleShape2D_4ptq8")
