@@ -12,9 +12,9 @@ script = ExtResource("1_onrkg")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("4_gwnis")
-animation = &"Walking"
+animation = &"Dying"
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="Camera" type="Camera2D" parent="."]

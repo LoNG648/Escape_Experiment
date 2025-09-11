@@ -11,11 +11,14 @@ func _ready() -> void:
 	print(currentHealth)
 func takedamage(damage: float) -> void:
 	currentHealth -= damage
+	print("Ouch")
+	print(currentHealth)
 	if currentHealth <= 0:
 		Dying()
 	emit_signal("healthChanged", currentHealth)
 func Dying() -> void:
+	print("Im Dying")
 	get_tree().create_timer(1)
 	Died()
 func Died() -> void:
-	pass
+	print("I Died")
