@@ -10,7 +10,7 @@ func _ready() -> void:
 	print(maxHealth)
 	print(currentHealth)
 	var hurtbox = get_node("/root/TestLevel/StaticBody2D/Hurtbox")
-	hurtbox.connect("overlapOccured",Callable(self,"on_overlap_occurred"))
+	hurtbox.connect("overlapOccurred",Callable(self,"_on_overlap_occurred"))
 func _on_overlap_occurred(damage: float) -> void:
 	currentHealth -= damage
 	print("Ouch")

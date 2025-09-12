@@ -7,6 +7,7 @@ const JUMP_VELOCITY = -600.0 #Jump Height and Speed
 @onready var Sprite: AnimatedSprite2D = $Sprite #Sprite Variable
 @onready var Collisionbox: CollisionShape2D = $CollisionBox #Collisionbox Variable
 @onready var Hitbox: CollisionShape2D = $Hitbox #Hitbox Variable
+@onready var Health: Node = $Health #Health variable for health system
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
