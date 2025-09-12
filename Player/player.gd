@@ -5,6 +5,7 @@ const SPEED = 750.0 #Horizontal Speed
 const JUMP_VELOCITY = -600.0 #Jump Height and Speed
 
 @onready var Sprite: AnimatedSprite2D = $Sprite #Sprite Variable
+@onready var Collisionbox: CollisionShape2D = $CollisionBox #Collisionbox Variable
 @onready var Hitbox: CollisionShape2D = $Hitbox #Hitbox Variable
 
 func _physics_process(delta: float) -> void:
@@ -18,6 +19,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Crouch"):
 		Sprite.scale.y = 0.5 #Makes crouching change sprite
 		Sprite.position.y = 25
+		Collisionbox.scale.y = 0.5 #Makes crouching change collisionbox
+		Collisionbox.position.y = 25
 		Hitbox.scale.y = 0.5 #Makes crouching change hitbox
 		Hitbox.position.y = 25
 	if Input.is_action_just_released("Crouch"):
@@ -25,6 +28,8 @@ func _physics_process(delta: float) -> void:
 		await get_tree().create_timer(0.3).timeout #Creates a 0.3 second delay
 		Sprite.scale.y = 1 #Resets sprite back to normal after delay
 		Sprite.position.y = 0
+		Collisionbox.scale.y = 1 #Resets collisionbox back to normal after delay
+		Collisionbox.position.y = 0
 		Hitbox.scale.y = 1 #Resets hitbox back to normal after delay
 		Hitbox.position.y = 0
 	#Get the input direction and handle the movement/deceleration

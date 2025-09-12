@@ -4,12 +4,14 @@ extends Node
 @export var maxHealth: float = 100.0
 var currentHealth: float = maxHealth
 
-signal healthChanged(newHealth)
+signal healthChanged(newHealth: float)
 
 func _ready() -> void:
 	print(maxHealth)
 	print(currentHealth)
-func takedamage(damage: float) -> void:
+	var hurtbox = get_node("/root/TestLevel/StaticBody2D/Hurtbox")
+	hurtbox.connect("overlapOccured",Callable(self,"on_overlap_occurred"))
+func _on_overlap_occurred(damage: float) -> void:
 	currentHealth -= damage
 	print("Ouch")
 	print(currentHealth)

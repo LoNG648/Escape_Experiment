@@ -17,6 +17,9 @@ animation = &"Dying"
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_onrkg")
 
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_onrkg")
+
 [node name="Camera" type="Camera2D" parent="."]
 
 [node name="Health" type="Node" parent="."]
