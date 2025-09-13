@@ -1,7 +1,8 @@
-[gd_scene load_steps=60 format=3 uid="uid://cvnafhg5v34po"]
+[gd_scene load_steps=61 format=3 uid="uid://cvnafhg5v34po"]
 
 [ext_resource type="Texture2D" uid="uid://b1bssce881pl2" path="res://Enemies Stuff/Enemy Assets/NightBorne/NightBorne.png" id="1_gtmpm"]
 [ext_resource type="Script" uid="uid://csjbtosrju3iy" path="res://Enemies Stuff/basicenemy.gd" id="1_ldolw"]
+[ext_resource type="Script" uid="uid://dxycbvexq3q5s" path="res://Components/Hurtbox.gd" id="3_1f64y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gaw13"]
 atlas = ExtResource("1_gtmpm")
@@ -441,3 +442,8 @@ target_position = Vector2(0, 31)
 [node name="RayCast2DWall" type="RayCast2D" parent="."]
 position = Vector2(14, 9)
 target_position = Vector2(13, 0)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("3_1f64y")
+damage = 25.0
+metadata/_custom_type_script = "uid://dxycbvexq3q5s"

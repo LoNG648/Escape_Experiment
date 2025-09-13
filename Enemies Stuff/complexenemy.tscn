@@ -1,7 +1,8 @@
-[gd_scene load_steps=53 format=3 uid="uid://bh2xfihntbwfq"]
+[gd_scene load_steps=54 format=3 uid="uid://bh2xfihntbwfq"]
 
 [ext_resource type="Script" uid="uid://fiydt1ylrj8u" path="res://Enemies Stuff/complexenemy.gd" id="1_ad176"]
 [ext_resource type="Texture2D" uid="uid://bicitkvq6t0c4" path="res://Enemies Stuff/Enemy Assets/Bringer-Of-Death/SpriteSheet/Bringer-of-Death-SpritSheet.png" id="1_vjjuq"]
+[ext_resource type="Script" uid="uid://dxycbvexq3q5s" path="res://Components/Hurtbox.gd" id="3_kri20"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgby4"]
 atlas = ExtResource("1_vjjuq")
@@ -398,3 +399,8 @@ target_position = Vector2(0, 47)
 [node name="RayCast2DWall" type="RayCast2D" parent="."]
 position = Vector2(-17, 6)
 target_position = Vector2(-13, 0)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("3_kri20")
+damage = 50.0
+metadata/_custom_type_script = "uid://dxycbvexq3q5s"
