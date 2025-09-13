@@ -12,7 +12,7 @@ script = ExtResource("1_onrkg")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("4_gwnis")
-animation = &"Dying"
+animation = &"Idle"
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_onrkg")
