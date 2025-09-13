@@ -7,7 +7,7 @@ const JUMP_VELOCITY = -600.0 #Jump Height and Speed
 @onready var Sprite: AnimatedSprite2D = $Sprite #Sprite Variable
 @onready var Collisionbox: CollisionShape2D = $CollisionBox #Collisionbox Variable
 @onready var Hitbox: CollisionShape2D = $Hitbox #Hitbox Variable
-@onready var Health: Node = $Health #Health variable for health system
+@onready var health: Node = $Health #Health variable for health system
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -25,7 +25,6 @@ func _physics_process(delta: float) -> void:
 		Hitbox.scale.y = 0.5 #Makes crouching change hitbox
 		Hitbox.position.y = 25
 	if Input.is_action_just_released("Crouch"):
-		get_tree().create_timer(0.3)
 		await get_tree().create_timer(0.3).timeout #Creates a 0.3 second delay
 		Sprite.scale.y = 1 #Resets sprite back to normal after delay
 		Sprite.position.y = 0

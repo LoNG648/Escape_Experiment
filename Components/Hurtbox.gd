@@ -10,7 +10,6 @@ func onBodyEntered(body: Node2D) -> void:
 	if body is player:
 		overlap = true
 		emit_signal("overlapOccurred",damage)
-
 func onBodyExited(body: Node2D) -> void:
 	if body is player:
 		overlap = false
