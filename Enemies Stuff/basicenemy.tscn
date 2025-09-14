@@ -466,19 +466,16 @@ metadata/_custom_type_script = "uid://dxycbvexq3q5s"
 light_mask = 0
 visibility_layer = 4
 position = Vector2(27.4, 1.2)
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_1f64y")
-disabled = true
 
 [node name="Detect_player" type="Area2D" parent="."]
 light_mask = 0
-visibility_layer = 10
+visibility_layer = 1023
 
 [node name="detect_player_box" type="CollisionShape2D" parent="Detect_player"]
 light_mask = 0
-visibility_layer = 8
+visibility_layer = 1023
 position = Vector2(38.2, -2.8)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_xno3g")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

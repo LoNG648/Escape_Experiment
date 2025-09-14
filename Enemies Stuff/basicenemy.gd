@@ -47,16 +47,17 @@ func take_damage(amount: int) -> void:
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
+	if attacking == true:
+		attacking = false
+		get_node("Hurtbox/hurtboxcollision").disabled = true
+	else:
+		pass
+		
 	if windup == true:
 		attacking = true
 		$AnimatedSprite2D.play("attack1")
 		get_node("Hurtbox/hurtboxcollision").disabled = false
 		windup = false
-	else:
-		pass
-	
-	if attacking == true:
-		attacking = false
 	else:
 		pass
 
