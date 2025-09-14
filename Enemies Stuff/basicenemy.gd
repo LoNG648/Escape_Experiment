@@ -5,6 +5,8 @@ var speed = 250.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var facing_right = true
+var windup = false
+var attacking = false
 
 @onready var animation_player := $AnimatedSprite2D
 
@@ -40,4 +42,29 @@ func flip():
 func take_damage(amount: int) -> void:
 	$AnimatedSprite2D.play("hit")
 	#print("Damage: ", amount)
- 
+
+
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if windup == true:
+		attacking = true
+		$AnimatedSprite2D.play("attack1")
+		get_node("Hurtbox/hurtboxcollision").disabled = false
+		windup = false
+	else:
+		pass
+	
+	if attacking == true:
+		attacking = false
+	else:
+		pass
+
+
+func _on_detect_player_body_entered(body: Node2D) -> void:
+	if body is player:
+		velocity.x = 0
+		$AnimatedSprite2D.play("windup1")
+		windup = true
+	else:
+		pass
