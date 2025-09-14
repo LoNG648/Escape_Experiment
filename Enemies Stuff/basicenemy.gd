@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var speed = 250.0
+var held_speed = 250
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -36,8 +37,10 @@ func flip():
 	scale.x = abs(scale.x) * -1
 	if facing_right:
 		speed = abs(speed)
+		held_speed = speed
 	else:
 		speed = abs(speed) * -1
+		held_speed = speed
 		
 func take_damage(amount: int) -> void:
 	$AnimatedSprite2D.play("hit")
@@ -47,24 +50,22 @@ func take_damage(amount: int) -> void:
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if attacking == true:
-		attacking = false
-		get_node("Hurtbox/hurtboxcollision").disabled = true
-	else:
-		pass
-		
 	if windup == true:
 		attacking = true
 		$AnimatedSprite2D.play("attack1")
 		get_node("Hurtbox/hurtboxcollision").disabled = false
 		windup = false
+	elif attacking == true:
+		attacking = false
+		get_node("Hurtbox/hurtboxcollision").disabled = true
+		speed = held_speed
 	else:
 		pass
 
 
 func _on_detect_player_body_entered(body: Node2D) -> void:
 	if body is player:
-		velocity.x = 0
+		speed = 0
 		$AnimatedSprite2D.play("windup1")
 		windup = true
 	else:
