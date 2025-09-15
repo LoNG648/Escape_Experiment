@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5v1r7k1yh3p7"]
+
+[ext_resource type="Script" uid="uid://c6mpq7t4q1p40" path="res://Scripts/healthmanager.gd" id="1_2ytpj"]
+[ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="1_b07c4"]
+[ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="2_2ytpj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b07c4"]
+size = Vector2(514, 436)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gojnm"]
+size = Vector2(3800, 420)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00vsl"]
+size = Vector2(279, 223)
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="HealthManager" type="Node" parent="Managers"]
+unique_name_in_owner = true
+script = ExtResource("1_2ytpj")
+
+[node name="Hurtbox" parent="Managers/HealthManager" instance=ExtResource("2_2ytpj")]
+position = Vector2(700, 0)
+damage = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Managers/HealthManager/Hurtbox"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_b07c4")
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="TestPlatform" type="StaticBody2D" parent="."]
+z_index = 1
+
+[node name="PlatformCollision" type="CollisionShape2D" parent="TestPlatform"]
+position = Vector2(1584, 429)
+shape = SubResource("RectangleShape2D_gojnm")
+
+[node name="PlatformColor" type="ColorRect" parent="TestPlatform"]
+offset_left = -319.0
+offset_top = 218.0
+offset_right = 3484.0
+offset_bottom = 643.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(700, 0)
+
+[node name="DeathboxColor" type="ColorRect" parent="StaticBody2D"]
+z_index = 1
+offset_left = -141.0
+offset_top = -102.0
+offset_right = 137.0
+offset_bottom = 117.0
+
+[node name="DeathboxCollision" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, 6.5)
+shape = SubResource("RectangleShape2D_00vsl")
+
+[node name="Player" parent="." instance=ExtResource("1_b07c4")]
+z_index = 1
+position = Vector2(-1, 0)
