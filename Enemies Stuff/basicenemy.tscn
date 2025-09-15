@@ -427,11 +427,11 @@ radius = 12.0
 height = 31.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1f64y"]
-radius = 12.6
+radius = 13.0
 height = 54.4
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xno3g"]
-size = Vector2(38, 64.8)
+size = Vector2(26, 64.8)
 
 [node name="basicenemy" type="CharacterBody2D"]
 scale = Vector2(2.5, 2.5)
@@ -450,10 +450,12 @@ shape = SubResource("CapsuleShape2D_3pxrr")
 [node name="RayCast2DFloor" type="RayCast2D" parent="."]
 position = Vector2(14, 9)
 target_position = Vector2(0, 31)
+collision_mask = 16
 
 [node name="RayCast2DWall" type="RayCast2D" parent="."]
 position = Vector2(14, 9)
 target_position = Vector2(13, 0)
+collision_mask = 16
 
 [node name="Hurtbox" type="Area2D" parent="."]
 light_mask = 0
@@ -467,6 +469,7 @@ light_mask = 0
 visibility_layer = 4
 position = Vector2(27.4, 1.2)
 shape = SubResource("CapsuleShape2D_1f64y")
+disabled = true
 
 [node name="Detect_player" type="Area2D" parent="."]
 light_mask = 0
@@ -475,7 +478,7 @@ visibility_layer = 1023
 [node name="detect_player_box" type="CollisionShape2D" parent="Detect_player"]
 light_mask = 0
 visibility_layer = 1023
-position = Vector2(32.2, -2.8)
+position = Vector2(26.2, -2.8)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_xno3g")
 

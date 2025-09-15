@@ -94,6 +94,7 @@ theme_override_font_sizes/font_size = 50
 text = "Quit"
 
 [node name="Test room" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.454902, 0.454902, 0.454902, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

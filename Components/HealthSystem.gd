@@ -10,6 +10,7 @@ func _ready() -> void:
 	print(maxHealth)
 	print(currentHealth)
 	var hurtbox = get_node("/root/TestLevel/StaticBody2D/Hurtbox")
+	#var enemy =  get_tree().get_first_node_in_group("hurtboxes").get_children()
 	hurtbox.connect("overlapOccurred",Callable(self,"_on_overlap_occurred"))
 func _on_overlap_occurred(damage: float) -> void:
 	currentHealth -= damage
