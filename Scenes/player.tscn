@@ -7,14 +7,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(114, 116)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_onrkg")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -64)
 sprite_frames = ExtResource("2_6t5aa")
-animation = &"Idle"
+animation = &"Dying"
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -64)
@@ -29,4 +29,3 @@ position = Vector2(0, -64)
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_btcbx")
-metadata/_custom_type_script = "uid://ccjfqwc5vm62o"
