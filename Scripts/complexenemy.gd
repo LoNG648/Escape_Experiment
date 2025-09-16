@@ -74,6 +74,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 func _on_detect_player_body_entered(body: Node2D) -> void:
 	if body is player:
+		player_in_reach = true
 		windup = true
 		speed = 0
 		animation_player.play("1windup")

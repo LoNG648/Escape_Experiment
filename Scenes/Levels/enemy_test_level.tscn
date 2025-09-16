@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwowdepmj5epm"]
+[gd_scene load_steps=4 format=3 uid="uid://dwowdepmj5epm"]
 
-[ext_resource type="Script" uid="uid://c6mpq7t4q1p40" path="res://Scripts/healthmanager.gd" id="1_7wf4f"]
 [ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="1_ugexi"]
 [ext_resource type="PackedScene" uid="uid://bh2xfihntbwfq" path="res://Scenes/complexenemy.tscn" id="3_7wf4f"]
 
@@ -9,17 +8,13 @@ size = Vector2(3800, 420)
 
 [node name="enemy_test_level" type="Node2D"]
 
-[node name="HealthManager" type="Node" parent="."]
-script = ExtResource("1_7wf4f")
-metadata/_custom_type_script = "uid://c6mpq7t4q1p40"
-
 [node name="TestPlatform" type="StaticBody2D" parent="."]
 light_mask = 1023
 visibility_layer = 1023
 z_index = 1
 scale = Vector2(0.5, 0.5)
-collision_layer = 255
-collision_mask = 255
+collision_layer = 17
+collision_mask = 0
 
 [node name="PlatformCollision" type="CollisionShape2D" parent="TestPlatform"]
 light_mask = 1023

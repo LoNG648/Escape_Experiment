@@ -400,7 +400,7 @@ script = ExtResource("1_ad176")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-37, -9)
 sprite_frames = SubResource("SpriteFrames_mvyao")
-animation = &"1windup"
+animation = &"1holster"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -419,11 +419,10 @@ target_position = Vector2(-13, 0)
 collision_mask = 16
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_klabn")]
-scale = Vector2(1, 1)
+damage = 50.0
 
 [node name="hurtboxcollision" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-63.4, 4.8)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_kri20")
 disabled = true
 
