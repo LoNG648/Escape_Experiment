@@ -9,12 +9,16 @@ size = Vector2(3800, 420)
 [node name="enemy_test_level" type="Node2D"]
 
 [node name="TestPlatform" type="StaticBody2D" parent="."]
+light_mask = 1023
+visibility_layer = 1023
 z_index = 1
 scale = Vector2(0.5, 0.5)
+collision_layer = 255
+collision_mask = 255
 
 [node name="PlatformCollision" type="CollisionShape2D" parent="TestPlatform"]
-light_mask = 17
-visibility_layer = 17
+light_mask = 1023
+visibility_layer = 1023
 position = Vector2(1584, 429)
 shape = SubResource("RectangleShape2D_2qilu")
 
@@ -29,7 +33,4 @@ position = Vector2(-19, 57)
 scale = Vector2(0.5, 0.5)
 
 [node name="basicenemy" parent="." instance=ExtResource("2_ebkf5")]
-light_mask = 17
-position = Vector2(244, 3)
-collision_layer = 19
-collision_mask = 17
+position = Vector2(191, 6)

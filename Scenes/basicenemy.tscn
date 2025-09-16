@@ -478,6 +478,7 @@ disabled = true
 [node name="Detect_player" type="Area2D" parent="."]
 light_mask = 0
 visibility_layer = 1023
+collision_mask = 255
 
 [node name="detect_player_box" type="CollisionShape2D" parent="Detect_player"]
 light_mask = 0
