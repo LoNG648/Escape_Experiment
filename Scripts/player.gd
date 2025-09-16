@@ -14,7 +14,8 @@ var block: bool = false
 @onready var health_manager: Node = %HealthManager
 
 func _ready():
-	health_manager.connect("death",Callable(self,"_on_death"))
+	#health_manager.connect("death",Callable(self,"_on_death"))
+	pass
 
 func _physics_process(delta: float) -> void:
 	if dead:

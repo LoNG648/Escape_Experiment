@@ -1,8 +1,8 @@
 [gd_scene load_steps=63 format=3 uid="uid://cvnafhg5v34po"]
 
-[ext_resource type="Texture2D" uid="uid://b1bssce881pl2" path="res://Enemies Stuff/Enemy Assets/NightBorne/NightBorne.png" id="1_gtmpm"]
-[ext_resource type="Script" uid="uid://csjbtosrju3iy" path="res://Enemies Stuff/basicenemy.gd" id="1_ldolw"]
-[ext_resource type="Script" uid="uid://dxycbvexq3q5s" path="res://Components/Hurtbox.gd" id="3_1f64y"]
+[ext_resource type="Texture2D" uid="uid://b1bssce881pl2" path="res://Assets/Enemy Assets/NightBorne/NightBorne.png" id="1_gtmpm"]
+[ext_resource type="Script" uid="uid://csjbtosrju3iy" path="res://Scripts/basicenemy.gd" id="1_ldolw"]
+[ext_resource type="Script" uid="uid://dxycbvexq3q5s" path="res://Scripts/Hurtbox.gd" id="3_1f64y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xvijc"]
 atlas = ExtResource("1_gtmpm")
@@ -448,11 +448,15 @@ position = Vector2(1, 8.5)
 shape = SubResource("CapsuleShape2D_3pxrr")
 
 [node name="RayCast2DFloor" type="RayCast2D" parent="."]
+light_mask = 16
+visibility_layer = 16
 position = Vector2(14, 9)
-target_position = Vector2(0, 31)
+target_position = Vector2(0, 38.6)
 collision_mask = 16
 
 [node name="RayCast2DWall" type="RayCast2D" parent="."]
+light_mask = 0
+visibility_layer = 16
 position = Vector2(14, 9)
 target_position = Vector2(13, 0)
 collision_mask = 16
