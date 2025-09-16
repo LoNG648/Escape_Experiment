@@ -1,8 +1,8 @@
 [gd_scene load_steps=56 format=3 uid="uid://bh2xfihntbwfq"]
 
-[ext_resource type="Script" uid="uid://fiydt1ylrj8u" path="res://Enemies Stuff/complexenemy.gd" id="1_ad176"]
-[ext_resource type="Texture2D" uid="uid://bicitkvq6t0c4" path="res://Enemies Stuff/Enemy Assets/Bringer-Of-Death/SpriteSheet/Bringer-of-Death-SpritSheet.png" id="1_vjjuq"]
-[ext_resource type="Script" uid="uid://dxycbvexq3q5s" path="res://Components/Hurtbox.gd" id="3_kri20"]
+[ext_resource type="Script" uid="uid://fiydt1ylrj8u" path="res://Scripts/complexenemy.gd" id="1_ad176"]
+[ext_resource type="Texture2D" uid="uid://bicitkvq6t0c4" path="res://Assets/Enemy Assets/Bringer-Of-Death/SpriteSheet/Bringer-of-Death-SpritSheet.png" id="1_vjjuq"]
+[ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="3_klabn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bwkyk"]
 atlas = ExtResource("1_vjjuq")
@@ -418,21 +418,20 @@ position = Vector2(-17, 6)
 target_position = Vector2(-13, 0)
 collision_mask = 16
 
-[node name="Hurtbox" type="Area2D" parent="."]
-light_mask = 0
-visibility_layer = 4
-script = ExtResource("3_kri20")
-damage = 50.0
-metadata/_custom_type_script = "uid://dxycbvexq3q5s"
+[node name="Hurtbox" parent="." instance=ExtResource("3_klabn")]
+scale = Vector2(1, 1)
 
 [node name="hurtboxcollision" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-63.4, 4.8)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_kri20")
 disabled = true
 
 [node name="detect_player" type="Area2D" parent="."]
 light_mask = 0
 visibility_layer = 1023
+collision_layer = 0
+collision_mask = 2
 
 [node name="detect_player_box" type="CollisionShape2D" parent="detect_player"]
 position = Vector2(-51.8, 5.00001)
@@ -440,3 +439,4 @@ shape = SubResource("RectangleShape2D_3rpcp")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="detect_player" to="." method="_on_detect_player_body_entered"]
+[connection signal="body_exited" from="detect_player" to="." method="_on_detect_player_body_exited"]

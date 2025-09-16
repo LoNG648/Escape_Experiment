@@ -9,6 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_right = true
 var windup = false
 var attacking = false
+var player_in_reach = false
 #signal in_attack(bool)
 
 @onready var animation_player := $AnimatedSprite2D
@@ -63,16 +64,30 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	elif attacking == true:
 		attacking = false
 		get_node("Hurtbox/hurtboxcollision").disabled = true
-		speed = held_speed
+		if player_in_reach == true:
+			_player_still_in_reach()
+		else:
+			speed = held_speed
 	else:
 		pass
 
 
 func _on_detect_player_body_entered(body: Node2D) -> void:
 	if body is player:
+		player_in_reach = true
 		windup = true
-		#emit_signal("in_attack", true)
 		speed = 0
 		animation_player.play("windup1")
 	else:
 		pass
+		
+
+func _on_detect_player_body_exited(body: Node2D) -> void:
+	if body is player:
+		player_in_reach = false
+		
+ 
+func _player_still_in_reach():
+	windup = true
+	speed = 0
+	animation_player.play("windup1")

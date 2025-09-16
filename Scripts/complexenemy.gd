@@ -9,6 +9,7 @@ var facing_left = true
 var windup = false
 var attacking = false
 var holster = false
+var player_in_reach = false
 
 @onready var animation_player := $AnimatedSprite2D
 
@@ -44,8 +45,8 @@ func flip():
 		speed = abs(speed)
 		held_speed = abs(held_speed)
 		
-func take_damage(amount: int) -> void:
-	$AnimatedSprite2D.play("hit")
+#func take_damage(amount: int) -> void:
+	#$AnimatedSprite2D.play("hit")
 	#print("Damage: ", amount)
  
 
@@ -63,7 +64,10 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		holster = true
 	elif holster == true:
 		holster = false
-		speed = held_speed
+		if player_in_reach == true:
+			_player_still_in_reach()
+		else:
+			speed = held_speed
 	else:
 		pass
 		
@@ -75,3 +79,13 @@ func _on_detect_player_body_entered(body: Node2D) -> void:
 		animation_player.play("1windup")
 	else:
 		pass
+		
+func _player_still_in_reach():
+	windup = true
+	speed = 0
+	animation_player.play("1windup")
+
+
+func _on_detect_player_body_exited(body: Node2D) -> void:
+	if body is player:
+		player_in_reach = false

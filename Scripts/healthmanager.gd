@@ -1,3 +1,4 @@
+class_name HealthManager
 extends Node
 
 signal death()
