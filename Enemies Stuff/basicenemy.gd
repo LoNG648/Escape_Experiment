@@ -9,6 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_right = true
 var windup = false
 var attacking = false
+#signal in_attack(bool)
 
 @onready var animation_player := $AnimatedSprite2D
 
@@ -45,8 +46,8 @@ func flip():
 		speed = abs(speed) * -1
 		held_speed = abs(held_speed) * -1
 		
-func take_damage(amount: int) -> void:
-	animation_player.play("hit")
+#func take_damage(amount: int) -> void:
+	#animation_player.play("hit")
 	#print("Damage: ", amount)
 
 
@@ -55,6 +56,7 @@ func take_damage(amount: int) -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if windup == true:
 		attacking = true
+		#emit_signal("in_attack", true)
 		animation_player.play("attack1")
 		get_node("Hurtbox/hurtboxcollision").disabled = false
 		windup = false
@@ -69,6 +71,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func _on_detect_player_body_entered(body: Node2D) -> void:
 	if body is player:
 		windup = true
+		#emit_signal("in_attack", true)
 		speed = 0
 		animation_player.play("windup1")
 	else:
