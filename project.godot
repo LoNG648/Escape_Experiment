@@ -15,6 +15,10 @@ run/main_scene="uid://c071vduxkcrkp"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Assets/icon.svg"
 
+[global_group]
+
+Player=""
+
 [input]
 
 "Basic Attack"={
