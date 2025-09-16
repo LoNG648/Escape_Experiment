@@ -11,11 +11,6 @@ var block: bool = false
 @onready var Collisionbox: CollisionShape2D = $CollisionBox #Collisionbox Variable
 @onready var Hitbox: CollisionShape2D = $Hitbox #Hitbox Variable
 @onready var health: Node = $Health #Health variable for health system
-@onready var health_manager: HealthManager = %HealthManager
-
-func _ready():
-	#health_manager.connect("death",Callable(self,"_on_death"))
-	pass
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -80,11 +75,10 @@ func _physics_process(delta: float) -> void:
 		await get_tree().create_timer(0.3).timeout #Creates a 0.3 second delay
 		block = false
 		
-func _on_death():
+func death():
 	if health.currentHealth <= 0:
 		dead = true
 		print("Im Dying")
-		set_process_unhandled_input(false)
 		for i in range(4):
 			Sprite.rotation_degrees += 90
 			await get_tree().create_timer(1).timeout
