@@ -463,6 +463,7 @@ target_position = Vector2(13, 0)
 collision_mask = 16
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_0mme3")]
+damage = 25.0
 
 [node name="hurtboxcollision" type="CollisionShape2D" parent="Hurtbox"]
 light_mask = 0
