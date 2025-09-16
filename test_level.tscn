@@ -1,16 +1,19 @@
 [gd_scene load_steps=6 format=3 uid="uid://c5v1r7k1yh3p7"]
 
 [ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://player.tscn" id="1_gojnm"]
-[ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://icon.svg" id="2_1c2mv"]
+[ext_resource type="Texture2D" uid="uid://4pcbc3qp1jwr" path="res://Assets/Pixel Adventure 1/Free/Traps/Spikes/Idle.png" id="2_1c2mv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gojnm"]
 size = Vector2(3800, 420)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7g2b"]
-size = Vector2(200, 200)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f7g2b"]
+texture = ExtResource("2_1c2mv")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.67633, -0.179857, -0.719435, 6.1152, 3.59717, -0.179857, 8, 8, -8, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ptq8"]
-size = Vector2(200, 200)
+[sub_resource type="TileSet" id="TileSet_4ptq8"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_f7g2b")
 
 [node name="TestLevel" type="Node2D"]
 
@@ -24,25 +27,13 @@ position = Vector2(1584, 429)
 shape = SubResource("RectangleShape2D_gojnm")
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
-offset_left = -319.0
-offset_top = 218.0
-offset_right = 3484.0
-offset_bottom = 643.0
+offset_left = -315.0
+offset_top = 217.0
+offset_right = 3488.0
+offset_bottom = 642.0
 
-[node name="spiketrap" type="Node2D" parent="."]
-position = Vector2(500, 120)
-
-[node name="Sprite2D" type="Sprite2D" parent="spiketrap"]
-texture = ExtResource("2_1c2mv")
-
-[node name="triggerarea" type="Area2D" parent="spiketrap"]
-collision_layer = 8193
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spiketrap/triggerarea"]
-shape = SubResource("RectangleShape2D_f7g2b")
-
-[node name="killzone" type="Area2D" parent="spiketrap"]
-collision_layer = 16385
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spiketrap/killzone"]
-shape = SubResource("RectangleShape2D_4ptq8")
+[node name="tilemapspikes" type="TileMapLayer" parent="."]
+position = Vector2(500, 50)
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray(0, 0, 7, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_4ptq8")
