@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5v1r7k1yh3p7"]
+[gd_scene load_steps=7 format=3 uid="uid://c5v1r7k1yh3p7"]
 
 [ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://player.tscn" id="1_gojnm"]
 [ext_resource type="Texture2D" uid="uid://4pcbc3qp1jwr" path="res://Assets/Pixel Adventure 1/Free/Traps/Spikes/Idle.png" id="2_1c2mv"]
+[ext_resource type="Script" uid="uid://bxt6ks11rfpoe" path="res://spiketest.gd" id="2_f7g2b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gojnm"]
 size = Vector2(3800, 420)
@@ -19,6 +20,7 @@ sources/0 = SubResource("TileSetAtlasSource_f7g2b")
 
 [node name="Player" parent="." instance=ExtResource("1_gojnm")]
 collision_layer = 24577
+script = ExtResource("2_f7g2b")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
