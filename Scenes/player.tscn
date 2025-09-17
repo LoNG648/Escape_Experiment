@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://vaeq3uf103py"]
+
+[ext_resource type="Script" uid="uid://ba8iqvap47p8y" path="res://Scripts/player.gd" id="1_onrkg"]
+[ext_resource type="SpriteFrames" uid="uid://ddcusyusn8m1a" path="res://Assets/PlayerAnims.tres" id="2_6t5aa"]
+[ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/HealthSystem.gd" id="3_btcbx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(114, 116)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+script = ExtResource("1_onrkg")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -64)
+sprite_frames = ExtResource("2_6t5aa")
+animation = &"Dying"
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(0, -64)
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_btcbx")

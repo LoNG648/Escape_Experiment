@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwowdepmj5epm"]
+
+[ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="1_ugexi"]
+[ext_resource type="PackedScene" uid="uid://bh2xfihntbwfq" path="res://Scenes/complexenemy.tscn" id="3_7wf4f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qilu"]
+size = Vector2(3800, 420)
+
+[node name="enemy_test_level" type="Node2D"]
+
+[node name="TestPlatform" type="StaticBody2D" parent="."]
+light_mask = 1023
+visibility_layer = 1023
+z_index = 1
+scale = Vector2(0.5, 0.5)
+collision_layer = 17
+collision_mask = 0
+
+[node name="PlatformCollision" type="CollisionShape2D" parent="TestPlatform"]
+light_mask = 1023
+visibility_layer = 1023
+position = Vector2(1584, 429)
+shape = SubResource("RectangleShape2D_2qilu")
+
+[node name="PlatformColor" type="ColorRect" parent="TestPlatform"]
+offset_left = -319.0
+offset_top = 218.0
+offset_right = 3484.0
+offset_bottom = 643.0
+
+[node name="Player" parent="." instance=ExtResource("1_ugexi")]
+position = Vector2(-19, 57)
+scale = Vector2(0.5, 0.5)
+
+[node name="complexenemy" parent="." instance=ExtResource("3_7wf4f")]
+position = Vector2(472, 0)
