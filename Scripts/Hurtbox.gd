@@ -4,6 +4,7 @@ extends Area2D
 @export var damage: float
 
 func _on_body_entered(body: Node2D):
+	print(get_overlapping_areas())
 	if body is not player:
 		print("Enemy spotted")
 	if body.health:

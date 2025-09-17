@@ -18,13 +18,16 @@ script = ExtResource("1_onrkg")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -64)
 sprite_frames = ExtResource("2_6t5aa")
-animation = &"Dying"
+animation = &"Block"
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -64)
 shape = SubResource("RectangleShape2D_onrkg")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Something" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="Hitbox" type="CollisionShape2D" parent="Something"]
 position = Vector2(0, -64)
 shape = SubResource("RectangleShape2D_onrkg")
 
@@ -36,7 +39,7 @@ position = Vector2(0, -64)
 damage = 25.0
 
 [node name="Hurtbox Collision" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(180, 0)
+position = Vector2(175, 0)
 shape = SubResource("RectangleShape2D_fkybt")
 
 [node name="Health" type="Node" parent="."]

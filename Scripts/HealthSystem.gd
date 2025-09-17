@@ -9,7 +9,7 @@ func _ready() -> void:
 	print(currentHealth)
 
 func takeDamage(body: Node2D, damage: float) -> void:
-	if body.block != true:
+	if body.blocking != true:
 		currentHealth -= damage
 		if body is player:
 			print("Ouch")

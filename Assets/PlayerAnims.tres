@@ -9,6 +9,22 @@ animations = [{
 "texture": ExtResource("1_enqtm")
 }],
 "loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_enqtm")
+}],
+"loop": true,
+"name": &"Block",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_enqtm")
+}],
+"loop": true,
 "name": &"Dying",
 "speed": 5.0
 }, {
