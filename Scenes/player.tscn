@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://vaeq3uf103py"]
+[gd_scene load_steps=7 format=3 uid="uid://vaeq3uf103py"]
 
 [ext_resource type="Script" uid="uid://ba8iqvap47p8y" path="res://Scripts/player.gd" id="1_onrkg"]
 [ext_resource type="SpriteFrames" uid="uid://ddcusyusn8m1a" path="res://Assets/PlayerAnims.tres" id="2_6t5aa"]
 [ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/HealthSystem.gd" id="3_btcbx"]
+[ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="3_vgqql"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(114, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkybt"]
+size = Vector2(196, 143)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
@@ -26,6 +30,14 @@ shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(0, -64)
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_vgqql")]
+position = Vector2(0, -64)
+damage = 25.0
+
+[node name="Hurtbox Collision" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(180, 0)
+shape = SubResource("RectangleShape2D_fkybt")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_btcbx")

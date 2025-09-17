@@ -46,9 +46,9 @@ func _physics_process(delta: float) -> void:
 	
 	#Flip the Sprite
 	if direction > 0:
-		Sprite.flip_h = false
+		scale.x = abs(scale.x) * 1
 	elif direction < 0:
-		Sprite.flip_h = true
+		scale.x = abs(scale.x) * -1
 		
 	#Play Animations
 	if is_on_floor():
@@ -76,7 +76,7 @@ func _physics_process(delta: float) -> void:
 		block = false
 		
 func death():
-	if health.currentHealth <= 0:
+	if health.currentHealth <= 0 and dead == false:
 		dead = true
 		print("Im Dying")
 		for i in range(4):
