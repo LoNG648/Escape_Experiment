@@ -2,14 +2,17 @@ extends CharacterBody2D
 
 var speed = -125.0
 var held_speed = -125
+@onready var health: Node = $Health #Health variable for health system
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var dead: bool = false
 var facing_left = true
 var windup = false
 var attacking = false
 var holster = false
 var player_in_reach = false
+var block = false
 
 @onready var animation_player := $AnimatedSprite2D
 
@@ -25,9 +28,10 @@ func _physics_process(delta):
 	
 	if $RayCast2DWall.is_colliding() && is_on_floor():
 		flip()
-	
+		
 	velocity.x = speed
-	if windup == false and attacking == false and holster == false:
+		
+	if windup == false and attacking == false and holster == false and dead == false:
 			$AnimatedSprite2D.play("run")
 	
 	
@@ -68,12 +72,15 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			_player_still_in_reach()
 		else:
 			speed = held_speed
+	elif dead == true:
+		queue_free()
+		print("Complex enemy dead")
 	else:
 		pass
 		
 
 func _on_detect_player_body_entered(body: Node2D) -> void:
-	if body is player:
+	if body is player and dead == false:
 		player_in_reach = true
 		windup = true
 		speed = 0
@@ -90,3 +97,11 @@ func _player_still_in_reach():
 func _on_detect_player_body_exited(body: Node2D) -> void:
 	if body is player:
 		player_in_reach = false
+
+
+func death():
+	speed = 0
+	if health.currentHealth <= 0:
+		dead = true
+		print("Complex enemy dying")
+		animation_player.play("death")
