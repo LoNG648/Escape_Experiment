@@ -10,7 +10,7 @@ var attacking: bool = false
 
 @onready var sprite: AnimatedSprite2D = $Sprite #Sprite Variable
 @onready var collisionbox: CollisionShape2D = $CollisionBox #Collisionbox Variable
-@onready var hitbox: CollisionShape2D = $Hitbox #Hitbox Variable
+@onready var hitbox: CollisionShape2D = $Something/Hitbox
 @onready var health: Node = $Health #Health variable for health system
 @onready var basicAttackHurtbox: CollisionShape2D = $"Hurtbox/Hurtbox Collision"
 
