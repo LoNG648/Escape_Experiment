@@ -28,7 +28,7 @@ script = ExtResource("1_onrkg")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -64)
 sprite_frames = ExtResource("2_6t5aa")
-animation = &"Counter Attack"
+animation = &"Attack"
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(0, -64)
