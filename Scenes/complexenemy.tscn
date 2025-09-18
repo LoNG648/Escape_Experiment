@@ -396,7 +396,7 @@ size = Vector2(64.4, 68.4)
 
 [node name="complexenemy" type="CharacterBody2D"]
 scale = Vector2(2.5, 2.5)
-collision_layer = 3
+collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ad176")
 
@@ -414,14 +414,13 @@ shape = SubResource("CapsuleShape2D_vjjuq")
 [node name="RayCast2DFloor" type="RayCast2D" parent="."]
 position = Vector2(-17, 6)
 target_position = Vector2(0, 47)
-collision_mask = 16
 
 [node name="RayCast2DWall" type="RayCast2D" parent="."]
 position = Vector2(-17, 6)
 target_position = Vector2(-13, 0)
-collision_mask = 16
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_klabn")]
+collision_mask = 2
 damage = 50.0
 
 [node name="hurtboxcollision" type="CollisionShape2D" parent="Hurtbox"]

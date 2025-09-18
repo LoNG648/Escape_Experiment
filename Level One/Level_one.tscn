@@ -1,4 +1,8 @@
-[gd_scene load_steps=34 format=3 uid="uid://b11ucjiugm7md"]
+[gd_scene load_steps=37 format=3 uid="uid://b11ucjiugm7md"]
+
+[ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="1_gi5r5"]
+[ext_resource type="PackedScene" uid="uid://cvnafhg5v34po" path="res://Scenes/basicenemy.tscn" id="2_pcha5"]
+[ext_resource type="PackedScene" uid="uid://bh2xfihntbwfq" path="res://Scenes/complexenemy.tscn" id="3_n3oqd"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1t2tk"]
 
@@ -487,3 +491,19 @@ offset_left = 3976.0
 offset_top = -44.0
 offset_right = 3998.0
 offset_bottom = -15.0
+
+[node name="Player" parent="." instance=ExtResource("1_gi5r5")]
+position = Vector2(167, -7)
+
+[node name="basicenemy" parent="." instance=ExtResource("2_pcha5")]
+position = Vector2(2221, -62)
+scale = Vector2(-2.5, 2.5)
+
+[node name="basicenemy2" parent="." instance=ExtResource("2_pcha5")]
+position = Vector2(3770, -368)
+
+[node name="complexenemy" parent="." instance=ExtResource("3_n3oqd")]
+position = Vector2(1778, 262)
+
+[node name="complexenemy2" parent="." instance=ExtResource("3_n3oqd")]
+position = Vector2(3850, -1385)

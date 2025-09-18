@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwowdepmj5epm"]
 
 [ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="1_ugexi"]
+[ext_resource type="PackedScene" uid="uid://cmfsc40rx18fr" path="res://Scenes/Spikes.tscn" id="3_5wa6w"]
 [ext_resource type="PackedScene" uid="uid://bh2xfihntbwfq" path="res://Scenes/complexenemy.tscn" id="3_7wf4f"]
-[ext_resource type="PackedScene" uid="uid://d26p7nkj0i666" path="res://Scenes/spikes.tscn" id="5_mr5l8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qilu"]
 size = Vector2(3800, 420)
@@ -14,7 +14,6 @@ light_mask = 1023
 visibility_layer = 1023
 z_index = 1
 scale = Vector2(0.5, 0.5)
-collision_layer = 17
 collision_mask = 0
 
 [node name="PlatformCollision" type="CollisionShape2D" parent="TestPlatform"]
@@ -31,11 +30,10 @@ offset_bottom = 649.0
 
 [node name="Player" parent="." instance=ExtResource("1_ugexi")]
 position = Vector2(-19, 57)
-scale = Vector2(0.5, 0.5)
 
 [node name="complexenemy" parent="." instance=ExtResource("3_7wf4f")]
-position = Vector2(1346, 7)
+position = Vector2(513, -58)
 
-[node name="spikes" parent="." instance=ExtResource("5_mr5l8")]
-position = Vector2(251, 69)
+[node name="Spikes" parent="." instance=ExtResource("3_5wa6w")]
+position = Vector2(788, 111)
 scale = Vector2(5, 5)

@@ -12,7 +12,7 @@ var windup = false
 var attacking = false
 var holster = false
 var player_in_reach = false
-var block = false
+var blocking = false
 
 @onready var animation_player := $AnimatedSprite2D
 
@@ -56,7 +56,10 @@ func flip():
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if windup == true:
+	if dead == true:
+		queue_free()
+		print("Complex enemy dead")
+	elif windup == true:
 		attacking = true
 		animation_player.play("1attack")
 		get_node("Hurtbox/hurtboxcollision").disabled = false
@@ -72,9 +75,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			_player_still_in_reach()
 		else:
 			speed = held_speed
-	elif dead == true:
-		queue_free()
-		print("Complex enemy dead")
 	else:
 		pass
 		
