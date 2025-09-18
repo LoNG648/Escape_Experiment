@@ -108,6 +108,7 @@ size = Vector2(22, 28.5)
 [node name="LevelOnePlatform" type="StaticBody2D" parent="."]
 material = SubResource("CanvasItemMaterial_1t2tk")
 disable_mode = 1
+collision_layer = 17
 
 [node name="ColorRect32" type="ColorRect" parent="LevelOnePlatform"]
 offset_left = -512.0
@@ -497,7 +498,6 @@ position = Vector2(167, -7)
 
 [node name="basicenemy" parent="." instance=ExtResource("2_pcha5")]
 position = Vector2(2221, -62)
-scale = Vector2(-2.5, 2.5)
 
 [node name="basicenemy2" parent="." instance=ExtResource("2_pcha5")]
 position = Vector2(3770, -368)
