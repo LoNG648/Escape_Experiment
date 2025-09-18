@@ -6,11 +6,27 @@ const JUMP_VELOCITY = -600.0 #Jump Height and Speed
 
 var dead: bool = false
 var block: bool = false
+var took_damage =false
+var can_move = true
 
 @onready var Sprite: AnimatedSprite2D = $Sprite #Sprite Variable
 @onready var Collisionbox: CollisionShape2D = $CollisionBox #Collisionbox Variable
 @onready var Hitbox: CollisionShape2D = $Hitbox #Hitbox Variable
 @onready var health: Node = $Health #Health variable for health system
+
+func respawn():
+	
+	self.visible = false
+	can_move = false
+	await get_tree().create_timer(0.5).timeout
+	
+	self.global_position = Vector2(0,0)
+	self.visible = true
+	can_move =true
+	
+	await get_tree().create_timer(0.5).timeout
+	
+	took_damage = false
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -19,6 +35,14 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
+	#spikes
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		
+		if collision.get_collider().name == "tilemapspike":
+			if took_damage == false:
+				took_damage =true
+				respawn()
 	#Handle jump.
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -58,6 +82,9 @@ func _physics_process(delta: float) -> void:
 			Sprite.play("Run")
 	else:
 		Sprite.play("Jump")
+	
+	if can_move == false:
+		return
 	
 	#Apply Movement
 	if direction:
