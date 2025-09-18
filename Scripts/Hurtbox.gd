@@ -6,7 +6,6 @@ extends Area2D
 #@onready var body: Node2D
 
 func _on_body_entered(body: Node2D):
-	print("Enemy spotted")
 	if body.health:
 		body.get_node("Health").takeDamage(body, damage)
 

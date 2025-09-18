@@ -3,8 +3,6 @@ extends Node
 
 @export var maxHealth: float
 
-var blockedDamage = false
-
 @onready var currentHealth: float = maxHealth
 
 func _ready() -> void:
@@ -18,3 +16,5 @@ func takeDamage(body: Node2D, damage: float) -> void:
 		print(body.name, " ", currentHealth)
 		if currentHealth <= 0:
 			body.death()
+	elif body.blocking == true:
+		body.blockedDamage()

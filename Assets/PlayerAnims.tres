@@ -25,6 +25,14 @@ animations = [{
 "texture": ExtResource("1_enqtm")
 }],
 "loop": true,
+"name": &"Counter Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_enqtm")
+}],
+"loop": true,
 "name": &"Dying",
 "speed": 5.0
 }, {
@@ -52,7 +60,10 @@ animations = [{
 "name": &"Run",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_enqtm")
+}],
 "loop": true,
 "name": &"Special Attack",
 "speed": 5.0
