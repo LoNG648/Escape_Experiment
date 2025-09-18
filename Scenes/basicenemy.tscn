@@ -436,7 +436,7 @@ size = Vector2(26, 64.8)
 
 [node name="basicenemy" type="CharacterBody2D"]
 scale = Vector2(2.5, 2.5)
-collision_layer = 3
+collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ldolw")
 
@@ -454,16 +454,15 @@ light_mask = 16
 visibility_layer = 16
 position = Vector2(14, 9)
 target_position = Vector2(0, 38.6)
-collision_mask = 16
 
 [node name="RayCast2DWall" type="RayCast2D" parent="."]
 light_mask = 0
 visibility_layer = 16
 position = Vector2(14, 9)
 target_position = Vector2(13, 0)
-collision_mask = 16
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_0mme3")]
+collision_mask = 2
 damage = 25.0
 
 [node name="hurtboxcollision" type="CollisionShape2D" parent="Hurtbox"]
@@ -476,6 +475,7 @@ disabled = true
 [node name="Detect_player" type="Area2D" parent="."]
 light_mask = 0
 visibility_layer = 1023
+collision_layer = 0
 collision_mask = 2
 
 [node name="detect_player_box" type="CollisionShape2D" parent="Detect_player"]

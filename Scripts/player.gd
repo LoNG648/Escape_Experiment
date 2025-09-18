@@ -7,12 +7,14 @@ const JUMP_VELOCITY = -600.0 #Jump Height and Speed
 var dead: bool = false
 var blocking: bool = false
 var attacking: bool = false
+var specialAttacking: bool = false
 
 @onready var sprite: AnimatedSprite2D = $Sprite #Sprite Variable
 @onready var collisionbox: CollisionShape2D = $CollisionBox #Collisionbox Variable
-@onready var hitbox: CollisionShape2D = $Something/Hitbox
+@onready var hitbox_collision: CollisionShape2D = $"Hitbox/Hitbox Collision"
 @onready var health: Node = $Health #Health variable for health system
 @onready var basicAttackHurtbox: CollisionShape2D = $"Hurtbox/Hurtbox Collision"
+@onready var bullet_trajectory: RayCast2D = $BulletTrajectory
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -27,8 +29,8 @@ func _physics_process(delta: float) -> void:
 	
 	#Get the input direction and handle the movement/deceleration
 	var direction := Input.get_axis("Move Left","Move Right")
-	
-	#Flip the Sprite
+		
+	#Adjust Sprite and everything
 	if direction > 0:
 		scale.x = abs(scale.x) * 1
 	elif direction < 0:
@@ -53,44 +55,24 @@ func _physics_process(delta: float) -> void:
 	
 	#Handles crouch
 	if Input.is_action_just_pressed("Crouch"):
-		if direction > 0:
-			sprite.scale.y = 0.5 #Makes crouching change sprite
-			sprite.position.y = 25
-			collisionbox.scale.y = 0.5 #Makes crouching change collisionbox
-			collisionbox.position.y = 25
-			hitbox.scale.y = 0.5 #Makes crouching change hitbox
-			hitbox.position.y = 25
+		if direction >= 0:
+			scale.y /= 2
 		if direction < 0:
-			sprite.scale.y = -0.5 #Makes crouching change sprite
-			sprite.position.y = -25
-			collisionbox.scale.y = -0.5 #Makes crouching change collisionbox
-			collisionbox.position.y = -25
-			hitbox.scale.y = -0.5 #Makes crouching change hitbox
-			hitbox.position.y = -25
-		
+			scale.y /= 2
+	
 	if Input.is_action_just_released("Crouch"):
-		await get_tree().create_timer(5).timeout #Creates a 0.3 second delay
-		sprite.scale.y = 1 #Resets sprite back to normal after delay
-		sprite.position.y = 0
-		collisionbox.scale.y = 1 #Resets collisionbox back to normal after delay
-		collisionbox.position.y = 0
-		hitbox.scale.y = 1 #Resets hitbox back to normal after delay
-		hitbox.position.y = 0
+		await get_tree().create_timer(0.3).timeout #Creates a 0.3 second delay
+		scale.y *= 2
 	
 	#Apply Attack Mechanic
-	if Input.is_action_just_pressed("Basic Attack"):
-		if blocking or attacking == true:
-			return
-		else:
-			sprite.rotate(90)
+	if Input.is_action_just_pressed("Basic Attack") and blocking == false and attacking == false:
+			sprite.play("Attack")
 			attacking = true
 			basicAttackHurtbox.disabled = false
-	
-	if Input.is_action_just_released("Basic Attack"):
-		basicAttackHurtbox.disabled = true
-		get_tree().create_timer(3)
-		await get_tree().timer(3).timeout
-		attacking = false
+			await get_tree().create_timer(0.2).timeout
+			basicAttackHurtbox.disabled = true
+			await get_tree().create_timer(4.8).timeout
+			attacking = false
 	
 	#Apply Blocking Mechanic
 	if Input.is_action_just_pressed("Block"):
@@ -103,7 +85,15 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("Block"):
 		await get_tree().create_timer(0.3).timeout #Creates a 0.3 second delay
 		blocking = false
-		hitbox.disabled = false
+		
+	if Input.is_action_just_pressed("Special Attack") and blocking == false and attacking == false:
+		print("SPECIAL!")
+		specialAttacking = true
+		while specialAttacking == true:
+			sprite.play("Special Attack")
+			bullet_trajectory.enabled = true
+			if bullet_trajectory.is_colliding():
+				print(bullet_trajectory.get_collider())
 		
 func death():
 	if health.currentHealth <= 0 and dead == false:
