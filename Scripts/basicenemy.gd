@@ -12,7 +12,7 @@ var facing_right = true
 var windup = false
 var attacking = false
 var player_in_reach = false
-var block = false
+var blocking = false
 #signal in_attack(bool)
 
 @onready var animation_player := $AnimatedSprite2D
@@ -58,7 +58,10 @@ func flip():
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if windup == true:
+	if dead == true:
+		queue_free()
+		print("Basic enemy dead")
+	elif windup == true:
 		attacking = true
 		#emit_signal("in_attack", true)
 		animation_player.play("attack1")
@@ -71,9 +74,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			_player_still_in_reach()
 		else:
 			speed = held_speed
-	elif dead == true:
-		queue_free()
-		print("Basic enemy dead")
 	else:
 		pass
 

@@ -24,24 +24,6 @@ func _physics_process(delta: float) -> void:
 	#Handle jump.
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
-	#Handles crouch
-	if Input.is_action_just_pressed("Crouch"):
-		sprite.scale.y = 0.5 #Makes crouching change sprite
-		sprite.position.y = 25
-		collisionbox.scale.y = 0.5 #Makes crouching change collisionbox
-		collisionbox.position.y = 25
-		hitbox.scale.y = 0.5 #Makes crouching change hitbox
-		hitbox.position.y = 25
-		
-	if Input.is_action_just_released("Crouch"):
-		await get_tree().create_timer(0.3).timeout #Creates a 0.3 second delay
-		sprite.scale.y = 1 #Resets sprite back to normal after delay
-		sprite.position.y = 0
-		collisionbox.scale.y = 1 #Resets collisionbox back to normal after delay
-		collisionbox.position.y = 0
-		hitbox.scale.y = 1 #Resets hitbox back to normal after delay
-		hitbox.position.y = 0
 	
 	#Get the input direction and handle the movement/deceleration
 	var direction := Input.get_axis("Move Left","Move Right")
@@ -69,19 +51,46 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 	
+	#Handles crouch
+	if Input.is_action_just_pressed("Crouch"):
+		if direction > 0:
+			sprite.scale.y = 0.5 #Makes crouching change sprite
+			sprite.position.y = 25
+			collisionbox.scale.y = 0.5 #Makes crouching change collisionbox
+			collisionbox.position.y = 25
+			hitbox.scale.y = 0.5 #Makes crouching change hitbox
+			hitbox.position.y = 25
+		if direction < 0:
+			sprite.scale.y = -0.5 #Makes crouching change sprite
+			sprite.position.y = -25
+			collisionbox.scale.y = -0.5 #Makes crouching change collisionbox
+			collisionbox.position.y = -25
+			hitbox.scale.y = -0.5 #Makes crouching change hitbox
+			hitbox.position.y = -25
+		
+	if Input.is_action_just_released("Crouch"):
+		await get_tree().create_timer(5).timeout #Creates a 0.3 second delay
+		sprite.scale.y = 1 #Resets sprite back to normal after delay
+		sprite.position.y = 0
+		collisionbox.scale.y = 1 #Resets collisionbox back to normal after delay
+		collisionbox.position.y = 0
+		hitbox.scale.y = 1 #Resets hitbox back to normal after delay
+		hitbox.position.y = 0
+	
 	#Apply Attack Mechanic
 	if Input.is_action_just_pressed("Basic Attack"):
 		if blocking or attacking == true:
 			return
 		else:
-			sprite.play("Attack")
+			sprite.rotate(90)
 			attacking = true
 			basicAttackHurtbox.disabled = false
 	
 	if Input.is_action_just_released("Basic Attack"):
-		await get_tree().create_timer(0.7).timeout
-		attacking = false
 		basicAttackHurtbox.disabled = true
+		get_tree().create_timer(3)
+		await get_tree().timer(3).timeout
+		attacking = false
 	
 	#Apply Blocking Mechanic
 	if Input.is_action_just_pressed("Block"):
@@ -89,8 +98,7 @@ func _physics_process(delta: float) -> void:
 			return
 		else:
 			sprite.play("Block")
-			hitbox.disabled = true
-			#blocking = true
+			blocking = true
 		
 	if Input.is_action_just_released("Block"):
 		await get_tree().create_timer(0.3).timeout #Creates a 0.3 second delay
