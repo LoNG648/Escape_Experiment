@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d26p7nkj0i666"]
+
+[ext_resource type="Texture2D" uid="uid://4pcbc3qp1jwr" path="res://Assets/Pixel Adventure 1/Free/Traps/Spikes/Idle.png" id="1_nrdsm"]
+[ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="2_8fhau"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ds4fp"]
+size = Vector2(17, 6.5)
+
+[node name="spikes" type="Node2D"]
+
+[node name="spikes" type="Sprite2D" parent="."]
+scale = Vector2(1.202, 1)
+texture = ExtResource("1_nrdsm")
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_8fhau")]
+damage = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-0.5, 5.25)
+shape = SubResource("RectangleShape2D_ds4fp")
