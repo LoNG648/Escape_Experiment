@@ -258,7 +258,7 @@ color = Color(0.662452, 0.662452, 0.662452, 1)
 position = Vector2(4301, -733)
 shape = SubResource("SegmentShape2D_7npky")
 one_way_collision = true
-one_way_collision_margin = 5.0
+one_way_collision_margin = 0.5
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="LevelOnePlatform"]
 position = Vector2(4275.88, -1052)
