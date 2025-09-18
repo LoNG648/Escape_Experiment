@@ -1,3 +1,4 @@
+class_name Health
 extends Node
 
 @export var maxHealth: float = 100.0
