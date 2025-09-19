@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://cyb1c3ehuaopf"]
+
+[ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="1_885wx"]
+[ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="2_p45px"]
+[ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/Player.tscn" id="3_60jpj"]
+[ext_resource type="PackedScene" uid="uid://cvnafhg5v34po" path="res://Scenes/Basic Enemy.tscn" id="4_bb8jl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qilu"]
+size = Vector2(3800, 420)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fruoj"]
+size = Vector2(129.5, 126.5)
+
+[node name="Nathan Test Level" type="Node2D"]
+
+[node name="TestPlatform" type="StaticBody2D" parent="."]
+light_mask = 1023
+visibility_layer = 1023
+z_index = 1
+scale = Vector2(0.5, 0.5)
+collision_layer = 17
+collision_mask = 0
+
+[node name="PlatformCollision" type="CollisionShape2D" parent="TestPlatform"]
+light_mask = 1023
+visibility_layer = 1023
+position = Vector2(1584, 429)
+shape = SubResource("RectangleShape2D_2qilu")
+
+[node name="PlatformColor" type="ColorRect" parent="TestPlatform"]
+offset_left = -319.0
+offset_top = 218.0
+offset_right = 3484.0
+offset_bottom = 643.0
+
+[node name="Death Box" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Death Box"]
+position = Vector2(392, 44)
+texture = ExtResource("1_885wx")
+
+[node name="Hurtbox" parent="Death Box" instance=ExtResource("2_p45px")]
+damage = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death Box/Hurtbox"]
+position = Vector2(392.25, 43.75)
+shape = SubResource("RectangleShape2D_fruoj")
+
+[node name="Player" parent="." instance=ExtResource("3_60jpj")]
+position = Vector2(-19, 57)
+
+[node name="Basic Enemy" parent="." instance=ExtResource("4_bb8jl")]
+position = Vector2(1613, 41)

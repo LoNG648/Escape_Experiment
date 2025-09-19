@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh126xqlail2u"]
+
+[ext_resource type="Script" uid="uid://bnonp7sk28bm5" path="res://Scripts/Special Attack.gd" id="1_elgug"]
+
+[node name="Special Attack" type="Node2D"]
+script = ExtResource("1_elgug")
+damage = 10.0
+
+[node name="Special Attack Raycast" type="RayCast2D" parent="."]
+enabled = false
+target_position = Vector2(500, 0)
+collision_mask = 4
+
+[node name="Dev Line" type="Line2D" parent="."]
+width = 7.0

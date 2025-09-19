@@ -1,4 +1,4 @@
-class_name player
+class_name Player
 extends CharacterBody2D
 
 const SPEED = 500.0 #Horizontal Speed
@@ -12,7 +12,7 @@ var counterAttack: bool = false
 
 @onready var sprite: AnimatedSprite2D = $Sprite #Sprite Variable
 @onready var health: Node = $Health #Health variable for health system
-@onready var ray_cast_example: Node2D = $RayCastExample
+@onready var special_attack: Node2D = $"Special Attack"
 @onready var basic_attack_hurtbox_collision: CollisionShape2D = $"Basic Attack Hurtbox/Basic Attack Hurtbox Collision"
 @onready var counter_attack_hurtbox_collision: CollisionShape2D = $"Counter Attack Hurtbox/Counter Attack Hurtbox Collision"
 
@@ -21,8 +21,12 @@ func blockedDamage():
 	counterAttack = true
 
 func _physics_process(delta: float) -> void:
+	#Get the input direction and handle the movement/deceleration
+	var direction := Input.get_axis("Move Left","Move Right")
+	
 	if dead:
 		return
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -30,9 +34,6 @@ func _physics_process(delta: float) -> void:
 	#Handle jump.
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	
-	#Get the input direction and handle the movement/deceleration
-	var direction := Input.get_axis("Move Left","Move Right")
 		
 	#Adjust Sprite and everything
 	if Input.is_action_just_pressed("Move Left"):
@@ -104,10 +105,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Special Attack") and blocking == false and attacking == false:
 		print("SPECIAL!")
 		sprite.play("Special Attack")
-		ray_cast_example.get_node("RayCast2D").enabled = true
-		if ray_cast_example.get_node("RayCast2D").is_colliding():
-			if ray_cast_example.get_node("RayCast2D").get_collider().health:
-				ray_cast_example.get_node("RayCast2D").get_collider().get_node("Health").takeDamage(ray_cast_example.get_node("RayCast2D").get_collider(), 10)
+		special_attack.get_node("Special Attack Raycast").enabled = true
+		if special_attack.get_node("Special Attack Raycast").is_colliding():
+			if special_attack.get_node("Special Attack Raycast").get_collider().health:
+				special_attack.get_node("Special Attack Raycast").get_collider().get_node("Health").takeDamage(special_attack.get_node("Special Attack Raycast").get_collider(), 10)
 		
 func death():
 	if health.currentHealth <= 0 and dead == false:
