@@ -10,6 +10,7 @@ var windup = false
 var attacking = false
 var player_in_reach = false
 var blocking = false
+var hit = false
 #signal in_attack(bool)
 
 @onready var health: Node = $Health #Health variable for health system
@@ -17,6 +18,7 @@ var blocking = false
 @onready var floor_raycast: RayCast2D = $"Floor Raycast"
 @onready var wall_raycast: RayCast2D = $"Wall Raycast"
 @onready var hurtbox_collision: CollisionShape2D = $"Hurtbox/Hurtbox Collision"
+@onready var collision: CollisionShape2D = $Collisionbox
 
 # Called when the node enters the scene tree for the first time.
 func _physics_process(delta):
@@ -28,11 +30,13 @@ func _physics_process(delta):
 	
 	if wall_raycast.is_colliding() && is_on_floor():
 		flip()
-		
+	
+	
 	velocity.x = speed
 	
-	if windup == false and attacking == false and dead == false:
+	if windup == false and attacking == false and dead == false and hit == false:
 		sprite.play("run")
+	
 	
 	move_and_slide()
 
@@ -54,7 +58,16 @@ func flip():
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if dead == true:
+	if hit == true:
+		hit = false
+		if player_in_reach == true and dead == false:
+			_player_still_in_reach()
+		elif dead == true:
+			pass
+		else:
+			speed = held_speed
+		#collision.disabled = false
+	elif dead == true:
 		queue_free()
 		print("Basic enemy dead")
 	elif windup == true:
@@ -93,10 +106,20 @@ func _player_still_in_reach():
 	windup = true
 	speed = 0
 	sprite.play("windup1")
-	
+
+func got_hit():
+	if health.currentHealth != 0:
+		hit = true
+		windup = false
+		sprite.play("hit")
+#need a hitbox that is separate from the collisionbox so that i can disable it while playing the hit animation
+#also need to ask Ryan what collision layer the attacks are on for said hitbox
+
+
 func death():
 	speed = 0
 	if health.currentHealth <= 0:
 		dead = true
+		windup = false
 		print("Basic enemy dying")
 		sprite.play("death")

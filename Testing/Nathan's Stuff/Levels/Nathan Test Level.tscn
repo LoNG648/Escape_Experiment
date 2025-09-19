@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b11nec1uqjb11"]
 
-[ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/Player.tscn" id="1_nt7fk"]
+[ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="1_nt7fk"]
 [ext_resource type="PackedScene" uid="uid://cvnafhg5v34po" path="res://Scenes/Basic Enemy.tscn" id="2_1c1at"]
 [ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="3_yrtag"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="4_oosjv"]
@@ -34,12 +34,14 @@ offset_right = 3484.0
 offset_bottom = 643.0
 
 [node name="Death Box" type="StaticBody2D" parent="."]
+position = Vector2(0, -25)
 
 [node name="Sprite2D" type="Sprite2D" parent="Death Box"]
-position = Vector2(392, 44)
+position = Vector2(395, -338)
 texture = ExtResource("3_yrtag")
 
 [node name="Hurtbox" parent="Death Box" instance=ExtResource("4_oosjv")]
+position = Vector2(3, -382)
 damage = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death Box/Hurtbox"]
