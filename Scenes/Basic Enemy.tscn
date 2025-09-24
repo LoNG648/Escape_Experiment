@@ -333,7 +333,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hit",
-"speed": 5.0
+"speed": 7.5
 }, {
 "frames": [{
 "duration": 1.0,
@@ -425,7 +425,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3pxrr"]
 radius = 12.0
-height = 31.0
+height = 31.8
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1f64y"]
 radius = 13.0
@@ -442,7 +442,7 @@ script = ExtResource("1_ldolw")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4q34a")
-animation = &"hit"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]

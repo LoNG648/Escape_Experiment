@@ -16,7 +16,7 @@ func takeDamage(body: Node2D, damage: float) -> void:
 		print(body.name, " ", currentHealth)
 		if currentHealth <= 0:
 			body.death()
-		elif currentHealth <= maxHealth:
+		else:
 			body.got_hit()
 	elif body.blocking == true:
 		body.blockedDamage()

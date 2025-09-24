@@ -90,6 +90,16 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 50
 text = "Start"
 
+[node name="Help" type="Button" parent="VBoxContainer/Buttons"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.454902, 0.454902, 0.454902, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 50
+text = "Help
+"
+
 [node name="Testing" type="Button" parent="VBoxContainer/Buttons"]
 visible = false
 layout_mode = 2
@@ -110,5 +120,6 @@ theme_override_font_sizes/font_size = 50
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/Help" to="." method="_on_help_pressed"]
 [connection signal="pressed" from="VBoxContainer/Buttons/Testing" to="." method="_on_test_room_pressed"]
 [connection signal="pressed" from="VBoxContainer/Buttons/Quit" to="." method="_on_quit_pressed"]

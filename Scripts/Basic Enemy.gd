@@ -108,10 +108,11 @@ func _player_still_in_reach():
 	sprite.play("windup1")
 
 func got_hit():
-	if health.currentHealth != 0:
-		hit = true
-		windup = false
-		sprite.play("hit")
+	hit = true
+	windup = false
+	attacking = false
+	speed = 0
+	sprite.play("hit")
 #need a hitbox that is separate from the collisionbox so that i can disable it while playing the hit animation
 #also need to ask Ryan what collision layer the attacks are on for said hitbox
 
