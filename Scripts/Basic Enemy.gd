@@ -18,6 +18,7 @@ var hit = false
 @onready var floor_raycast: RayCast2D = $"Floor Raycast"
 @onready var wall_raycast: RayCast2D = $"Wall Raycast"
 @onready var hurtbox_collision: CollisionShape2D = $"Hurtbox/Hurtbox Collision"
+@onready var hitbox_collision: CollisionShape2D = $"Hitbox/Hitbox Collision"
 @onready var collision: CollisionShape2D = $Collisionbox
 
 # Called when the node enters the scene tree for the first time.
@@ -62,17 +63,18 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		hit = false
 		if player_in_reach == true and dead == false:
 			_player_still_in_reach()
+			hitbox_collision.disabled = false
 		elif dead == true:
 			pass
 		else:
 			speed = held_speed
+			hitbox_collision.disabled = false
 		#collision.disabled = false
 	elif dead == true:
 		queue_free()
 		print("Basic enemy dead")
 	elif windup == true:
 		attacking = true
-		#emit_signal("in_attack", true)
 		sprite.play("attack1")
 		hurtbox_collision.disabled = false
 		windup = false
@@ -109,6 +111,8 @@ func _player_still_in_reach():
 
 func got_hit():
 	hit = true
+	hitbox_collision.disabled = true
+	print("Basic enemy hitbox disabled!")
 	windup = false
 	attacking = false
 	speed = 0
@@ -122,5 +126,6 @@ func death():
 	if health.currentHealth <= 0:
 		dead = true
 		windup = false
+		player_in_reach = false
 		print("Basic enemy dying")
 		sprite.play("death")

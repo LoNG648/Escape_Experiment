@@ -1,9 +1,10 @@
-[gd_scene load_steps=57 format=3 uid="uid://bh2xfihntbwfq"]
+[gd_scene load_steps=58 format=3 uid="uid://bh2xfihntbwfq"]
 
 [ext_resource type="Script" uid="uid://fiydt1ylrj8u" path="res://Scripts/Complex Enemy.gd" id="1_ad176"]
 [ext_resource type="Texture2D" uid="uid://bicitkvq6t0c4" path="res://Assets/Enemy Assets/Bringer-Of-Death/SpriteSheet/Bringer-of-Death-SpritSheet.png" id="1_vjjuq"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="3_klabn"]
 [ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/Health.gd" id="4_dsgul"]
+[ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/hitbox.gd" id="5_l8thq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bwkyk"]
 atlas = ExtResource("1_vjjuq")
@@ -17,7 +18,7 @@ region = Rect2(700, 186, 140, 93)
 atlas = ExtResource("1_vjjuq")
 region = Rect2(840, 186, 140, 93)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_daqum"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8thq"]
 atlas = ExtResource("1_vjjuq")
 region = Rect2(980, 186, 140, 93)
 
@@ -208,15 +209,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xkfpv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_daqum")
 }],
 "loop": false,
 "name": &"1attack",
 "speed": 7.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8thq")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ucet0")
 }, {
@@ -225,7 +226,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"1holster",
-"speed": 7.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -242,7 +243,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"1windup",
-"speed": 7.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -392,18 +393,17 @@ height = 54.0
 size = Vector2(78.8, 66.4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rpcp"]
-size = Vector2(64.4, 68.4)
+size = Vector2(62, 68.4)
 
 [node name="Complex Enemy" type="CharacterBody2D"]
 scale = Vector2(2.5, 2.5)
-collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ad176")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-37, -9)
 sprite_frames = SubResource("SpriteFrames_mvyao")
-animation = &"ability"
+animation = &"1windup"
 autoplay = "idle"
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
@@ -421,7 +421,7 @@ target_position = Vector2(-13, 0)
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_klabn")]
 collision_mask = 2
-damage = 50.0
+damage = 40.0
 
 [node name="Hurtbox Collision" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-63.4, 4.8)
@@ -435,8 +435,20 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="Detectionbox Collision" type="CollisionShape2D" parent="Detectionbox"]
-position = Vector2(-51.8, 5.00001)
+position = Vector2(-50.6, 5.00001)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_3rpcp")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("5_l8thq")
+metadata/_custom_type_script = "uid://cl8w365iaic6m"
+
+[node name="Hitbox Collision" type="CollisionShape2D" parent="Hitbox"]
+light_mask = 0
+position = Vector2(0, 10)
+shape = SubResource("CapsuleShape2D_vjjuq")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_dsgul")
