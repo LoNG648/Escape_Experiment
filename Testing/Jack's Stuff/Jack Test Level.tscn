@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyrhw528xyie3"]
+[gd_scene load_steps=8 format=3 uid="uid://cyrhw528xyie3"]
 
 [ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="1_a1jr2"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="2_2u5ei"]
-[ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/Player.tscn" id="3_mioob"]
+[ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="3_mioob"]
 [ext_resource type="PackedScene" uid="uid://cvnafhg5v34po" path="res://Scenes/Basic Enemy.tscn" id="4_uygaw"]
+[ext_resource type="PackedScene" uid="uid://b601u3327g8xu" path="res://Scenes/spike_ball.tscn" id="5_5a4uf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qilu"]
 size = Vector2(3800, 420)
@@ -51,3 +52,7 @@ position = Vector2(-19, 57)
 
 [node name="Basic Enemy" parent="." instance=ExtResource("4_uygaw")]
 position = Vector2(1613, 41)
+
+[node name="Spike Ball" parent="." instance=ExtResource("5_5a4uf")]
+position = Vector2(227, 107)
+scale = Vector2(3, 3)

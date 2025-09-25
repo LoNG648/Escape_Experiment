@@ -18,11 +18,13 @@ point_count = 2
 [node name="Hurtbox" type="Area2D" parent="."]
 position = Vector2(-0.986394, -67.8356)
 rotation = -0.165149
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("2_yrw8b")
 metadata/_custom_type_script = "uid://dxycbvexq3q5s"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(1, -7.7486e-07)
+[node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_esy8q")
 
 [node name="Path2D" type="Path2D" parent="."]
