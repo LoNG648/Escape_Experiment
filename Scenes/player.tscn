@@ -1,31 +1,71 @@
-[gd_scene load_steps=5 format=3 uid="uid://vaeq3uf103py"]
+[gd_scene load_steps=11 format=3 uid="uid://vaeq3uf103py"]
 
-[ext_resource type="Script" uid="uid://ba8iqvap47p8y" path="res://Scripts/player.gd" id="1_onrkg"]
-[ext_resource type="SpriteFrames" uid="uid://ddcusyusn8m1a" path="res://Assets/PlayerAnims.tres" id="2_6t5aa"]
-[ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/HealthSystem.gd" id="3_btcbx"]
+[ext_resource type="Script" uid="uid://ba8iqvap47p8y" path="res://Scripts/Player.gd" id="1_onrkg"]
+[ext_resource type="SpriteFrames" uid="uid://ddcusyusn8m1a" path="res://Assets/Player Assets/PlayerAnims.tres" id="2_6t5aa"]
+[ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/Health.gd" id="3_btcbx"]
+[ext_resource type="PackedScene" uid="uid://cpksl7n51njag" path="res://Scenes/Hitbox.tscn" id="3_fkybt"]
+[ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="3_vgqql"]
+[ext_resource type="PackedScene" uid="uid://bh126xqlail2u" path="res://Scenes/Special Attack.tscn" id="6_x3wgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(114, 116)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x3wgy"]
+size = Vector2(115, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkybt"]
+size = Vector2(196, 143)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3smsa"]
+size = Vector2(198, 144)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+scale = Vector2(0.5, 0.5)
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_onrkg")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -64)
 sprite_frames = ExtResource("2_6t5aa")
-animation = &"Dying"
-
-[node name="CollisionBox" type="CollisionShape2D" parent="."]
-position = Vector2(0, -64)
-shape = SubResource("RectangleShape2D_onrkg")
-
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, -64)
-shape = SubResource("RectangleShape2D_onrkg")
+animation = &"Attack"
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(0, -64)
 
+[node name="Collisionbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_fkybt")]
+collision_layer = 2
+
+[node name="Hitbox Collision" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.5, -62)
+shape = SubResource("RectangleShape2D_x3wgy")
+
+[node name="Basic Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
+position = Vector2(0, -64)
+collision_mask = 4
+damage = 25.0
+
+[node name="Basic Attack Hurtbox Collision" type="CollisionShape2D" parent="Basic Attack Hurtbox"]
+position = Vector2(160, 0)
+shape = SubResource("RectangleShape2D_fkybt")
+disabled = true
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_btcbx")
+maxHealth = 100.0
+
+[node name="Special Attack" parent="." instance=ExtResource("6_x3wgy")]
+position = Vector2(64, -64)
+
+[node name="Counter Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
+collision_mask = 4
+damage = 100.0
+
+[node name="Counter Attack Hurtbox Collision" type="CollisionShape2D" parent="Counter Attack Hurtbox"]
+position = Vector2(160, -64)
+shape = SubResource("RectangleShape2D_3smsa")
+disabled = true

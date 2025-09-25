@@ -1,90 +1,54 @@
-class_name player
+class_name Player
 extends CharacterBody2D
 
-const SPEED = 750.0 #Horizontal Speed
+const SPEED = 500.0 #Horizontal Speed
 const JUMP_VELOCITY = -600.0 #Jump Height and Speed
 
 var dead: bool = false
-var block: bool = false
-var took_damage =false
-var can_move = true
+var blocking: bool = false
+var attacking: bool = false
+var specialAttacking: bool = false
+var counterAttack: bool = false
 
-@onready var Sprite: AnimatedSprite2D = $Sprite #Sprite Variable
-@onready var Collisionbox: CollisionShape2D = $CollisionBox #Collisionbox Variable
-@onready var Hitbox: CollisionShape2D = $Hitbox #Hitbox Variable
+@onready var sprite: AnimatedSprite2D = $Sprite #Sprite Variable
 @onready var health: Node = $Health #Health variable for health system
+@onready var special_attack: Node2D = $"Special Attack"
+@onready var basic_attack_hurtbox_collision: CollisionShape2D = $"Basic Attack Hurtbox/Basic Attack Hurtbox Collision"
+@onready var counter_attack_hurtbox_collision: CollisionShape2D = $"Counter Attack Hurtbox/Counter Attack Hurtbox Collision"
 
-func respawn():
-	
-	self.visible = false
-	can_move = false
-	await get_tree().create_timer(0.5).timeout
-	
-	self.global_position = Vector2(0,0)
-	self.visible = true
-	can_move =true
-	
-	await get_tree().create_timer(0.5).timeout
-	
-	took_damage = false
+func blockedDamage():
+	print("Nope!")
+	counterAttack = true
 
 func _physics_process(delta: float) -> void:
+	#Get the input direction and handle the movement/deceleration
+	var direction := Input.get_axis("Move Left","Move Right")
+	
 	if dead:
 		return
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
-	#spikes
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		
-		if collision.get_collider().name == "tilemapspike":
-			if took_damage == false:
-				took_damage =true
-				respawn()
 	#Handle jump.
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
-	#Handles crouch
-	if Input.is_action_just_pressed("Crouch"):
-		Sprite.scale.y = 0.5 #Makes crouching change sprite
-		Sprite.position.y = 25
-		Collisionbox.scale.y = 0.5 #Makes crouching change collisionbox
-		Collisionbox.position.y = 25
-		Hitbox.scale.y = 0.5 #Makes crouching change hitbox
-		Hitbox.position.y = 25
-		
-	if Input.is_action_just_released("Crouch"):
-		await get_tree().create_timer(0.3).timeout #Creates a 0.3 second delay
-		Sprite.scale.y = 1 #Resets sprite back to normal after delay
-		Sprite.position.y = 0
-		Collisionbox.scale.y = 1 #Resets collisionbox back to normal after delay
-		Collisionbox.position.y = 0
-		Hitbox.scale.y = 1 #Resets hitbox back to normal after delay
-		Hitbox.position.y = 0
-	
-	#Get the input direction and handle the movement/deceleration
-	var direction := Input.get_axis("Move Left","Move Right")
-	
-	#Flip the Sprite
-	if direction > 0:
-		Sprite.flip_h = false
-	elif direction < 0:
-		Sprite.flip_h = true
+	#Adjust Sprite and everything
+	if Input.is_action_just_pressed("Move Left"):
+		scale.x = abs(scale.x) * -1
+	elif Input.is_action_just_pressed("Move Right"):
+		scale.x = abs(scale.x) * 1
 		
 	#Play Animations
 	if is_on_floor():
 		if direction == 0:
-			Sprite.play("Idle")
+			sprite.play("Idle")
 		else:
-			Sprite.play("Run")
+			sprite.play("Run")
 	else:
-		Sprite.play("Jump")
-	
-	if can_move == false:
-		return
+		sprite.play("Jump")
 	
 	#Apply Movement
 	if direction:
@@ -94,23 +58,67 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 	
+	#Handles crouch
+	if Input.is_action_just_pressed("Crouch"):
+		if direction >= 0:
+			scale.y /= 2
+		if direction < 0:
+			scale.y /= 2
+	
+	if Input.is_action_just_released("Crouch"):
+		await get_tree().create_timer(0.3).timeout #Creates a 0.3 second delay
+		scale.y *= 2
+	
+	#Apply Attack Mechanic
+	if Input.is_action_just_pressed("Basic Attack") and blocking == false and attacking == false:
+			print(counterAttack)
+			if counterAttack == true:
+				sprite.play("Counter Attack")
+				attacking = true
+				counter_attack_hurtbox_collision.disabled = false
+				await get_tree().create_timer(0.2).timeout
+				counter_attack_hurtbox_collision.disabled = true
+				await get_tree().create_timer(2.8).timeout
+				attacking = false
+				counterAttack = false
+			else:
+				sprite.play("Attack")
+				attacking = true
+				basic_attack_hurtbox_collision.disabled = false
+				await get_tree().create_timer(0.2).timeout
+				basic_attack_hurtbox_collision.disabled = true
+				await get_tree().create_timer(0.8).timeout
+				attacking = false
+	
 	#Apply Blocking Mechanic
 	if Input.is_action_just_pressed("Block"):
-		block = true
+		if blocking or attacking == true:
+			return
+		else:
+			sprite.play("Block")
+			blocking = true
 		
 	if Input.is_action_just_released("Block"):
 		await get_tree().create_timer(0.3).timeout #Creates a 0.3 second delay
-		block = false
+		blocking = false
+		
+	if Input.is_action_just_pressed("Special Attack") and blocking == false and attacking == false:
+		print("SPECIAL!")
+		sprite.play("Special Attack")
+		special_attack.get_node("Special Attack Raycast").enabled = true
+		if special_attack.get_node("Special Attack Raycast").is_colliding():
+			if special_attack.get_node("Special Attack Raycast").get_collider().health:
+				special_attack.get_node("Special Attack Raycast").get_collider().get_node("Health").takeDamage(special_attack.get_node("Special Attack Raycast").get_collider(), 10)
 		
 func death():
-	if health.currentHealth <= 0:
+	if health.currentHealth <= 0 and dead == false:
 		dead = true
 		print("Im Dying")
 		for i in range(4):
-			Sprite.rotation_degrees += 90
+			sprite.rotation_degrees += 90
 			await get_tree().create_timer(1).timeout
-		Sprite.scale.x = 5
-		Sprite.scale.y = 5
+		sprite.scale.x = 5
+		sprite.scale.y = 5
 		print("I Died")
 		Engine.time_scale = 0.5
 		await get_tree().create_timer(1).timeout
