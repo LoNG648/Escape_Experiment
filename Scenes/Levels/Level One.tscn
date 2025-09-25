@@ -108,6 +108,7 @@ size = Vector2(22, 28.5)
 [node name="Level One Platform" type="StaticBody2D" parent="."]
 material = SubResource("CanvasItemMaterial_1t2tk")
 disable_mode = 1
+collision_layer = 17
 
 [node name="ColorRect32" type="ColorRect" parent="Level One Platform"]
 offset_left = -512.0
@@ -497,7 +498,6 @@ position = Vector2(167, -7)
 
 [node name="Basic Enemy 1" parent="." instance=ExtResource("2_pgoda")]
 position = Vector2(2221, -62)
-scale = Vector2(-2.5, 2.5)
 
 [node name="Basic Enemy 2" parent="." instance=ExtResource("2_pgoda")]
 position = Vector2(3770, -368)
