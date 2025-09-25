@@ -1,13 +1,16 @@
 extends Control
 
-@onready var dev_node: DevNode = $"Dev Node"
+var DeveloperMode: bool
+
 @onready var testing: Button = $VBoxContainer/Buttons/Testing
+@onready var dev_node: Node = $"Globals/Dev Node"
 
 func _ready() -> void:
 	if dev_node.DeveloperMode == false:
 		return
 	elif dev_node.DeveloperMode == true:
 		testing.visible = true
+		Globals.set("DeveloperMode", true)
 
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Levels/Level One.tscn")
