@@ -110,6 +110,10 @@ func _physics_process(delta: float) -> void:
 			if special_attack.get_node("Special Attack Raycast").get_collider().health:
 				special_attack.get_node("Special Attack Raycast").get_collider().get_node("Health").takeDamage(special_attack.get_node("Special Attack Raycast").get_collider(), 10)
 		
+
+func got_hit():
+	pass
+
 func death():
 	if health.currentHealth <= 0 and dead == false:
 		dead = true

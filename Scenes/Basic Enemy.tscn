@@ -1,9 +1,10 @@
-[gd_scene load_steps=64 format=3 uid="uid://cvnafhg5v34po"]
+[gd_scene load_steps=65 format=3 uid="uid://cvnafhg5v34po"]
 
 [ext_resource type="Texture2D" uid="uid://b1bssce881pl2" path="res://Assets/Enemy Assets/NightBorne/NightBorne.png" id="1_gtmpm"]
 [ext_resource type="Script" uid="uid://csjbtosrju3iy" path="res://Scripts/Basic Enemy.gd" id="1_ldolw"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="3_0mme3"]
 [ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/Health.gd" id="4_bn3wk"]
+[ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/hitbox.gd" id="5_y7yig"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xvijc"]
 atlas = ExtResource("1_gtmpm")
@@ -313,7 +314,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 12.0
+"speed": 13.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -333,7 +334,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hit",
-"speed": 8.0
+"speed": 7.5
 }, {
 "frames": [{
 "duration": 1.0,
@@ -425,7 +426,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3pxrr"]
 radius = 12.0
-height = 31.0
+height = 31.8
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1f64y"]
 radius = 13.0
@@ -436,7 +437,6 @@ size = Vector2(26, 64.8)
 
 [node name="Basic Enemy" type="CharacterBody2D"]
 scale = Vector2(2.5, 2.5)
-collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ldolw")
 
@@ -484,9 +484,19 @@ visibility_layer = 1023
 position = Vector2(26.2, -2.8)
 shape = SubResource("RectangleShape2D_xno3g")
 
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("5_y7yig")
+metadata/_custom_type_script = "uid://cl8w365iaic6m"
+
+[node name="Hitbox Collision" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1, 8.5)
+shape = SubResource("CapsuleShape2D_3pxrr")
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_bn3wk")
-maxHealth = 20.0
+maxHealth = 30.0
 metadata/_custom_type_script = "uid://ccjfqwc5vm62o"
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_animated_sprite_2d_animation_finished"]

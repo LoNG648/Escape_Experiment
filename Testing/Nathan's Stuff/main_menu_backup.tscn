@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c071vduxkcrkp"]
+[gd_scene load_steps=7 format=3 uid="uid://c16uolhl2x4pl"]
 
-[ext_resource type="Texture2D" uid="uid://ddhd81cb6nhdk" path="res://User Interface/MainMenu/Day/1.png" id="1_3tv8c"]
-[ext_resource type="Script" uid="uid://y3qu4hp6ytir" path="res://User Interface/MainMenu/mainmenu.gd" id="1_rrxur"]
-[ext_resource type="Texture2D" uid="uid://buyfgn0n7jpia" path="res://User Interface/MainMenu/Day/2.png" id="2_5p71o"]
-[ext_resource type="Script" uid="uid://b0f5llu0bti7h" path="res://Scripts/Dev_Node.gd" id="2_eswma"]
-[ext_resource type="Script" uid="uid://qvvhd0vjitam" path="res://Scripts/globals.gd" id="2_rwt2c"]
-[ext_resource type="Texture2D" uid="uid://duhwor80ydx6s" path="res://User Interface/MainMenu/Day/3.png" id="3_i175a"]
-[ext_resource type="Texture2D" uid="uid://2otlrnf0c53b" path="res://User Interface/MainMenu/Day/5.png" id="4_woq86"]
+[ext_resource type="Script" uid="uid://y3qu4hp6ytir" path="res://User Interface/MainMenu/mainmenu.gd" id="1_cipgn"]
+[ext_resource type="Script" uid="uid://b0f5llu0bti7h" path="res://Scripts/Dev_Node.gd" id="2_xt4aj"]
+[ext_resource type="Texture2D" uid="uid://ddhd81cb6nhdk" path="res://User Interface/MainMenu/Day/1.png" id="3_jeude"]
+[ext_resource type="Texture2D" uid="uid://buyfgn0n7jpia" path="res://User Interface/MainMenu/Day/2.png" id="4_8ousn"]
+[ext_resource type="Texture2D" uid="uid://duhwor80ydx6s" path="res://User Interface/MainMenu/Day/3.png" id="5_ebb0p"]
+[ext_resource type="Texture2D" uid="uid://2otlrnf0c53b" path="res://User Interface/MainMenu/Day/5.png" id="6_7upc7"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -15,13 +14,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_rrxur")
+script = ExtResource("1_cipgn")
 
-[node name="Globals" type="Node" parent="."]
-script = ExtResource("2_rwt2c")
-
-[node name="Dev Node" type="Node" parent="Globals"]
-script = ExtResource("2_eswma")
+[node name="Dev Node" type="Node" parent="."]
+script = ExtResource("2_xt4aj")
 DeveloperMode = true
 DeveloperName = "Nathan"
 
@@ -32,7 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_3tv8c")
+texture = ExtResource("3_jeude")
 
 [node name="Background 2" type="TextureRect" parent="."]
 layout_mode = 1
@@ -41,7 +37,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_5p71o")
+texture = ExtResource("4_8ousn")
 
 [node name="Background 3" type="TextureRect" parent="."]
 layout_mode = 1
@@ -50,7 +46,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_i175a")
+texture = ExtResource("5_ebb0p")
 
 [node name="Background 4" type="TextureRect" parent="."]
 layout_mode = 1
@@ -59,7 +55,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_woq86")
+texture = ExtResource("6_7upc7")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
