@@ -507,3 +507,18 @@ position = Vector2(1778, 262)
 
 [node name="Complex Enemy 2" parent="." instance=ExtResource("3_3x76c")]
 position = Vector2(3850, -1385)
+
+[node name="Complex Enemy" parent="." instance=ExtResource("3_3x76c")]
+position = Vector2(570, -90)
+
+[node name="Basic Enemy" parent="." instance=ExtResource("2_pgoda")]
+position = Vector2(907, -170)
+
+[node name="Complex Enemy2" parent="." instance=ExtResource("3_3x76c")]
+position = Vector2(1397, -94)
+
+[node name="Complex Enemy3" parent="." instance=ExtResource("3_3x76c")]
+position = Vector2(1760, -95)
+
+[node name="Basic Enemy2" parent="." instance=ExtResource("2_pgoda")]
+position = Vector2(1118, 292)
