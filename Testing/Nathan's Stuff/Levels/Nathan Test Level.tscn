@@ -52,4 +52,13 @@ shape = SubResource("RectangleShape2D_fruoj")
 position = Vector2(-19, 57)
 
 [node name="Basic Enemy" parent="." instance=ExtResource("2_1c1at")]
-position = Vector2(1594, 36)
+position = Vector2(827, 28)
+
+[node name="Marker2D" type="Marker2D" parent="." groups=["BasicEnemy"]]
+position = Vector2(1238, 63)
+
+[node name="Marker2D2" type="Marker2D" parent="." groups=["BasicEnemy"]]
+position = Vector2(614, 61)
+
+[node name="Marker2D3" type="Marker2D" parent="." groups=["BasicEnemy"]]
+position = Vector2(1698, 65)
