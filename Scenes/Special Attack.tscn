@@ -10,6 +10,7 @@ damage = 10.0
 enabled = false
 target_position = Vector2(500, 0)
 collision_mask = 4
+collide_with_areas = true
 
 [node name="Dev Line" type="Line2D" parent="."]
 width = 7.0

@@ -11,6 +11,7 @@ var blocking: bool = false #Is character blocking?
 var attacking: bool = false #Is character attacking?
 var specialAttacking: bool = false #Is character Special Attacking?
 var counterAttack: bool = false #Does character have a counter attack?
+var facing: bool = true #Which direction is the character facing (left is false, right is true)
 
 #On Ready Variables
 @onready var sprite: AnimatedSprite2D = $Sprite #Sprite Variable
@@ -43,9 +44,13 @@ func _physics_process(delta: float) -> void:
 		
 	#Adjust Sprite and Hitbox
 	if Input.is_action_just_pressed("Move Left"):
-		scale.x = abs(scale.x) * -1
+		if facing == true:
+			scale.x = abs(scale.x) * -1
+			facing = false
 	elif Input.is_action_just_pressed("Move Right"):
-		scale.x = abs(scale.x) * 1
+		if facing == false:
+			scale.x = abs(scale.x) * -1
+			facing = true
 		
 	#Play Animations
 	if is_on_floor():
@@ -66,9 +71,6 @@ func _physics_process(delta: float) -> void:
 	
 	#Handles crouch and reduces Hitbox
 	if Input.is_action_just_pressed("Crouch"):
-		if direction >= 0:
-			scale.y /= 2
-		if direction < 0:
 			scale.y /= 2
 	
 	#Sets a delay before crouching can be done again and resets hitbox
@@ -120,8 +122,8 @@ func _physics_process(delta: float) -> void:
 		sprite.play("Special Attack")
 		special_attack.get_node("Special Attack Raycast").enabled = true
 		if special_attack.get_node("Special Attack Raycast").is_colliding():
-			if special_attack.get_node("Special Attack Raycast").get_collider().health:
-				special_attack.get_node("Special Attack Raycast").get_collider().get_node("Health").takeDamage(special_attack.get_node("Special Attack Raycast").get_collider(), 10)
+			if special_attack.get_node("Special Attack Raycast").get_collider() is Hitbox:
+				special_attack.get_node("Special Attack Raycast").get_collider().get_parent().get_node("Health").takeDamage(special_attack.get_node("Special Attack Raycast").get_collider().get_parent(), 10)
 		
 
 func got_hit():
