@@ -6,6 +6,7 @@ var held_speed = -125
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dead: bool = false
 var facing_left = true
+var directions : Vector2
 var windup = false
 var attacking = false
 var holster = false
@@ -14,6 +15,10 @@ var blocking = false
 var hit = false
 var multi_hit = false
 var waiting = false
+var is_chasing = false
+var knockback = 200
+var is_roaming = true
+var flipping = false
 
 @onready var health: Node = $Health #Health variable for health system
 @onready var sprite: AnimatedSprite2D = $Sprite
@@ -34,12 +39,17 @@ func _physics_process(delta):
 	if wall_raycast.is_colliding() && is_on_floor():
 		flip()
 		
-	velocity.x = speed
+	move(delta)
 		
-	if windup == false and attacking == false and holster == false and dead == false and player_in_reach == false and hit == false:
+	if windup == false and attacking == false and holster == false and dead == false and player_in_reach == false and hit == false and flipping == false:
 		sprite.play("run")
 	elif waiting == true:
 		sprite.play("idle")
+	elif flipping == true:
+		sprite.play("idle")
+	
+	if dead == true and is_roaming == true:
+		is_roaming = false
 	
 	
 		
@@ -47,6 +57,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func flip():
+	flipping = true
 	facing_left = !facing_left
 	scale.x = abs(scale.x) * -1
 	if facing_left:
@@ -55,6 +66,9 @@ func flip():
 	else:
 		speed = abs(speed)
 		held_speed = abs(held_speed)
+	await get_tree().create_timer(choose([0.2,0.4,0.6])).timeout
+	flipping = false
+	$DirectionTimer.wait_time = choose([3,3.5,4])
 		
 #func take_damage(amount: int) -> void:
 	#$AnimatedSprite2D.play("hit")
@@ -96,6 +110,20 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	else:
 		pass
 		
+
+func move(delta):
+	if dead == false:
+		if is_chasing == false and flipping == false:
+			velocity.x = speed
+		#elif is_chasing == true and hit == false and windup == false and attacking == false:
+			#var direction_to_player = position.direction_to(player.position) * speed
+			#velocity.x = direction_to_player.x
+		elif flipping == true:
+			velocity.x = 0
+		is_roaming = true
+	elif dead == true:
+		speed = 0
+
 
 func _on_detect_player_body_entered(body: Node2D) -> void:
 	if body is Player and dead == false:
@@ -141,3 +169,15 @@ func death():
 		player_in_reach = false
 		print("Complex enemy dying")
 		sprite.play("death")
+		
+func choose(array):
+	array.shuffle()
+	return array.front()
+
+func _on_direction_timer_timeout() -> void:
+	if !is_chasing:
+		directions = choose([Vector2.RIGHT, Vector2.LEFT])
+		if facing_left == true and directions == Vector2.RIGHT:
+			flip()
+		elif facing_left == false and directions == Vector2.LEFT:
+			flip()

@@ -436,7 +436,6 @@ collision_mask = 2
 
 [node name="Detectionbox Collision" type="CollisionShape2D" parent="Detectionbox"]
 position = Vector2(-50.6, 5.00001)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_3rpcp")
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -455,6 +454,11 @@ script = ExtResource("4_dsgul")
 maxHealth = 50.0
 metadata/_custom_type_script = "uid://ccjfqwc5vm62o"
 
+[node name="DirectionTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [connection signal="animation_finished" from="Sprite" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Detectionbox" to="." method="_on_detect_player_body_entered"]
 [connection signal="body_exited" from="Detectionbox" to="." method="_on_detect_player_body_exited"]
+[connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
