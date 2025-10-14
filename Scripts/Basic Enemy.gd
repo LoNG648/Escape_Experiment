@@ -41,7 +41,10 @@ func _physics_process(delta):
 	if wall_raycast.is_colliding() && is_on_floor():
 		flip()
 	
-	
+	#if flipping == true:
+		#$DirectionTimer.start(choose([2.0,2.5,3]))
+		
+		
 	move(delta)
 	
 	if windup == false and attacking == false and dead == false and hit == false and flipping == false:
@@ -67,6 +70,7 @@ func flip():
 		held_speed = abs(held_speed) * -1
 	await get_tree().create_timer(choose([0.1,0.3,0.5])).timeout
 	flipping = false
+	$DirectionTimer.wait_time = choose([2.0,2.5,3])
 		
 #func take_damage(amount: int) -> void:
 	#animation_player.play("hit")
@@ -155,7 +159,7 @@ func death():
 		sprite.play("death")
 
 func _on_direction_timer_timeout() -> void:
-	$DirectionTimer.wait_time = choose([2.0,2.5,3])
+	#$DirectionTimer.wait_time = choose([2.0,2.5,3])
 	if !is_chasing:
 		directions = choose([Vector2.RIGHT, Vector2.LEFT])
 		if facing_right == true and directions == Vector2.LEFT:
