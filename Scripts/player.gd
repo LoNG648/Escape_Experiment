@@ -19,6 +19,8 @@ var facing: bool = true #Which direction is the character facing (left is false,
 @onready var special_attack: Node2D = $"Special Attack" #Special Attack Variable
 @onready var basic_attack_hurtbox_collision: CollisionShape2D = $"Basic Attack Hurtbox/Basic Attack Hurtbox Collision" #Basic Attack Hurtbox
 @onready var counter_attack_hurtbox_collision: CollisionShape2D = $"Counter Attack Hurtbox/Counter Attack Hurtbox Collision" #Counter Attack Hurtbox
+@onready var basic_attack_timer: Timer = $"Timers/Basic Attack Timer"
+@onready var crouch_timer: Timer = $"Timers/Crouch Timer"
 
 #Sets counter attack to true if character has blocked damage so they can retaliate back!
 func blockedDamage():
@@ -71,11 +73,14 @@ func _physics_process(delta: float) -> void:
 	
 	#Handles crouch and reduces Hitbox
 	if Input.is_action_just_pressed("Crouch"):
+		if crouch_timer.get_time_left() == 0:
 			scale.y /= 2
+		crouch_timer.paused = true
 	
 	#Sets a delay before crouching can be done again and resets hitbox
 	if Input.is_action_just_released("Crouch"):
-		await get_tree().create_timer(0.3).timeout #Creates a 0.3 second delay
+		crouch_timer.paused = false
+		crouch_timer.start()
 		scale.y *= 2
 	
 	#Attack and Counterattack Mechanic

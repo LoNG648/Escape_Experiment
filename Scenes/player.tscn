@@ -69,3 +69,12 @@ damage = 100.0
 position = Vector2(160, -64)
 shape = SubResource("RectangleShape2D_3smsa")
 disabled = true
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="Basic Attack Timer" type="Timer" parent="Timers"]
+
+[node name="Crouch Timer" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 4.0
+one_shot = true
