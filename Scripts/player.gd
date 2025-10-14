@@ -10,11 +10,29 @@ var attacking: bool = false
 var specialAttacking: bool = false
 var counterAttack: bool = false
 
+var hearts_list : Array[TextureRect]
+
 @onready var sprite: AnimatedSprite2D = $Sprite #Sprite Variable
 @onready var health: Node = $Health #Health variable for health system
 @onready var special_attack: Node2D = $"Special Attack"
 @onready var basic_attack_hurtbox_collision: CollisionShape2D = $"Basic Attack Hurtbox/Basic Attack Hurtbox Collision"
 @onready var counter_attack_hurtbox_collision: CollisionShape2D = $"Counter Attack Hurtbox/Counter Attack Hurtbox Collision"
+
+func _ready() -> void:
+	var hearts_parents = $HealthUI/HBoxContainer
+	for child in hearts_parents.get_children():
+		hearts_list.append(child)
+		print(hearts_list)
+
+func take_damage():
+	if health > 0:
+		health -= 1
+		$damage.play("damaged")
+		update_heart_display()
+		
+func update_heart_display():
+	for i in range(hearts_list.size()):
+		hearts_list[i].visible = i < health
 
 func blockedDamage():
 	print("Nope!")
