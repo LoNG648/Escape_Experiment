@@ -34,7 +34,7 @@ offset_right = 3484.0
 offset_bottom = 643.0
 
 [node name="Death Box" type="StaticBody2D" parent="."]
-position = Vector2(0, -25)
+position = Vector2(0, 75)
 
 [node name="Sprite2D" type="Sprite2D" parent="Death Box"]
 position = Vector2(395, -338)
@@ -52,4 +52,4 @@ shape = SubResource("RectangleShape2D_fruoj")
 position = Vector2(-19, 57)
 
 [node name="Complex Enemy" parent="." instance=ExtResource("4_uq32g")]
-position = Vector2(676, 10)
+position = Vector2(538, 38)
