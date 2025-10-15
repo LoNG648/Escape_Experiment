@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://bh126xqlail2u" path="res://Scenes/Special Attack.tscn" id="6_x3wgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(114, 116)
+size = Vector2(16, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3wgy"]
-size = Vector2(115, 120)
+size = Vector2(12, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkybt"]
 size = Vector2(196, 143)
@@ -26,22 +26,24 @@ collision_mask = 5
 script = ExtResource("1_onrkg")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -64)
+position = Vector2(0, -39)
+scale = Vector2(1, 1.21875)
 sprite_frames = ExtResource("2_6t5aa")
-animation = &"Attack"
+animation = &"Idle"
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(0, -64)
+zoom = Vector2(2.5, 2.5)
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, -64)
+position = Vector2(0, -30)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_fkybt")]
 collision_layer = 2
 
 [node name="Hitbox Collision" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0.5, -62)
+position = Vector2(0, -30)
 shape = SubResource("RectangleShape2D_x3wgy")
 
 [node name="Basic Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]

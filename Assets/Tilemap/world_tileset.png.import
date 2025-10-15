@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnpllftvo1wi"
-path="res://.godot/imported/EE_character.png-7e8f8d2cc7866767d2077e8e087309b9.ctex"
+uid="uid://62yarb6hreki"
+path="res://.godot/imported/world_tileset.png-4d5fc5161f23f8a117de6a99da9db440.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player Assets/EE_character.png"
-dest_files=["res://.godot/imported/EE_character.png-7e8f8d2cc7866767d2077e8e087309b9.ctex"]
+source_file="res://Assets/Tilemap/world_tileset.png"
+dest_files=["res://.godot/imported/world_tileset.png-4d5fc5161f23f8a117de6a99da9db440.ctex"]
 
 [params]
 

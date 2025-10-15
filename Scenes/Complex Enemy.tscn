@@ -396,7 +396,6 @@ size = Vector2(78.8, 66.4)
 size = Vector2(62, 68.4)
 
 [node name="Complex Enemy" type="CharacterBody2D"]
-scale = Vector2(2.5, 2.5)
 collision_mask = 3
 script = ExtResource("1_ad176")
 

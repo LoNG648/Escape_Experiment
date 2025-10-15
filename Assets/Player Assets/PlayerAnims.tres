@@ -1,6 +1,15 @@
-[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://ddcusyusn8m1a"]
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://ddcusyusn8m1a"]
 
 [ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="1_enqtm"]
+[ext_resource type="Texture2D" uid="uid://biqtne7mj8i0v" path="res://Assets/Player Assets/EE_walking_-1.png" id="2_3om6v"]
+[ext_resource type="Texture2D" uid="uid://dwrfvovhnoitl" path="res://Assets/Player Assets/EE_walking_-2.png" id="3_nx6in"]
+[ext_resource type="Texture2D" uid="uid://bqw4qp3ivqitn" path="res://Assets/Player Assets/EE_walking_-3.png" id="4_qhvau"]
+[ext_resource type="Texture2D" uid="uid://fjloh0rfrlay" path="res://Assets/Player Assets/EE_walking_-4.png" id="5_8dhp3"]
+[ext_resource type="Texture2D" uid="uid://c5ym7er66h6a6" path="res://Assets/Player Assets/EE_walking_-5.png" id="6_x6pn5"]
+[ext_resource type="Texture2D" uid="uid://s7gr38fd0oop" path="res://Assets/Player Assets/EE_walking_-6.png" id="7_4b3vg"]
+[ext_resource type="Texture2D" uid="uid://cavgyhaerbjp" path="res://Assets/Player Assets/EE_walking_-7.png" id="8_jy3n2"]
+[ext_resource type="Texture2D" uid="uid://drfkgq3vcmwda" path="res://Assets/Player Assets/EE_walking_-8.png" id="9_fafbc"]
+[ext_resource type="Texture2D" uid="uid://c5jo055r15str" path="res://Assets/Player Assets/EE_walking_-9.png" id="10_oswld"]
 
 [resource]
 animations = [{
@@ -38,7 +47,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_enqtm")
+"texture": ExtResource("2_3om6v")
 }],
 "loop": true,
 "name": &"Idle",
@@ -54,7 +63,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_enqtm")
+"texture": ExtResource("3_nx6in")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qhvau")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8dhp3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_x6pn5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4b3vg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jy3n2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_fafbc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_oswld")
 }],
 "loop": true,
 "name": &"Run",
