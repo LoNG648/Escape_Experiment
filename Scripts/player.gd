@@ -45,12 +45,10 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		
 	#Adjust Sprite and Hitbox
-	if Input.is_action_just_pressed("Move Left"):
-		if facing == true:
+	if Input.is_action_just_pressed("Move Left") and facing == true:
 			scale.x = abs(scale.x) * -1
 			facing = false
-	elif Input.is_action_just_pressed("Move Right"):
-		if facing == false:
+	elif Input.is_action_just_pressed("Move Right") and facing == false:
 			scale.x = abs(scale.x) * -1
 			facing = true
 		
@@ -79,8 +77,14 @@ func _physics_process(delta: float) -> void:
 	
 	#Sets a delay before crouching can be done again and resets hitbox
 	if Input.is_action_just_released("Crouch"):
-		crouch_timer.paused = false
-		crouch_timer.start()
+		if crouch_timer.get_time_left() != 0:
+			crouch_timer.paused = false
+			crouch_timer.start()
+			return
+		elif crouch_timer.get_time_left() == 0:
+			crouch_timer.paused = false
+			crouch_timer.start()
+		await crouch_timer.timeout
 		scale.y *= 2
 	
 	#Attack and Counterattack Mechanic
