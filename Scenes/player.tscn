@@ -180,7 +180,7 @@ visible = false
 position = Vector2(2, -32.6506)
 scale = Vector2(-1, 1.14)
 sprite_frames = SubResource("SpriteFrames_bfbt0")
-animation = &"Attack"
+animation = &"Special Attack"
 
 [node name="Shockwave Sprite" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -190,7 +190,7 @@ scale = Vector2(5, -1)
 sprite_frames = SubResource("SpriteFrames_wosd6")
 animation = &"Shockwave"
 frame = 6
-frame_progress = 0.166186
+frame_progress = 0.238349
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -32)
