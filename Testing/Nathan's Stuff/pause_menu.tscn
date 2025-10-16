@@ -4,7 +4,6 @@
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,6 +36,11 @@ theme_override_constants/separation = 25
 layout_mode = 2
 text = "Resume"
 
+[node name="Controls" type="Button" parent="PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Controls"
+
 [node name="Restart" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Restart"
@@ -46,5 +50,6 @@ layout_mode = 2
 text = "Quit"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

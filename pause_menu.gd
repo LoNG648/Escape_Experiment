@@ -34,3 +34,7 @@ func _process(_delta):
 	elif paused == false:
 		$".".hide()
 	test_escape()
+
+
+func _on_controls_pressed() -> void:
+	pass # Replace with function body.
