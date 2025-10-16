@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://vaeq3uf103py"]
+[gd_scene load_steps=39 format=3 uid="uid://vaeq3uf103py"]
 
 [ext_resource type="Script" uid="uid://ba8iqvap47p8y" path="res://Scripts/player.gd" id="1_onrkg"]
 [ext_resource type="SpriteFrames" uid="uid://ddcusyusn8m1a" path="res://Assets/Player Assets/PlayerAnims.tres" id="2_6t5aa"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://csjgm3tyr8ckq" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-5.png" id="26_avx33"]
 [ext_resource type="Texture2D" uid="uid://dxtlka3h8e8av" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-6.png" id="27_rxg2u"]
 [ext_resource type="Texture2D" uid="uid://cwfc2ymddtpdy" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-7.png" id="28_xixlo"]
+[ext_resource type="PackedScene" uid="uid://dvsfqtas4n5iq" path="res://Testing/Nathan's Stuff/pause_menu.tscn" id="29_kih0c"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bfbt0"]
 animations = [{
@@ -278,3 +279,12 @@ one_shot = true
 one_shot = true
 
 [node name="HealthUI" parent="." instance=ExtResource("7_52ee3")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("29_kih0c")]
+visible = true
+offset_left = 9.0
+offset_top = 18.0
+offset_right = 9.0
+offset_bottom = 18.0
