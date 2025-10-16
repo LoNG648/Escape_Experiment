@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://bh126xqlail2u" path="res://Scenes/Special Attack.tscn" id="6_x3wgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(16, 60)
+size = Vector2(16, 62.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3wgy"]
-size = Vector2(12, 60)
+size = Vector2(12, 62.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkybt"]
 size = Vector2(196, 143)
@@ -26,24 +26,24 @@ collision_mask = 5
 script = ExtResource("1_onrkg")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -39)
-scale = Vector2(1, 1.21875)
+position = Vector2(0, -42)
+scale = Vector2(1, 1.3)
 sprite_frames = ExtResource("2_6t5aa")
-animation = &"Idle"
+animation = &"Block"
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(0, -64)
 zoom = Vector2(2.5, 2.5)
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, -30)
+position = Vector2(-0.5, -32)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_fkybt")]
 collision_layer = 2
 
 [node name="Hitbox Collision" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, -30)
+position = Vector2(0, -32)
 shape = SubResource("RectangleShape2D_x3wgy")
 
 [node name="Basic Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
@@ -78,5 +78,16 @@ disabled = true
 
 [node name="Crouch Timer" type="Timer" parent="Timers"]
 process_callback = 0
-wait_time = 4.0
+wait_time = 0.3
+one_shot = true
+
+[node name="Stun Timer" type="Timer" parent="Timers"]
+
+[node name="Special Attack Timer" type="Timer" parent="Timers"]
+
+[node name="Counter Attack Timer" type="Timer" parent="Timers"]
+
+[node name="Block Timer" type="Timer" parent="Timers"]
+
+[node name="Animation Timer" type="Timer" parent="Timers"]
 one_shot = true

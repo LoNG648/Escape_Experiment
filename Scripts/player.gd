@@ -2,8 +2,8 @@ class_name Player
 extends CharacterBody2D
 
 #Constants
-const SPEED = 500.0 #Horizontal Speed
-const JUMP_VELOCITY = -600.0 #Jump Height and Speed
+const SPEED = 250.0 #Horizontal Speed
+const JUMP_VELOCITY = -450.0 #Jump Height and Speed
 
 #Regular Variables
 var dead: bool = false #Is character dead?
@@ -21,6 +21,12 @@ var facing: bool = true #Which direction is the character facing (left is false,
 @onready var counter_attack_hurtbox_collision: CollisionShape2D = $"Counter Attack Hurtbox/Counter Attack Hurtbox Collision" #Counter Attack Hurtbox
 @onready var basic_attack_timer: Timer = $"Timers/Basic Attack Timer"
 @onready var crouch_timer: Timer = $"Timers/Crouch Timer"
+@onready var stun_timer: Timer = $"Timers/Stun Timer"
+@onready var special_attack_timer: Timer = $"Timers/Special Attack Timer"
+@onready var counter_attack_timer: Timer = $"Timers/Counter Attack Timer"
+@onready var block_timer: Timer = $"Timers/Block Timer"
+@onready var animation_timer: Timer = $"Timers/Animation Timer"
+
 
 #Sets counter attack to true if character has blocked damage so they can retaliate back!
 func blockedDamage():
@@ -53,13 +59,15 @@ func _physics_process(delta: float) -> void:
 			facing = true
 		
 	#Play Animations
-	if is_on_floor():
-		if direction == 0:
-			sprite.play("Idle")
+	if animation_timer.get_time_left() == 0:
+		sprite.position = Vector2(0, -42)
+		if is_on_floor():
+			if direction == 0:
+				sprite.play("Idle")
+			else:
+				sprite.play("Run")
 		else:
-			sprite.play("Run")
-	else:
-		sprite.play("Jump")
+			sprite.play("Jump")
 	
 	#Applies Horizontal Movement
 	if direction:
@@ -102,7 +110,9 @@ func _physics_process(delta: float) -> void:
 				counterAttack = false
 			else:
 				#Does a basic attack if can't do a counter attack
+				sprite.position = Vector2(14, -33)
 				sprite.play("Attack")
+				animation_timer.start()
 				attacking = true
 				basic_attack_hurtbox_collision.disabled = false
 				await get_tree().create_timer(0.2).timeout
@@ -116,12 +126,18 @@ func _physics_process(delta: float) -> void:
 		if blocking or attacking == true:
 			return
 		else:
+			sprite.position = Vector2(14, -33)
+			animation_timer.start()
 			sprite.play("Block")
 			blocking = true
+			await get_tree().create_timer(0.5).timeout #Creates a 0.3 second delay
+			sprite.pause()
+			animation_timer.paused = true
 		
 	#Handles changing character back to normal after block is completed
 	if Input.is_action_just_released("Block"):
-		await get_tree().create_timer(0.3).timeout #Creates a 0.3 second delay
+		sprite.play("Block")
+		animation_timer.paused = false
 		blocking = false
 	
 	#Special Attack Mechanic which causes damage to enemy while bypassing the Hurtbox code
