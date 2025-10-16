@@ -1,8 +1,8 @@
 class_name Basic_Enemy
 extends CharacterBody2D
 
-var speed = 250.0
-var held_speed = 250
+var speed = 200.0
+var held_speed = 200
 var flipping_speed = 0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dead: bool = false
@@ -28,9 +28,7 @@ var player_in_area = false
 @onready var wall_raycast: RayCast2D = $"Wall Raycast"
 @onready var hurtbox_collision: CollisionShape2D = $"Hurtbox/Hurtbox Collision"
 @onready var hitbox_collision: CollisionShape2D = $"Hitbox/Hitbox Collision"
-@onready var collision: CollisionShape2D = $Collisionbox
 
-#@export var wander_direction : Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _physics_process(delta):

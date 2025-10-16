@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlo3n8cu6ovm1"]
+
+[ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="1_ev3ms"]
+[ext_resource type="Script" uid="uid://dirr7tmo3lc38" path="res://Testing/Nathan's Stuff/test_interactable.gd" id="1_n6nak"]
+[ext_resource type="Script" uid="uid://r6k414d1vgk3" path="res://Testing/Nathan's Stuff/Interaction Stuff/interaction area/interaction_area.gd" id="2_n6nak"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0q2sl"]
+radius = 98.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3w84n"]
+radius = 88.0568
+
+[node name="TestInteractable" type="Node2D"]
+script = ExtResource("1_n6nak")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ev3ms")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("2_n6nak")
+action_name = "Interact"
+metadata/_custom_type_script = "uid://r6k414d1vgk3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_0q2sl")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_3w84n")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -44.0
+offset_top = -79.0
+offset_right = 45.0
+offset_bottom = -56.0
+text = "Interacting!"
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
