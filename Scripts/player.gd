@@ -57,7 +57,6 @@ func blockedDamage():
 	counterAttackStored = false
 
 func _physics_process(delta: float) -> void:
-	counterAttackStored = true
 	#Get the input direction and handle the movement/deceleration
 	var direction := Input.get_axis("Move Left","Move Right")
 		
