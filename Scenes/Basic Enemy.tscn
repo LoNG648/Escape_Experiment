@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://csjbtosrju3iy" path="res://Scripts/Basic Enemy.gd" id="1_ldolw"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="3_0mme3"]
 [ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/Health.gd" id="4_bn3wk"]
-[ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/Hitbox.gd" id="5_y7yig"]
+[ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/hitbox.gd" id="5_y7yig"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xvijc"]
 atlas = ExtResource("1_gtmpm")
