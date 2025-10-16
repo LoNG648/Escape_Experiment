@@ -150,7 +150,7 @@ func _player_still_in_reach():
 	speed = 0
 	sprite.play("windup1")
 
-func got_hit():
+func got_hit(_currentHealth: float):
 	hit = true
 	hitbox_collision.disabled = true
 	print("Basic enemy hitbox disabled!")

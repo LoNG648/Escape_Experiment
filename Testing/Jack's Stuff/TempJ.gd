@@ -1,4 +1,4 @@
-class_name Player
+#class_name Player
 extends CharacterBody2D
 
 const SPEED = 500.0 #Horizontal Speed
@@ -10,12 +10,19 @@ var attacking: bool = false
 var specialAttacking: bool = false
 var counterAttack: bool = false
 
+//var hearts_list : Array[TextureRect]
+
 @onready var sprite: AnimatedSprite2D = $Sprite #Sprite Variable
 @onready var health: Node = $Health #Health variable for health system
 @onready var special_attack: Node2D = $"Special Attack"
 @onready var basic_attack_hurtbox_collision: CollisionShape2D = $"Basic Attack Hurtbox/Basic Attack Hurtbox Collision"
 @onready var counter_attack_hurtbox_collision: CollisionShape2D = $"Counter Attack Hurtbox/Counter Attack Hurtbox Collision"
 
+//func _ready() -> void:
+	var hearts_parents = $HealthUI/HBoxContainer
+	for child in hearts_parents.get_children():
+		hearts_list.append(child)
+		print(hearts_list)
 
 func blockedDamage():
 	print("Nope!")
@@ -112,11 +119,15 @@ func _physics_process(delta: float) -> void:
 				special_attack.get_node("Special Attack Raycast").get_collider().get_node("Health").takeDamage(special_attack.get_node("Special Attack Raycast").get_collider(), 10)
 		
 
-
+//func got_hit(currentHealth: float):
+	for i in range(hearts_list.size()):
+		hearts_list[i].visible = i < (currentHealth/20)
 
 func death():
 	if health.currentHealth <= 0 and dead == false:
 		dead = true
+		//for i in range(hearts_list.size()):
+			hearts_list[i].visible = 0
 		print("Im Dying")
 		for i in range(4):
 			sprite.rotation_degrees += 90

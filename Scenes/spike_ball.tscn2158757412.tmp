@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://b601u3327g8xu"]
+
+[ext_resource type="Texture2D" uid="uid://dec01fbuuxcka" path="res://Assets/Pixel Adventure 1/Free/Traps/Spiked Ball/Spiked Ball.png" id="1_a57kd"]
+[ext_resource type="Script" uid="uid://cpfhxlosejnnd" path="res://Scenes/path_follow_2d.gd" id="1_esy8q"]
+[ext_resource type="Script" uid="uid://dxycbvexq3q5s" path="res://Scripts/Hurtbox.gd" id="2_yrw8b"]
+
+[sub_resource type="Curve2D" id="Curve2D_esy8q"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -68, 0, 0, 0, 0, 0, 0)
+}
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_esy8q"]
+radius = 14.0357
+
+[node name="Spike Ball" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_esy8q")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(0, -68)
+rotation = 1.5708
+script = ExtResource("1_esy8q")
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
+texture = ExtResource("1_a57kd")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2(-0.986394, -67.8356)
+rotation = -0.165149
+script = ExtResource("2_yrw8b")
+metadata/_custom_type_script = "uid://dxycbvexq3q5s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(1, -7.7486e-07)
+shape = SubResource("CircleShape2D_esy8q")
