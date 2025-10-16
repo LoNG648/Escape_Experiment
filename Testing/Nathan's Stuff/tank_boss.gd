@@ -32,6 +32,8 @@ var player_in_area = false
 
 #@export var wander_direction : Node2D
 
+signal bossTankDefeated
+
 # Called when the node enters the scene tree for the first time.
 func _physics_process(delta):
 	if not is_on_floor():
@@ -147,7 +149,7 @@ func _player_still_in_reach():
 	speed = 0
 	sprite.play("windup1")
 
-func got_hit():
+func got_hit(_damage: float):
 	hit = true
 	hitbox_collision.disabled = true
 	print("Basic enemy hitbox disabled!")
@@ -167,6 +169,7 @@ func death():
 		player_behind = false
 		print("Basic enemy dying")
 		sprite.play("death")
+		bossTankDefeated.emit()
 
 func _on_direction_timer_timeout() -> void:
 	if !is_chasing:

@@ -1,6 +1,6 @@
 extends Control
 
-var paused = false
+var paused: bool = false
 
 func resume():
 	paused = false
@@ -9,6 +9,7 @@ func resume():
 func pause():
 	paused = true
 	get_tree().paused = true
+	
 
 func test_escape():
 	if Input.is_action_just_pressed("Pause") and get_tree().paused == false:

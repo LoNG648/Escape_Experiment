@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=4 uid="uid://cu28j8eud7jfs"]
+[gd_scene load_steps=12 format=4 uid="uid://cu28j8eud7jfs"]
 
 [ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="1_5ehsv"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="2_wqkkx"]
 [ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/Player.tscn" id="3_2u06y"]
 [ext_resource type="PackedScene" uid="uid://cvnafhg5v34po" path="res://Scenes/Basic Enemy.tscn" id="4_ih1fe"]
+[ext_resource type="PackedScene" uid="uid://dvsfqtas4n5iq" path="res://Testing/Nathan's Stuff/pause_menu.tscn" id="5_12n40"]
 [ext_resource type="Texture2D" uid="uid://62yarb6hreki" path="res://Assets/Tilemap/world_tileset.png" id="5_658rx"]
+[ext_resource type="PackedScene" uid="uid://8egxs5xr1c6s" path="res://Testing/Nathan's Stuff/tank_boss.tscn" id="6_xrcdf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xrcdf"]
 texture = ExtResource("5_658rx")
@@ -147,7 +149,7 @@ sources/1 = SubResource("TileSetAtlasSource_xrcdf")
 size = Vector2(3800, 420)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fruoj"]
-size = Vector2(129.5, 126.5)
+size = Vector2(129.5, 128)
 
 [node name="Ryan Test Level" type="Node2D"]
 
@@ -175,6 +177,7 @@ offset_right = 3484.0
 offset_bottom = 643.0
 
 [node name="Death Box" type="StaticBody2D" parent="."]
+position = Vector2(0, 400)
 
 [node name="Sprite2D" type="Sprite2D" parent="Death Box"]
 position = Vector2(392, 44)
@@ -184,11 +187,21 @@ texture = ExtResource("1_5ehsv")
 damage = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death Box/Hurtbox"]
-position = Vector2(392.25, 43.75)
+position = Vector2(392.25, 43)
 shape = SubResource("RectangleShape2D_fruoj")
 
 [node name="Player" parent="." instance=ExtResource("3_2u06y")]
 position = Vector2(-40, 96)
 
+[node name="PauseMenu" parent="Player" instance=ExtResource("5_12n40")]
+layout_direction = 2
+offset_left = 80.0
+offset_top = -192.0
+offset_right = 80.0
+offset_bottom = -192.0
+
 [node name="Basic Enemy" parent="." instance=ExtResource("4_ih1fe")]
 position = Vector2(1613, 41)
+
+[node name="TankBoss" parent="." instance=ExtResource("6_xrcdf")]
+position = Vector2(623, 51)

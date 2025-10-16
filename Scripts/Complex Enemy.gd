@@ -158,7 +158,7 @@ func _on_detect_player_body_exited(body: Node2D) -> void:
 		player_in_reach = false
 		multi_hit = false
 
-func got_hit():
+func got_hit(_damage: float):
 	hit = true
 	hitbox_collision.disabled = true
 	windup = false

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bicitkvq6t0c4" path="res://Assets/Enemy Assets/Bringer-Of-Death/SpriteSheet/Bringer-of-Death-SpritSheet.png" id="1_vjjuq"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="3_klabn"]
 [ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/Health.gd" id="4_dsgul"]
-[ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/hitbox.gd" id="5_l8thq"]
+[ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/Hitbox.gd" id="5_l8thq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bwkyk"]
 atlas = ExtResource("1_vjjuq")
@@ -402,7 +402,6 @@ size = Vector2(78.8, 66.4)
 size = Vector2(62, 68.4)
 
 [node name="Complex Enemy" type="CharacterBody2D"]
-scale = Vector2(1.5, 1.5)
 collision_mask = 3
 script = ExtResource("1_ad176")
 

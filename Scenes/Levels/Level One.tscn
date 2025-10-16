@@ -1,6 +1,7 @@
-[gd_scene load_steps=39 format=3 uid="uid://b11ucjiugm7md"]
+[gd_scene load_steps=40 format=3 uid="uid://b11ucjiugm7md"]
 
-[ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/Player.tscn" id="1_80uqg"]
+[ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="1_80uqg"]
+[ext_resource type="PackedScene" uid="uid://8egxs5xr1c6s" path="res://Testing/Nathan's Stuff/tank_boss.tscn" id="1_iu5q8"]
 [ext_resource type="PackedScene" uid="uid://cvnafhg5v34po" path="res://Scenes/Basic Enemy.tscn" id="2_pgoda"]
 [ext_resource type="PackedScene" uid="uid://bh2xfihntbwfq" path="res://Scenes/Complex Enemy.tscn" id="3_3x76c"]
 [ext_resource type="PackedScene" uid="uid://b601u3327g8xu" path="res://Scenes/spike_ball.tscn" id="4_pgoda"]
@@ -204,6 +205,9 @@ offset_bottom = -241.0
 
 [node name="Desk" type="ColorRect" parent="Level One Platform"]
 top_level = true
+anchors_preset = -1
+anchor_top = 0.0632716
+anchor_bottom = 0.0632716
 offset_left = 871.0
 offset_top = -111.0
 offset_right = 1056.0
@@ -212,6 +216,8 @@ color = Color(0.605274, 0.605274, 0.605274, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="DeskCollision" type="CollisionPolygon2D" parent="Level One Platform"]
+position = Vector2(0, 11.2982)
+scale = Vector2(1, 0.685288)
 polygon = PackedVector2Array(1055, -111, 870, -111, 872, 2, 897, 2, 896, -93, 1055, -93)
 
 [node name="ClimbingObject1" type="ColorRect" parent="Level One Platform"]
@@ -495,6 +501,9 @@ offset_top = -44.0
 offset_right = 3998.0
 offset_bottom = -15.0
 
+[node name="TankBoss" parent="." instance=ExtResource("1_iu5q8")]
+position = Vector2(663, -55)
+
 [node name="Player" parent="." instance=ExtResource("1_80uqg")]
 position = Vector2(167, -7)
 
@@ -515,3 +524,5 @@ position = Vector2(1305, -10)
 
 [node name="Spikes" parent="." instance=ExtResource("5_3x76c")]
 position = Vector2(1514, -1)
+
+[connection signal="bossTankDefeated" from="TankBoss" to="Player" method="_on_tank_boss_boss_tank_defeated"]

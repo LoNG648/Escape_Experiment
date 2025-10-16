@@ -21,4 +21,4 @@ func takeDamage(body: Node2D, damage: float) -> void:
 	if currentHealth <= 0:
 		body.death()
 	else:
-		body.got_hit()
+		body.got_hit(damage)
