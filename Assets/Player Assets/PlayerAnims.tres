@@ -1,6 +1,5 @@
-[gd_resource type="SpriteFrames" load_steps=24 format=3 uid="uid://ddcusyusn8m1a"]
+[gd_resource type="SpriteFrames" load_steps=23 format=3 uid="uid://ddcusyusn8m1a"]
 
-[ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="1_enqtm"]
 [ext_resource type="Texture2D" uid="uid://cvkw72knw5cpa" path="res://Assets/Player Assets/EE_Attack-1.png" id="1_oswld"]
 [ext_resource type="Texture2D" uid="uid://biqtne7mj8i0v" path="res://Assets/Player Assets/EE_walking_-1.png" id="2_3om6v"]
 [ext_resource type="Texture2D" uid="uid://db0qg7o8ltwfo" path="res://Assets/Player Assets/EE_Attack-2.png" id="2_x1d6k"]
@@ -77,18 +76,41 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_enqtm")
+"texture": ExtResource("7_6lpsu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_j0t57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bwpi2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_j0t57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6lpsu")
 }],
 "loop": true,
 "name": &"Counter Attack",
+"speed": 2.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3om6v")
+}],
+"loop": true,
+"name": &"Dying",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_enqtm")
+"texture": ExtResource("7_6lpsu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_cg42t")
 }],
 "loop": true,
-"name": &"Dying",
+"name": &"Hit",
 "speed": 5.0
 }, {
 "frames": [{
@@ -138,9 +160,9 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_enqtm")
+"texture": ExtResource("9_sjyai")
 }],
 "loop": true,
 "name": &"Special Attack",
-"speed": 5.0
+"speed": 4.0
 }]

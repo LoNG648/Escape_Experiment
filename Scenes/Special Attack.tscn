@@ -7,10 +7,12 @@ script = ExtResource("1_elgug")
 damage = 10.0
 
 [node name="Special Attack Raycast" type="RayCast2D" parent="."]
+scale = Vector2(1, 1.5)
 enabled = false
-target_position = Vector2(500, 0)
+target_position = Vector2(175, 0)
 collision_mask = 4
 collide_with_areas = true
 
 [node name="Dev Line" type="Line2D" parent="."]
+visible = false
 width = 7.0
