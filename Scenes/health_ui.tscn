@@ -1,0 +1,80 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk15s7tqgmiid"]
+
+[ext_resource type="PackedScene" uid="uid://dmu7xufl48uyl" path="res://Heart.tscn" id="1_fwugr"]
+
+[node name="HealthUI" type="CanvasLayer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 41.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+
+[node name="heart" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Heart" parent="HBoxContainer/heart" instance=ExtResource("1_fwugr")]
+position = Vector2(8, 7.8)
+
+[node name="heart2" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Heart" parent="HBoxContainer/heart2" instance=ExtResource("1_fwugr")]
+position = Vector2(8, 7.8)
+
+[node name="heart3" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Heart" parent="HBoxContainer/heart3" instance=ExtResource("1_fwugr")]
+position = Vector2(8, 7.8)
+
+[node name="heart4" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Heart" parent="HBoxContainer/heart4" instance=ExtResource("1_fwugr")]
+position = Vector2(8, 7.8)
+
+[node name="heart5" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Heart" parent="HBoxContainer/heart5" instance=ExtResource("1_fwugr")]
+position = Vector2(8, 7.8)
+
+[node name="heart6" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Heart" parent="HBoxContainer/heart6" instance=ExtResource("1_fwugr")]
+position = Vector2(8, 7.8)
+
+[node name="heart7" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Heart" parent="HBoxContainer/heart7" instance=ExtResource("1_fwugr")]
+position = Vector2(8, 7.8)
+
+[node name="heart8" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Heart" parent="HBoxContainer/heart8" instance=ExtResource("1_fwugr")]
+position = Vector2(8, 7.8)
+
+[node name="heart9" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Heart" parent="HBoxContainer/heart9" instance=ExtResource("1_fwugr")]
+position = Vector2(8, 7.8)
+
+[node name="heart10" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Heart" parent="HBoxContainer/heart10" instance=ExtResource("1_fwugr")]
+position = Vector2(8, 7.8)
