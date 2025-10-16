@@ -112,3 +112,38 @@ layout_mode = 2
 
 [node name="Heart" parent="HealthUI/HBoxContainer/heart5" instance=ExtResource("7_3smsa")]
 position = Vector2(8, 7.8)
+
+[node name="heart6" type="TextureRect" parent="HealthUI/HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Heart" parent="HealthUI/HBoxContainer/heart6" instance=ExtResource("7_3smsa")]
+position = Vector2(8, 7.8)
+
+[node name="heart7" type="TextureRect" parent="HealthUI/HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Heart" parent="HealthUI/HBoxContainer/heart7" instance=ExtResource("7_3smsa")]
+position = Vector2(8, 7.8)
+
+[node name="heart8" type="TextureRect" parent="HealthUI/HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Heart" parent="HealthUI/HBoxContainer/heart8" instance=ExtResource("7_3smsa")]
+position = Vector2(8, 7.8)
+
+[node name="heart9" type="TextureRect" parent="HealthUI/HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Heart" parent="HealthUI/HBoxContainer/heart9" instance=ExtResource("7_3smsa")]
+position = Vector2(8, 7.8)
+
+[node name="heart10" type="TextureRect" parent="HealthUI/HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Heart" parent="HealthUI/HBoxContainer/heart10" instance=ExtResource("7_3smsa")]
+position = Vector2(8, 7.8)
