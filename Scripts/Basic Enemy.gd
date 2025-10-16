@@ -6,11 +6,18 @@ var held_speed = 250
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dead: bool = false
 var facing_right = true
+var directions : Vector2
 var windup = false
 var attacking = false
 var player_in_reach = false
 var blocking = false
 var hit = false
+var is_chasing = false
+var knockback = 200
+var is_roaming = true
+var flipping = false
+
+var player_in_area = false
 #signal in_attack(bool)
 
 @onready var health: Node = $Health #Health variable for health system
@@ -20,6 +27,8 @@ var hit = false
 @onready var hurtbox_collision: CollisionShape2D = $"Hurtbox/Hurtbox Collision"
 @onready var hitbox_collision: CollisionShape2D = $"Hitbox/Hitbox Collision"
 @onready var collision: CollisionShape2D = $Collisionbox
+
+#@export var wander_direction : Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _physics_process(delta):
@@ -32,16 +41,25 @@ func _physics_process(delta):
 	if wall_raycast.is_colliding() && is_on_floor():
 		flip()
 	
+	#if flipping == true:
+		#$DirectionTimer.start(choose([2.0,2.5,3]))
+		
+		
+	move(delta)
 	
-	velocity.x = speed
-	
-	if windup == false and attacking == false and dead == false and hit == false:
+	if windup == false and attacking == false and dead == false and hit == false and flipping == false:
 		sprite.play("run")
+	elif flipping == true:
+		sprite.play("idle")
 	
-	
+	#velocity = wander_direction.direction * speed * -1
 	move_and_slide()
+	
+	if dead == true and is_roaming == true:
+		is_roaming = false
 
 func flip():
+	flipping = true
 	facing_right = !facing_right
 	scale.x = abs(scale.x) * -1
 	if facing_right:
@@ -50,13 +68,13 @@ func flip():
 	else:
 		speed = abs(speed) * -1
 		held_speed = abs(held_speed) * -1
+	await get_tree().create_timer(choose([0.1,0.3,0.5])).timeout
+	flipping = false
+	$DirectionTimer.wait_time = choose([2.0,2.5,3])
 		
 #func take_damage(amount: int) -> void:
 	#animation_player.play("hit")
 	#print("Damage: ", amount)
-
-
-
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if hit == true:
@@ -88,6 +106,18 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	else:
 		pass
 
+func move(delta):
+	if dead == false:
+		if is_chasing == false and flipping == false:
+			velocity.x = speed
+		#elif is_chasing == true and hit == false and windup == false and attacking == false:
+			#var direction_to_player = position.direction_to(player.position) * speed
+			#velocity.x = direction_to_player.x
+		elif flipping == true:
+			velocity.x = 0
+		is_roaming = true
+	elif dead == true:
+		speed = 0
 
 func _on_detect_player_body_entered(body: Node2D) -> void:
 	if body is Player and dead == false:
@@ -97,7 +127,6 @@ func _on_detect_player_body_entered(body: Node2D) -> void:
 		sprite.play("windup1")
 	else:
 		pass
-		
 
 func _on_detect_player_body_exited(body: Node2D) -> void:
 	if body is Player:
@@ -120,7 +149,6 @@ func got_hit(_currentHealth: float):
 #need a hitbox that is separate from the collisionbox so that i can disable it while playing the hit animation
 #also need to ask Ryan what collision layer the attacks are on for said hitbox
 
-
 func death():
 	speed = 0
 	if health.currentHealth <= 0:
@@ -129,3 +157,16 @@ func death():
 		player_in_reach = false
 		print("Basic enemy dying")
 		sprite.play("death")
+
+func _on_direction_timer_timeout() -> void:
+	#$DirectionTimer.wait_time = choose([2.0,2.5,3])
+	if !is_chasing:
+		directions = choose([Vector2.RIGHT, Vector2.LEFT])
+		if facing_right == true and directions == Vector2.LEFT:
+			flip()
+		elif facing_right == false and directions == Vector2.RIGHT:
+			flip()
+
+func choose(array):
+	array.shuffle()
+	return array.front()

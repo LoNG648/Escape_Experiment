@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://b11nec1uqjb11"]
 
 [ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="1_nt7fk"]
-[ext_resource type="PackedScene" uid="uid://cvnafhg5v34po" path="res://Scenes/Basic Enemy.tscn" id="2_1c1at"]
 [ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="3_yrtag"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="4_oosjv"]
+[ext_resource type="PackedScene" uid="uid://bh2xfihntbwfq" path="res://Scenes/Complex Enemy.tscn" id="4_uq32g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qilu"]
 size = Vector2(3800, 420)
@@ -51,5 +51,5 @@ shape = SubResource("RectangleShape2D_fruoj")
 [node name="Player" parent="." instance=ExtResource("1_nt7fk")]
 position = Vector2(-19, 57)
 
-[node name="Basic Enemy" parent="." instance=ExtResource("2_1c1at")]
-position = Vector2(1594, 36)
+[node name="Complex Enemy" parent="." instance=ExtResource("4_uq32g")]
+position = Vector2(676, 10)
