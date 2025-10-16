@@ -23,7 +23,7 @@ script = ExtResource("2_rwt2c")
 [node name="Dev Node" type="Node" parent="Globals"]
 script = ExtResource("2_eswma")
 DeveloperMode = true
-DeveloperName = "Ryan"
+DeveloperName = "Jack"
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1

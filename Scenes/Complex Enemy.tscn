@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bicitkvq6t0c4" path="res://Assets/Enemy Assets/Bringer-Of-Death/SpriteSheet/Bringer-of-Death-SpritSheet.png" id="1_vjjuq"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="3_klabn"]
 [ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/Health.gd" id="4_dsgul"]
-[ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/Hitbox.gd" id="5_l8thq"]
+[ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/hitbox.gd" id="5_l8thq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bwkyk"]
 atlas = ExtResource("1_vjjuq")
@@ -236,6 +236,12 @@ animations = [{
 "texture": SubResource("AtlasTexture_kdfq0")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_kdfq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2gu4")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_q2gu4")
 }, {
 "duration": 1.0,
@@ -396,6 +402,7 @@ size = Vector2(78.8, 66.4)
 size = Vector2(62, 68.4)
 
 [node name="Complex Enemy" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
 collision_mask = 3
 script = ExtResource("1_ad176")
 
@@ -420,7 +427,7 @@ target_position = Vector2(-13, 0)
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_klabn")]
 collision_mask = 2
-damage = 40.0
+damage = 20.0
 
 [node name="Hurtbox Collision" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-63.4, 4.8)
@@ -448,6 +455,12 @@ light_mask = 0
 position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_vjjuq")
 
+[node name="BehindDetectionBox" type="Area2D" parent="."]
+
+[node name="Behind Detectionbox Collision" type="CollisionShape2D" parent="BehindDetectionBox"]
+position = Vector2(48.7333, 5.00001)
+shape = SubResource("RectangleShape2D_3rpcp")
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_dsgul")
 maxHealth = 50.0
@@ -460,4 +473,6 @@ autostart = true
 [connection signal="animation_finished" from="Sprite" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Detectionbox" to="." method="_on_detect_player_body_entered"]
 [connection signal="body_exited" from="Detectionbox" to="." method="_on_detect_player_body_exited"]
+[connection signal="body_entered" from="BehindDetectionBox" to="." method="_on_behind_detection_box_body_entered"]
+[connection signal="body_exited" from="BehindDetectionBox" to="." method="_on_behind_detection_box_body_exited"]
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwowdepmj5epm"]
+[gd_scene load_steps=6 format=3 uid="uid://dwowdepmj5epm"]
 
-[ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/Player.tscn" id="1_v40nj"]
+[ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="1_v40nj"]
 [ext_resource type="PackedScene" uid="uid://bh2xfihntbwfq" path="res://Scenes/Complex Enemy.tscn" id="2_fq107"]
-[ext_resource type="PackedScene" uid="uid://cmfsc40rx18fr" path="res://Scenes/Spikes.tscn" id="3_h42e4"]
+[ext_resource type="PackedScene" uid="uid://cmfsc40rx18fr" path="res://Scenes/spikes.tscn" id="3_h42e4"]
+[ext_resource type="PackedScene" uid="uid://b601u3327g8xu" path="res://Scenes/spike_ball.tscn" id="4_h42e4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qilu"]
 size = Vector2(3800, 420)
@@ -37,3 +38,7 @@ position = Vector2(513, -58)
 [node name="Spikes" parent="." instance=ExtResource("3_h42e4")]
 position = Vector2(788, 111)
 scale = Vector2(5, 5)
+
+[node name="Spike Ball" parent="." instance=ExtResource("4_h42e4")]
+position = Vector2(1179, 74)
+scale = Vector2(3, 3)
