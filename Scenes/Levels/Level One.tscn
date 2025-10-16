@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cvnafhg5v34po" path="res://Scenes/Basic Enemy.tscn" id="2_pgoda"]
 [ext_resource type="PackedScene" uid="uid://bh2xfihntbwfq" path="res://Scenes/Complex Enemy.tscn" id="3_3x76c"]
 [ext_resource type="PackedScene" uid="uid://b601u3327g8xu" path="res://Scenes/spike_ball.tscn" id="4_pgoda"]
-[ext_resource type="PackedScene" uid="uid://cmfsc40rx18fr" path="res://Scenes/spikes.tscn" id="5_3x76c"]
+[ext_resource type="PackedScene" uid="uid://cmfsc40rx18fr" path="res://Scenes/Spikes.tscn" id="5_3x76c"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1t2tk"]
 
@@ -31,7 +31,7 @@ size = Vector2(651, 108)
 size = Vector2(233, 595)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_gi5r5"]
-b = Vector2(304, 0)
+b = Vector2(247, 0)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_laltf"]
 b = Vector2(148, 0)
@@ -216,32 +216,39 @@ color = Color(0.605274, 0.605274, 0.605274, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="DeskCollision" type="CollisionPolygon2D" parent="Level One Platform"]
-position = Vector2(0, 11.2982)
-scale = Vector2(1, 0.685288)
+position = Vector2(2, 15)
+scale = Vector2(0.998311, 0.759393)
 polygon = PackedVector2Array(1055, -111, 870, -111, 872, 2, 897, 2, 896, -93, 1055, -93)
 
 [node name="ClimbingObject1" type="ColorRect" parent="Level One Platform"]
 offset_left = 4271.0
-offset_top = -434.0
-offset_right = 4576.0
+offset_top = -393.0
+offset_right = 4519.0
 offset_bottom = -298.0
 color = Color(0.33415, 0.200115, 0, 1)
 
 [node name="ClimbingCollision1" type="CollisionShape2D" parent="Level One Platform"]
-position = Vector2(4273, -432)
+position = Vector2(4272, -392)
 shape = SubResource("SegmentShape2D_gi5r5")
 one_way_collision = true
 one_way_collision_margin = 4.0
 
 [node name="ClimbingObject3" type="ColorRect" parent="Level One Platform"]
-offset_left = 4365.0
-offset_top = -560.0
-offset_right = 4514.0
-offset_bottom = -434.0
+offset_left = 4297.0
+offset_top = -520.0
+offset_right = 4446.0
+offset_bottom = -394.0
+color = Color(0.333333, 0.2, 0, 1)
+
+[node name="ClimbingObject4" type="ColorRect" parent="Level One Platform"]
+offset_left = 8594.0
+offset_top = -1040.0
+offset_right = 8743.0
+offset_bottom = -914.0
 color = Color(0.333333, 0.2, 0, 1)
 
 [node name="ClimbingCollision2" type="CollisionShape2D" parent="Level One Platform"]
-position = Vector2(4366, -558)
+position = Vector2(4299, -521)
 shape = SubResource("SegmentShape2D_laltf")
 one_way_collision = true
 one_way_collision_margin = 4.0
@@ -502,7 +509,7 @@ offset_right = 3998.0
 offset_bottom = -15.0
 
 [node name="TankBoss" parent="." instance=ExtResource("1_iu5q8")]
-position = Vector2(663, -55)
+position = Vector2(5464, -359)
 
 [node name="Player" parent="." instance=ExtResource("1_80uqg")]
 position = Vector2(167, -7)
