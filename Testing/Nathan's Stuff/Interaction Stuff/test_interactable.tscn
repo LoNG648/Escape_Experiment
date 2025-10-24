@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dlo3n8cu6ovm1"]
 
-[ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="1_ev3ms"]
-[ext_resource type="Script" uid="uid://dirr7tmo3lc38" path="res://Testing/Nathan's Stuff/test_interactable.gd" id="1_n6nak"]
-[ext_resource type="Script" uid="uid://r6k414d1vgk3" path="res://Testing/Nathan's Stuff/Interaction Stuff/interaction area/interaction_area.gd" id="2_n6nak"]
+[ext_resource type="Script" uid="uid://dirr7tmo3lc38" path="res://Testing/Nathan's Stuff/Interaction Stuff/test_interactable.gd" id="1_0u13c"]
+[ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="2_aw461"]
+[ext_resource type="Script" uid="uid://r6k414d1vgk3" path="res://Testing/Nathan's Stuff/Interaction Stuff/interaction area/interaction_area.gd" id="3_6l4n3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0q2sl"]
 radius = 98.0
@@ -11,16 +11,16 @@ radius = 98.0
 radius = 88.0568
 
 [node name="TestInteractable" type="Node2D"]
-script = ExtResource("1_n6nak")
+script = ExtResource("1_0u13c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_ev3ms")
+texture = ExtResource("2_aw461")
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 2
-script = ExtResource("2_n6nak")
+script = ExtResource("3_6l4n3")
 action_name = "Interact"
 metadata/_custom_type_script = "uid://r6k414d1vgk3"
 

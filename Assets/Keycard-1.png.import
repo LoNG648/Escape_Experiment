@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://tvqbkq1mws4v"
-path="res://.godot/imported/Keycard-1.png-f7a8daf8d294a51764ff0e4c07ade66e.ctex"
+path="res://.godot/imported/Keycard-1.png-abfd180f82cbc3a55585f9ef63a8751f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemy Assets/Boss Assets/Boss Walk/Keycard-1.png"
-dest_files=["res://.godot/imported/Keycard-1.png-f7a8daf8d294a51764ff0e4c07ade66e.ctex"]
+source_file="res://Assets/Keycard-1.png"
+dest_files=["res://.godot/imported/Keycard-1.png-abfd180f82cbc3a55585f9ef63a8751f.ctex"]
 
 [params]
 

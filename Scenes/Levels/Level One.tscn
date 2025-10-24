@@ -1,14 +1,14 @@
 [gd_scene load_steps=58 format=3 uid="uid://b11ucjiugm7md"]
 
 [ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="1_80uqg"]
-[ext_resource type="PackedScene" uid="uid://8egxs5xr1c6s" path="res://Testing/Nathan's Stuff/tank_boss.tscn" id="1_iu5q8"]
+[ext_resource type="PackedScene" uid="uid://8egxs5xr1c6s" path="res://Scenes/tank_boss.tscn" id="1_iu5q8"]
 [ext_resource type="PackedScene" uid="uid://cvnafhg5v34po" path="res://Scenes/Basic Enemy.tscn" id="2_pgoda"]
 [ext_resource type="PackedScene" uid="uid://bh2xfihntbwfq" path="res://Scenes/Complex Enemy.tscn" id="3_3x76c"]
 [ext_resource type="PackedScene" uid="uid://b601u3327g8xu" path="res://Scenes/spike_ball.tscn" id="4_pgoda"]
 [ext_resource type="PackedScene" uid="uid://cmfsc40rx18fr" path="res://Scenes/Spikes.tscn" id="5_3x76c"]
 [ext_resource type="FontFile" uid="uid://6vxurxa8exhd" path="res://Assets/Fonts/PixelOperator8-Bold.ttf" id="7_qc3wn"]
 [ext_resource type="FontFile" uid="uid://42jxqjp57fvj" path="res://Assets/Fonts/PixelOperator8.ttf" id="8_e2brw"]
-[ext_resource type="Script" uid="uid://tavgq4mxcgbj" path="res://Scenes/Levels/rich_text_label_2.gd" id="9_wki8u"]
+[ext_resource type="Script" uid="uid://tavgq4mxcgbj" path="res://Scripts/rich_text_label_2.gd" id="9_wki8u"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1t2tk"]
 
