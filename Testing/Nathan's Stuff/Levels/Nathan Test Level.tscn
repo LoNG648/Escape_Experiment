@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b11nec1uqjb11"]
+[gd_scene load_steps=7 format=3 uid="uid://b11nec1uqjb11"]
 
 [ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="1_nt7fk"]
 [ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="3_yrtag"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="4_oosjv"]
 [ext_resource type="PackedScene" uid="uid://8egxs5xr1c6s" path="res://Testing/Nathan's Stuff/tank_boss.tscn" id="5_0aa8u"]
-[ext_resource type="PackedScene" uid="uid://dvsfqtas4n5iq" path="res://Testing/Nathan's Stuff/pause_menu.tscn" id="5_mm3e4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qilu"]
 size = Vector2(3800, 420)
@@ -51,15 +50,6 @@ shape = SubResource("RectangleShape2D_fruoj")
 
 [node name="Player" parent="." instance=ExtResource("1_nt7fk")]
 position = Vector2(-19, 57)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("5_mm3e4")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 
 [node name="TankBoss" parent="." instance=ExtResource("5_0aa8u")]
 position = Vector2(369, 41)

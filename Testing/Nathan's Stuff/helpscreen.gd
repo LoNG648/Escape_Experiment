@@ -1,4 +1,5 @@
 extends Control
+class_name helpscreen
 
 
 func _on_back_to_mm_pressed() -> void:
