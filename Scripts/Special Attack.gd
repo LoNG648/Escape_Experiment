@@ -1,3 +1,4 @@
+#Generic stuff
 extends Node2D
 
 #Export Variables

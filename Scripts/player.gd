@@ -1,3 +1,4 @@
+# Generic Stuff
 class_name Player
 extends CharacterBody2D
 
@@ -37,23 +38,29 @@ var block: String = moveset[3]
 @onready var health_ui: CanvasLayer = $HealthUI
 
 func _ready() -> void:
+	#Sets up Healthbar UI
 	var hearts_parents = health_ui.get_node("HBoxContainer")
 	for child in hearts_parents.get_children():
 		hearts_list.append(child)
 
-#Sets counter attack to true if character has blocked damage so they can retaliate back!
+#Function that sets counter attack to true if character has blocked damage so they can retaliate back!
 func blockedDamage():
+	#Developer print to understand this function was called; only active in Devmode
 	if Globals.DeveloperMode == true:
 		print("Nope!")
+	#Resets counter attack timer if there was already an opportunity to counter attack
 	if counterAttackStored == true:
 		counter_attack_timer.start()
 		return
+	#Sets counter attack to true and starts the counter attack timer if there was not already an opportunity to counter attack
 	elif counterAttackStored == false:
 		counterAttackStored = true
 		counter_attack_timer.start()
 	await counter_attack_timer.timeout
+	#Developer print to know that the counter attack is lost
 	if Globals.DeveloperMode == true:
 		print("Counter Attack Lost")
+	#Counter attack proceeds to get lost after not using it in the window of opportunity after a successful block
 	counterAttackStored = false
 
 func _physics_process(delta: float) -> void:
@@ -67,59 +74,77 @@ func _physics_process(delta: float) -> void:
 	#Disables code hereafter if dead to not allow player movement and attacks
 	if dead:
 		return
-		
+	
+	#Handles updates to player Health in real time for the UI
 	for i in range(hearts_list.size()):
 		hearts_list[i].visible = i < (health.currentHealth/10)
 	
+	#Animation code which only runs if no existing animation is running
 	if animation_timer.get_time_left() == 0:
+		#Resets sprite to its normal position (since other animations have a weird offset)
 		collector_sprite.position = Vector2(0, -42)
 		if is_on_floor():
 			if direction == 0:
+				#Plays idle animation if not moving
 				collector_sprite.play("Idle")
 			else:
+				#Plays run animation if actively moving
 				collector_sprite.play("Run")
 		else:
+			#Plays jump animation if not on the ground
 			collector_sprite.play("Jump")
 		
-		#Handles jump
+		#Handles jump by making character jump their respective jump height if on the ground and inputs jump
 		if Input.is_action_just_pressed("Jump") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
 		
 		#Applies Horizontal Movement
 		if direction:
+			#Sets horizontal movement speed based on direction and player speed stat
 			velocity.x = direction * SPEED
+			#Flips character if moving in opposite direction from previous facing direction
 			if velocity.x < 0 and facing == true:
 				scale.x = abs(scale.x) * -1
+				#Facing is set to false, meaning character is facing left
 				facing = false
 			if velocity.x > 0 and facing == false:
 				scale.x = abs(scale.x) * -1
+				#Facing is set to true, meaning character is facing right
 				facing = true
 		else:
+			#Deaccelerates character down to a stop if not actively pressing a movement input
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 		#Handles crouch and reduces Hitbox
 		if Input.is_action_just_pressed("Crouch"):
+			#Only reduces overall player size if character wasn't already crouching
 			if crouch_timer.get_time_left() == 0:
 				scale.y /= 2
+			#Pauses the crouch timer which allows for crouch to be held by player not releasing the crouch button
 			crouch_timer.paused = true
 		
 		#Sets a delay before crouching can be done again and resets hitbox
 		if Input.is_action_just_released("Crouch"):
+			#Unpauses and resets timer if timer was already begun. Additionally removes multiple instances of code waiting on crouch timer's timeout by the return line
 			if crouch_timer.get_time_left() != 0:
 				crouch_timer.paused = false
 				crouch_timer.start()
 				return
+			#Unpauses and starts the crouch timer if it was not already started
 			elif crouch_timer.get_time_left() == 0:
 				crouch_timer.paused = false
 				crouch_timer.start()
 			await crouch_timer.timeout
+			#Player's scale is reset to normal once the crouch delay is completed
 			scale.y *= 2
 		
 		#Attack and Counterattack Mechanic
 		if Input.is_action_just_pressed("Basic Attack"):
-			print(counterAttackStored)
+			if Globals.DeveloperMode == true:
+				print(counterAttackStored)
 			#Promotes the attack to a counter attack if possible
 			if counterAttackStored == true:
+				#Determines counter attack type based off selected moveset and plays respective counter
 				if counterAttack == "baseCounter":
 					collector_sprite.position = Vector2(14, -33)
 					collector_sprite.play("Counter Attack")
@@ -146,6 +171,7 @@ func _physics_process(delta: float) -> void:
 					collector_sprite.visible = true
 					tank_sprite.visible = false
 			else:
+				#Determines basic attack off of moveset selected and plays respective basic attack
 				if basicAttack == "baseAttack":
 					#Does a basic attack if can't do a counter attack
 					collector_sprite.position = Vector2(14, -33)
@@ -173,6 +199,7 @@ func _physics_process(delta: float) -> void:
 		
 		#Apply Blocking Mechanic
 		if Input.is_action_just_pressed("Block"):
+			#Determines block type from moveset and conducts proper selected block
 			if block == "baseBlock":
 				collector_sprite.position = Vector2(14, -33)
 				animation_timer.start(1)
@@ -198,6 +225,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("Special Attack"):
 			if Globals.DeveloperMode == true:
 				print("SPECIAL!")
+			#Determines which special is active and plays the proper special
 			if specialAttack == "baseSpecial":
 				collector_sprite.position = Vector2(14, -33)
 				collector_sprite.play("Special Attack")
@@ -208,7 +236,6 @@ func _physics_process(delta: float) -> void:
 					if collector_special_attack.get_node("Special Attack Raycast").get_collider() is Hitbox:
 						collector_special_attack.get_node("Special Attack Raycast").get_collider().get_parent().get_node("Health").takeDamage(collector_special_attack.get_node("Special Attack Raycast").get_collider().get_parent(), 10)
 				await animation_timer.timeout
-				#if Globals.DeveloperMode == false:
 				collector_special_attack.get_node("Dev Line").visible = false
 			if specialAttack == "tankSpecial":
 				animation_timer.start(2)
@@ -228,11 +255,13 @@ func _physics_process(delta: float) -> void:
 				collector_sprite.visible = true
 				
 	else:
+		#Makes character not able to move around in block if it is not the tank's version
 		if block != "tankBlock":
 			velocity.x = move_toward(velocity.x, 0, SPEED/60)
 		#Handles changing character back to normal after block is completed
 		if blocking == true:
 			if block == "baseBlock":
+				#Allows player to change which direction they are blocking from while mid block
 				if Input.is_action_just_pressed("Move Left") and facing == true:
 					scale.x = abs(scale.x) * -1
 					facing = false
@@ -247,6 +276,7 @@ func _physics_process(delta: float) -> void:
 					animation_timer.paused = false
 					blocking = false
 			elif block == "tankBlock":
+				#Allows player to move while blocking if he is blocking with the tank's block
 				if animation_timer.paused == true:
 					if direction:
 						velocity.x = direction * SPEED
@@ -274,7 +304,8 @@ func _physics_process(delta: float) -> void:
 					
 	
 	move_and_slide()
-	
+
+#Handles what happens when player takes damage
 func got_hit(damage: float):
 	if blocking == false:
 		collector_sprite.position = Vector2(14, -33)
@@ -304,6 +335,7 @@ func death():
 		Engine.time_scale = 1.0
 		get_tree().reload_current_scene()
 
+#Adds moveset of the tank after he is defeated and absorbed
 func _on_tank_boss_boss_tank_defeated() -> void:
 	moveset.append_array(["tankAttack","tankSpecial","tankCounter","tankBlock"])
 	basicAttack = moveset[4]
