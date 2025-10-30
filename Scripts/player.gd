@@ -146,7 +146,7 @@ func _physics_process(delta: float) -> void:
 			if counterAttackStored == true:
 				#Determines counter attack type based off selected moveset and plays respective counter
 				if counterAttack == "baseCounter":
-					collector_sprite.position = Vector2(14, -33)
+					collector_sprite.position = Vector2(2, -42)
 					collector_sprite.play("Counter Attack")
 					attacking = true
 					animation_timer.start(2)
@@ -201,14 +201,16 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("Block"):
 			#Determines block type from moveset and conducts proper selected block
 			if block == "baseBlock":
-				collector_sprite.position = Vector2(14, -33)
+				collector_sprite.position = Vector2(2, -42)
 				animation_timer.start(1)
 				collector_sprite.play("Block")
 				blocking = true
 				block_timer.start(0.5)
 				await block_timer.timeout
+				collector_sprite.set_frame_and_progress(5,0)
 				collector_sprite.pause()
 				animation_timer.paused = true
+				print(collector_sprite.frame)
 			elif block == "tankBlock":
 				collector_sprite.visible = false
 				tank_sprite.visible = true
@@ -272,7 +274,7 @@ func _physics_process(delta: float) -> void:
 				if Input.is_action_just_released("Block"):
 					if block_timer.get_time_left() != 0:
 						await block_timer.timeout
-					collector_sprite.play("Block")
+					collector_sprite.play_backwards("Block")
 					animation_timer.paused = false
 					blocking = false
 			elif block == "tankBlock":
@@ -318,16 +320,18 @@ func death():
 	#Only triggers if health is less than or equal to 0 and you aren't already dead
 	if health.currentHealth <= 0 and dead == false:
 		dead = true
-		collector_sprite.play("Dying")
+		scale.x = abs(scale.x) * -1
+		collector_sprite.play("Dying", 0.25)
 		for i in range(hearts_list.size()):
 			hearts_list[i].visible = 0
 		if Globals.DeveloperMode == true:
 			print("Im Dying")
-		for i in range(4):
-			collector_sprite.rotation_degrees += 90
-			await get_tree().create_timer(1).timeout
-		collector_sprite.scale.x = 5
-		collector_sprite.scale.y = 5
+		#for i in range(4):
+			#collector_sprite.rotation_degrees += 90
+			#await get_tree().create_timer(1).timeout
+		#collector_sprite.scale.x = 5
+		#collector_sprite.scale.y = 5
+		await collector_sprite.animation_finished
 		if Globals.DeveloperMode == true:
 			print("I Died")
 		Engine.time_scale = 0.5
