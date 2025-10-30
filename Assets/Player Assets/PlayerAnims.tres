@@ -85,7 +85,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("13_cg42t")
 }],
-"loop": true,
+"loop": false,
 "name": &"Block",
 "speed": 12.0
 }, {
