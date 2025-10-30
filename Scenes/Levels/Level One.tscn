@@ -112,9 +112,9 @@ collision_layer = 17
 
 [node name="ColorRect32" type="ColorRect" parent="Level One Platform"]
 offset_left = -512.0
-offset_top = -1901.0
-offset_right = 6182.0
-offset_bottom = 832.0
+offset_top = -9065.0
+offset_right = 19822.0
+offset_bottom = 680.0
 color = Color(0.118581, 0.118581, 0.118581, 1)
 
 [node name="PlatformCollision" type="CollisionShape2D" parent="Level One Platform"]
