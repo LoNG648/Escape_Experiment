@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://1twg5sb42tjn" path="res://Scripts/BackandForth.gd" id="1_esy8q"]
 [ext_resource type="Script" uid="uid://dxycbvexq3q5s" path="res://Scripts/Hurtbox.gd" id="2_yrw8b"]
 
-
 [sub_resource type="Curve2D" id="Curve2D_esy8q"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, -68, 0, 0, 0, 0, 0, 0)

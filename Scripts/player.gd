@@ -174,12 +174,13 @@ func _physics_process(delta: float) -> void:
 				#Determines basic attack off of moveset selected and plays respective basic attack
 				if basicAttack == "baseAttack":
 					#Does a basic attack if can't do a counter attack
-					collector_sprite.position = Vector2(14, -33)
-					collector_sprite.play("Attack")
-					animation_timer.start(1)
+					collector_sprite.position = Vector2(2, -42)
+					collector_sprite.play("Attack",1.43)
+					animation_timer.start(0.7)
 					attacking = true
+					await get_tree().create_timer(0.35).timeout
 					collector_basic_attack_hurtbox_collision.disabled = false
-					await get_tree().create_timer(0.2).timeout
+					await get_tree().create_timer(0.25).timeout
 					collector_basic_attack_hurtbox_collision.disabled = true
 					await animation_timer.timeout #Basic Attack Delay
 					attacking = false
@@ -210,7 +211,6 @@ func _physics_process(delta: float) -> void:
 				collector_sprite.set_frame_and_progress(5,0)
 				collector_sprite.pause()
 				animation_timer.paused = true
-				print(collector_sprite.frame)
 			elif block == "tankBlock":
 				collector_sprite.visible = false
 				tank_sprite.visible = true
@@ -229,10 +229,10 @@ func _physics_process(delta: float) -> void:
 				print("SPECIAL!")
 			#Determines which special is active and plays the proper special
 			if specialAttack == "baseSpecial":
-				collector_sprite.position = Vector2(14, -33)
+				collector_sprite.position = Vector2(2, -42)
 				collector_sprite.play("Special Attack")
-				collector_special_attack.get_node("Dev Line").visible = true
-				animation_timer.start(0.25)
+				#collector_special_attack.get_node("Dev Line").visible = true
+				animation_timer.start(1)
 				collector_special_attack.get_node("Special Attack Raycast").enabled = true
 				if collector_special_attack.get_node("Special Attack Raycast").is_colliding():
 					if collector_special_attack.get_node("Special Attack Raycast").get_collider() is Hitbox:
@@ -310,31 +310,30 @@ func _physics_process(delta: float) -> void:
 #Handles what happens when player takes damage
 func got_hit(damage: float):
 	if blocking == false:
+		var original = (damage/health.maxHealth)*10
+		var clamped = clamp(original,0.75,1.5)
 		collector_sprite.position = Vector2(14, -33)
 		animation_timer.paused = false
-		animation_timer.start((damage/health.maxHealth)*10)
+		animation_timer.start(clamped)
 		collector_sprite.play("Hit",(1*animation_timer.get_time_left()))
+		print(animation_timer.get_time_left())
 
 #Handles what happens when the player dies (For godot guy, it makes him spin and then grow big)
 func death():
 	#Only triggers if health is less than or equal to 0 and you aren't already dead
 	if health.currentHealth <= 0 and dead == false:
+		collector_sprite.position = Vector2(-2, -42)
 		dead = true
 		scale.x = abs(scale.x) * -1
-		collector_sprite.play("Dying", 0.25)
+		collector_sprite.play("Dying", 0.5)
+		Engine.time_scale = 0.5
 		for i in range(hearts_list.size()):
 			hearts_list[i].visible = 0
 		if Globals.DeveloperMode == true:
 			print("Im Dying")
-		#for i in range(4):
-			#collector_sprite.rotation_degrees += 90
-			#await get_tree().create_timer(1).timeout
-		#collector_sprite.scale.x = 5
-		#collector_sprite.scale.y = 5
 		await collector_sprite.animation_finished
 		if Globals.DeveloperMode == true:
 			print("I Died")
-		Engine.time_scale = 0.5
 		await get_tree().create_timer(1).timeout
 		Engine.time_scale = 1.0
 		get_tree().reload_current_scene()

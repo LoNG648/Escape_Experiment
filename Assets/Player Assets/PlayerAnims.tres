@@ -1,15 +1,9 @@
-[gd_resource type="SpriteFrames" load_steps=38 format=3 uid="uid://ddcusyusn8m1a"]
+[gd_resource type="SpriteFrames" load_steps=41 format=3 uid="uid://ddcusyusn8m1a"]
 
-[ext_resource type="Texture2D" uid="uid://cvkw72knw5cpa" path="res://Assets/Player Assets/Basic Attack/EE_Attack-1.png" id="1_oswld"]
 [ext_resource type="Texture2D" uid="uid://biqtne7mj8i0v" path="res://Assets/Player Assets/Walk/EE_walking_-1.png" id="2_3om6v"]
-[ext_resource type="Texture2D" uid="uid://db0qg7o8ltwfo" path="res://Assets/Player Assets/Basic Attack/EE_Attack-2.png" id="2_x1d6k"]
-[ext_resource type="Texture2D" uid="uid://vu5e01h8hv27" path="res://Assets/Player Assets/Basic Attack/EE_Attack-3.png" id="3_i404e"]
 [ext_resource type="Texture2D" uid="uid://dwrfvovhnoitl" path="res://Assets/Player Assets/Walk/EE_walking_-2.png" id="3_nx6in"]
-[ext_resource type="Texture2D" uid="uid://b4gsbsp7py8ef" path="res://Assets/Player Assets/Basic Attack/EE_Attack-4.png" id="4_53ybm"]
 [ext_resource type="Texture2D" uid="uid://bqw4qp3ivqitn" path="res://Assets/Player Assets/Walk/EE_walking_-3.png" id="4_qhvau"]
 [ext_resource type="Texture2D" uid="uid://fjloh0rfrlay" path="res://Assets/Player Assets/Walk/EE_walking_-4.png" id="5_8dhp3"]
-[ext_resource type="Texture2D" uid="uid://bch3u74wg4q8o" path="res://Assets/Player Assets/Basic Attack/EE_Attack-5.png" id="5_bwpi2"]
-[ext_resource type="Texture2D" uid="uid://pb8dbt7kx5wa" path="res://Assets/Player Assets/Basic Attack/EE_Attack-6.png" id="6_j0t57"]
 [ext_resource type="Texture2D" uid="uid://c5ym7er66h6a6" path="res://Assets/Player Assets/Walk/EE_walking_-5.png" id="6_x6pn5"]
 [ext_resource type="Texture2D" uid="uid://s7gr38fd0oop" path="res://Assets/Player Assets/Walk/EE_walking_-6.png" id="7_4b3vg"]
 [ext_resource type="Texture2D" uid="uid://bm5v6elpfbfd0" path="res://Assets/Player Assets/Basic Attack/EE_Attack-7.png" id="7_6lpsu"]
@@ -37,32 +31,41 @@
 [ext_resource type="Texture2D" uid="uid://ccpxv11vlo78i" path="res://Assets/Player Assets/Counter attack/EE_Counter-8.png" id="21_fckkl"]
 [ext_resource type="Texture2D" uid="uid://36sryqpg4j8w" path="res://Assets/Player Assets/Counter attack/EE_Counter-9.png" id="22_66aaw"]
 [ext_resource type="Texture2D" uid="uid://cfjr1tausfs2d" path="res://Assets/Player Assets/Counter attack/EE_Counter-10.png" id="23_uee4n"]
+[ext_resource type="Texture2D" uid="uid://d107oi4w2iec2" path="res://Assets/Player Assets/Special Attack/EE_Special-1.png" id="32_m4ffc"]
+[ext_resource type="Texture2D" uid="uid://nqxmtuak5o8d" path="res://Assets/Player Assets/Special Attack/EE_Special-2.png" id="33_imeh1"]
+[ext_resource type="Texture2D" uid="uid://ceyr2encfd221" path="res://Assets/Player Assets/Special Attack/EE_Special-3.png" id="34_feob4"]
+[ext_resource type="Texture2D" uid="uid://sw4le3h2u5o5" path="res://Assets/Player Assets/Special Attack/EE_Special-4.png" id="35_o77up"]
+[ext_resource type="Texture2D" uid="uid://dgunod5miggwm" path="res://Assets/Player Assets/Special Attack/EE_Special-5.png" id="36_fckkl"]
+[ext_resource type="Texture2D" uid="uid://djq7iyow2ikes" path="res://Assets/Player Assets/Special Attack/EE_Special-6.png" id="37_66aaw"]
+[ext_resource type="Texture2D" uid="uid://bdjim4av5045o" path="res://Assets/Player Assets/Special Attack/EE_Special-7.png" id="38_uee4n"]
+[ext_resource type="Texture2D" uid="uid://c3s70o5i32sdx" path="res://Assets/Player Assets/Special Attack/EE_Special-8.png" id="39_y8loc"]
+[ext_resource type="Texture2D" uid="uid://5nyw4he0bc4g" path="res://Assets/Player Assets/Special Attack/EE_Special-9.png" id="40_qyxe4"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_oswld")
+"texture": ExtResource("14_kvdj3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_x1d6k")
+"texture": ExtResource("15_5g6q5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_i404e")
+"texture": ExtResource("16_vwsun")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_53ybm")
+"texture": ExtResource("17_m4ffc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_bwpi2")
+"texture": ExtResource("18_imeh1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_j0t57")
+"texture": ExtResource("22_66aaw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_6lpsu")
+"texture": ExtResource("23_uee4n")
 }],
-"loop": true,
+"loop": false,
 "name": &"Attack",
 "speed": 7.0
 }, {
@@ -120,7 +123,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("23_uee4n")
 }],
-"loop": true,
+"loop": false,
 "name": &"Counter Attack",
 "speed": 5.0
 }, {
@@ -148,7 +151,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_6lpsu")
 }],
-"loop": true,
+"loop": false,
 "name": &"Hit",
 "speed": 5.0
 }, {
@@ -164,7 +167,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_3om6v")
 }],
-"loop": true,
+"loop": false,
 "name": &"Jump",
 "speed": 5.0
 }, {
@@ -199,9 +202,33 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_sjyai")
+"texture": ExtResource("32_m4ffc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_imeh1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_feob4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_o77up")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_fckkl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_66aaw")
+}, {
+"duration": 2.0,
+"texture": ExtResource("38_uee4n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_y8loc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_qyxe4")
 }],
-"loop": true,
+"loop": false,
 "name": &"Special Attack",
-"speed": 4.0
+"speed": 10.0
 }]

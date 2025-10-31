@@ -275,7 +275,7 @@ metadata/_edit_use_anchors_ = true
 [node name="DeskCollision" type="CollisionPolygon2D" parent="Level One Platform"]
 position = Vector2(2, 15)
 scale = Vector2(0.998311, 0.759393)
-polygon = PackedVector2Array(1055, -111, 870, -111, 872, 2, 897, 2, 896, -93, 1055, -93)
+polygon = PackedVector2Array(1055.78, -111.932, 870.47, -111.932, 870.47, 2.63368, 895.513, 2.63368, 895.513, -93.4957, 1055.78, -93.4957)
 
 [node name="ClimbingObject8" type="ColorRect" parent="Level One Platform"]
 offset_left = 4154.0
@@ -765,5 +765,4 @@ theme_override_fonts/normal_font = ExtResource("8_e2brw")
 text = "You beat the boss! You win!"
 script = ExtResource("9_wki8u")
 
-[connection signal="bossTankDefeated" from="TankBoss" to="Player" method="_on_tank_boss_boss_tank_defeated"]
 [connection signal="bossTankDefeated" from="TankBoss" to="RichTextLabel2" method="_on_tank_boss_boss_tank_defeated"]

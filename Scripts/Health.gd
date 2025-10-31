@@ -4,7 +4,7 @@ extends Node
 
 # Export Variables 
 @export var maxHealth: float
-@export var resistance: float = 50.0
+@export var resistance: float
 
 # On Ready Variables 
 @onready var currentHealth: float = maxHealth
@@ -19,11 +19,10 @@ func _ready() -> void:
 func takeDamage(body: Node2D, damage: float) -> void:
 	#Damage is dealt normally if character is not blocking
 	if body.blocking != true:
-		currentHealth -= damage
+		currentHealth -= (damage*(clamp(100-resistance,10,100)/100))
 	#Otherwise, character's damage is reduced by their set resistance amount
 	elif body.blocking == true:
 		body.blockedDamage()
-		currentHealth -= (damage*((100-resistance)/100))
 	# Prints to make sure enemy is taking damage and how much damage is dealt. Only active in DevMode
 	if Globals.DeveloperMode == true:
 		print("Ouch")

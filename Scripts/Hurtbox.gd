@@ -7,6 +7,7 @@ extends Area2D
 
 # On Ready Variables
 @onready var body: Node2D
+@onready var hurtbox: Hurtbox = $"."
 
 #func _on_body_entered(body: Node2D):
 	#if body.health:
@@ -24,3 +25,5 @@ func _on_area_entered(area: Area2D) -> void:
 		#Code to grab the parent of the hitbox area which is the respective player/enemy and then call the takeDamage function for the said player/enemy
 		body = area.get_parent()
 		body.get_node("Health").takeDamage(body, damage)
+		if body is Tank_Boss and body.get_node("Health").currentHealth <= 0:
+			hurtbox.get_parent()._on_tank_boss_boss_tank_defeated()
