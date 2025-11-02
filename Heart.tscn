@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmu7xufl48uyl"]
-
-[ext_resource type="Texture2D" uid="uid://bqv4ajfctv7mh" path="res://Assets/Pixel Adventure 1/Free/Traps/Sand Mud Ice/Ice Particle.png" id="1_8f18l"]
-
-[node name="Heart" type="Sprite2D"]
-texture = ExtResource("1_8f18l")

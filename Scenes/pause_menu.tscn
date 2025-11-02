@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dvsfqtas4n5iq"]
 
-[ext_resource type="Script" uid="uid://bkrb2agx001wk" path="res://pause_menu.gd" id="1_ey13g"]
+[ext_resource type="Script" uid="uid://bkrb2agx001wk" path="res://Scripts/pause_menu.gd" id="1_emv3i"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ey13g")
+script = ExtResource("1_emv3i")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

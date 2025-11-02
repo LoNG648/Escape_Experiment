@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="2_wqkkx"]
 [ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="3_2u06y"]
 [ext_resource type="PackedScene" uid="uid://cvnafhg5v34po" path="res://Scenes/Basic Enemy.tscn" id="4_ih1fe"]
-[ext_resource type="PackedScene" uid="uid://dvsfqtas4n5iq" path="res://Testing/Nathan's Stuff/pause_menu.tscn" id="5_12n40"]
+[ext_resource type="PackedScene" uid="uid://dvsfqtas4n5iq" path="res://Scenes/pause_menu.tscn" id="5_12n40"]
 [ext_resource type="Texture2D" uid="uid://62yarb6hreki" path="res://Assets/Tilemap/world_tileset.png" id="5_658rx"]
-[ext_resource type="PackedScene" uid="uid://8egxs5xr1c6s" path="res://Testing/Nathan's Stuff/tank_boss.tscn" id="6_xrcdf"]
+[ext_resource type="PackedScene" uid="uid://8egxs5xr1c6s" path="res://Scenes/tank_boss.tscn" id="6_xrcdf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xrcdf"]
 texture = ExtResource("5_658rx")

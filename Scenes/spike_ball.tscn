@@ -1,8 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://b601u3327g8xu"]
 
 [ext_resource type="Texture2D" uid="uid://dec01fbuuxcka" path="res://Assets/Pixel Adventure 1/Free/Traps/Spiked Ball/Spiked Ball.png" id="1_a57kd"]
-[ext_resource type="Script" uid="uid://1twg5sb42tjn" path="res://Scenes/BackandForth.gd" id="1_esy8q"]
+[ext_resource type="Script" uid="uid://1twg5sb42tjn" path="res://Scripts/BackandForth.gd" id="1_esy8q"]
 [ext_resource type="Script" uid="uid://dxycbvexq3q5s" path="res://Scripts/Hurtbox.gd" id="2_yrw8b"]
+
 
 [sub_resource type="Curve2D" id="Curve2D_esy8q"]
 _data = {
