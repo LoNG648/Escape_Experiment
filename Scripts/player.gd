@@ -37,6 +37,8 @@ var block: String = moveset[3]
 @onready var health_ui: CanvasLayer = $HealthUI
 
 func _ready() -> void:
+	Globals.Player = self
+	Globals.player_position = global_position
 	var hearts_parents = health_ui.get_node("HBoxContainer")
 	for child in hearts_parents.get_children():
 		hearts_list.append(child)

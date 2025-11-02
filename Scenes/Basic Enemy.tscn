@@ -1,10 +1,12 @@
-[gd_scene load_steps=65 format=3 uid="uid://cvnafhg5v34po"]
+[gd_scene load_steps=68 format=3 uid="uid://cvnafhg5v34po"]
 
+[ext_resource type="Script" uid="uid://cehxr58fvsrcc" path="res://Testing/Nathan's Stuff/Enemy states/basic_enemy_states.gd" id="1_043i7"]
 [ext_resource type="Texture2D" uid="uid://b1bssce881pl2" path="res://Assets/Enemy Assets/NightBorne/NightBorne.png" id="1_gtmpm"]
-[ext_resource type="Script" uid="uid://csjbtosrju3iy" path="res://Scripts/Basic Enemy.gd" id="1_ldolw"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="3_0mme3"]
 [ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/Health.gd" id="4_bn3wk"]
 [ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/hitbox.gd" id="5_y7yig"]
+[ext_resource type="Script" uid="uid://dd6ph7rtpafq8" path="res://Testing/Nathan's Stuff/Enemy states/state_machine.gd" id="6_043i7"]
+[ext_resource type="Script" uid="uid://bf7c06cbpr0wu" path="res://Testing/Nathan's Stuff/Enemy states/EnemyState.gd" id="7_b34i0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xvijc"]
 atlas = ExtResource("1_gtmpm")
@@ -429,15 +431,19 @@ radius = 12.0
 height = 31.8
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1f64y"]
-radius = 13.0
+radius = 13.6
 height = 54.4
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b34i0"]
+radius = 23.0
+height = 256.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xno3g"]
 size = Vector2(26, 64.8)
 
 [node name="Basic Enemy" type="CharacterBody2D"]
 collision_mask = 3
-script = ExtResource("1_ldolw")
+script = ExtResource("1_043i7")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4q34a")
@@ -455,10 +461,17 @@ visibility_layer = 16
 position = Vector2(14, 9)
 target_position = Vector2(0, 38.6)
 
-[node name="Wall Raycast" type="RayCast2D" parent="."]
+[node name="Right Raycast" type="RayCast2D" parent="."]
 light_mask = 0
 visibility_layer = 16
 position = Vector2(14, 9)
+target_position = Vector2(13, 0)
+
+[node name="Left Raycast" type="RayCast2D" parent="."]
+light_mask = 0
+visibility_layer = 16
+position = Vector2(-12, 9)
+rotation = 3.14159
 target_position = Vector2(13, 0)
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_0mme3")]
@@ -468,21 +481,9 @@ damage = 10.0
 [node name="Hurtbox Collision" type="CollisionShape2D" parent="Hurtbox"]
 light_mask = 0
 visibility_layer = 4
-position = Vector2(27.4, 1.2)
+position = Vector2(26.4, 1.2)
 shape = SubResource("CapsuleShape2D_1f64y")
 disabled = true
-
-[node name="FrontDetectionbox" type="Area2D" parent="."]
-light_mask = 0
-visibility_layer = 1023
-collision_layer = 0
-collision_mask = 2
-
-[node name="Front Detectionbox Collision" type="CollisionShape2D" parent="FrontDetectionbox"]
-light_mask = 0
-visibility_layer = 1023
-position = Vector2(26.2, -2.8)
-shape = SubResource("RectangleShape2D_xno3g")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -494,7 +495,30 @@ metadata/_custom_type_script = "uid://cl8w365iaic6m"
 position = Vector2(1, 8.5)
 shape = SubResource("CapsuleShape2D_3pxrr")
 
+[node name="PlayerDetection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_b34i0")
+
+[node name="FrontDetectionbox" type="Area2D" parent="."]
+visible = false
+light_mask = 0
+visibility_layer = 1023
+collision_layer = 0
+collision_mask = 2
+
+[node name="Front Detectionbox Collision" type="CollisionShape2D" parent="FrontDetectionbox"]
+light_mask = 0
+visibility_layer = 1023
+position = Vector2(26.2, -2.8)
+shape = SubResource("RectangleShape2D_xno3g")
+disabled = true
+
 [node name="BehindDetectionBox" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -503,6 +527,7 @@ light_mask = 0
 visibility_layer = 1023
 position = Vector2(-24.3556, -2.8)
 shape = SubResource("RectangleShape2D_xno3g")
+disabled = true
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_bn3wk")
@@ -520,20 +545,33 @@ offset_right = 20.0
 offset_bottom = -23.0
 
 [node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("6_043i7")
 
 [node name="Idle State" type="Node2D" parent="StateMachine"]
+script = ExtResource("7_b34i0")
+can_move = false
 
 [node name="Patrol State" type="Node2D" parent="StateMachine"]
+script = ExtResource("7_b34i0")
 
 [node name="Chase State" type="Node2D" parent="StateMachine"]
+script = ExtResource("7_b34i0")
 
 [node name="Attack State" type="Node2D" parent="StateMachine"]
+script = ExtResource("7_b34i0")
+can_move = false
 
 [node name="Hurt State" type="Node2D" parent="StateMachine"]
+script = ExtResource("7_b34i0")
+can_move = false
 
 [node name="Dead State" type="Node2D" parent="StateMachine"]
+script = ExtResource("7_b34i0")
+can_move = false
 
 [node name="Mandatory Idle State" type="Node2D" parent="StateMachine"]
+script = ExtResource("7_b34i0")
+can_move = false
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="FrontDetectionbox" to="." method="_on_detect_player_body_entered"]
