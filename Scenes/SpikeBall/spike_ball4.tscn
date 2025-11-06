@@ -1,14 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://b601u3327g8xu"]
+[gd_scene load_steps=7 format=3 uid="uid://dtbs07fxaokwr"]
 
-[ext_resource type="Texture2D" uid="uid://dec01fbuuxcka" path="res://Assets/Pixel Adventure 1/Free/Traps/Spiked Ball/Spiked Ball.png" id="1_a57kd"]
-[ext_resource type="Script" uid="uid://1twg5sb42tjn" path="res://Scenes/BackandForth.gd" id="1_esy8q"]
-[ext_resource type="Script" uid="uid://dxycbvexq3q5s" path="res://Scripts/Hurtbox.gd" id="2_yrw8b"]
+[ext_resource type="Script" uid="uid://dqdvgv1pyw5mc" path="res://Scenes/SpikeBall/BackandForthSpeed.gd" id="1_8tmn5"]
+[ext_resource type="Texture2D" uid="uid://dec01fbuuxcka" path="res://Assets/Pixel Adventure 1/Free/Traps/Spiked Ball/Spiked Ball.png" id="2_00rik"]
+[ext_resource type="Script" uid="uid://dxycbvexq3q5s" path="res://Scripts/Hurtbox.gd" id="3_uydct"]
 
 [sub_resource type="Curve2D" id="Curve2D_esy8q"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, -68, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, -68, 0, 0, 0, 0, -81, -30, 0, 0, 0, 0, 0, 0)
 }
-point_count = 2
+point_count = 3
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6apah"]
 
@@ -18,16 +18,17 @@ radius = 14.0357
 [node name="Spike Ball" type="Node2D"]
 
 [node name="Path2D" type="Path2D" parent="."]
+position = Vector2(1, 0)
 curve = SubResource("Curve2D_esy8q")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2(0, -68)
-rotation = 1.5708
+rotation = 2.70294
 loop = false
-script = ExtResource("1_esy8q")
+script = ExtResource("1_8tmn5")
 
 [node name="SpikeBall2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
-texture = ExtResource("1_a57kd")
+texture = ExtResource("2_00rik")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Path2D/PathFollow2D/SpikeBall2D"]
 position = Vector2(68, -2.97237e-06)
@@ -42,7 +43,7 @@ position = Vector2(0.164398, 0.986394)
 rotation = -1.73595
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("2_yrw8b")
+script = ExtResource("3_uydct")
 damage = 100.0
 metadata/_custom_type_script = "uid://dxycbvexq3q5s"
 

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://c10ynmv2c26ik"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u11pp"]
+size = Vector2(66, 20)
+
+[node name="MovingPlat" type="Node2D"]
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+position = Vector2(70, 0)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_u11pp")
+
+[node name="ColorRect" type="ColorRect" parent="AnimatableBody2D/CollisionShape2D"]
+offset_left = -33.0
+offset_top = -10.0
+offset_right = 33.0
+offset_bottom = 10.0
