@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://cvnafhg5v34po"]
+[gd_scene load_steps=69 format=3 uid="uid://cvnafhg5v34po"]
 
 [ext_resource type="Script" uid="uid://cehxr58fvsrcc" path="res://Testing/Nathan's Stuff/Enemy states/basic_enemy_states.gd" id="1_043i7"]
 [ext_resource type="Texture2D" uid="uid://b1bssce881pl2" path="res://Assets/Enemy Assets/NightBorne/NightBorne.png" id="1_gtmpm"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/hitbox.gd" id="5_y7yig"]
 [ext_resource type="Script" uid="uid://dd6ph7rtpafq8" path="res://Testing/Nathan's Stuff/Enemy states/state_machine.gd" id="6_043i7"]
 [ext_resource type="Script" uid="uid://bf7c06cbpr0wu" path="res://Testing/Nathan's Stuff/Enemy states/EnemyState.gd" id="7_b34i0"]
+[ext_resource type="Script" uid="uid://jwrskgim2j3p" path="res://Testing/Nathan's Stuff/Enemy states/Skeleton States/skeleton_idle_state.gd" id="7_ht32f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xvijc"]
 atlas = ExtResource("1_gtmpm")
@@ -548,7 +549,8 @@ offset_bottom = -23.0
 script = ExtResource("6_043i7")
 
 [node name="Idle State" type="Node2D" parent="StateMachine"]
-script = ExtResource("7_b34i0")
+script = ExtResource("7_ht32f")
+idle_timer = null
 can_move = false
 
 [node name="Patrol State" type="Node2D" parent="StateMachine"]
@@ -574,6 +576,8 @@ script = ExtResource("7_b34i0")
 can_move = false
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detected"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_lost"]
 [connection signal="body_entered" from="FrontDetectionbox" to="." method="_on_detect_player_body_entered"]
 [connection signal="body_exited" from="FrontDetectionbox" to="." method="_on_detect_player_body_exited"]
 [connection signal="body_entered" from="BehindDetectionBox" to="." method="_on_behind_detection_box_body_entered"]

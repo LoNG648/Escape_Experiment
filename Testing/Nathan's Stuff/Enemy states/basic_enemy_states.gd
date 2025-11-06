@@ -88,3 +88,41 @@ func check_wall_collision():
 
 func start_attack_animation():
 	close_to_player = true
+
+func _on_player_detected(body):
+	if body.is_in_group("Player"):
+		player_in_range = true
+
+func _on_player_lost(body):
+	if body.is_in_group("Player"):
+		player_in_range = false
+
+#func _on_attack_entered(body):
+	#if body.is_in_group("Player"):
+		#body.take_damage(damage_dealt)
+
+func reset_attack_state():
+	close_to_player = false
+
+func take_damage(damage):
+	if dead:
+		return
+	#health -= damage
+	#print(health)
+	
+	var player_position = Globals.player_position
+	var knockback_direction = (global_position - player_position).normalized()
+	apply_knockback(Vector2(knockback_force.x * knockback_direction.x, knockback_force.x))
+	
+	if health <= 0:
+		die()
+	else:
+		state_machine.change_state("Hurt State")
+
+func apply_knockback(force: Vector2):
+	velocity = force
+	move_and_slide()
+
+func die():
+	dead = true
+	state_machine.change_state("Dead State")
