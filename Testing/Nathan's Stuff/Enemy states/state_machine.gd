@@ -13,7 +13,7 @@ func change_state(state):
 	if state == previous_state.name:
 		return
 	
-	current_state = find_child(state) as EnemyState
+	current_state = find_child(state)
 	current_state.enter()
 	
 	previous_state.exit()

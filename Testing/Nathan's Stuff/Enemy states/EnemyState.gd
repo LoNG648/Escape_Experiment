@@ -5,7 +5,7 @@ class_name EnemyState
 @export var can_move : bool = true
 
 @onready var debug = owner.find_child("debug")
-@onready var player = owner.get_parent().find_child("player")
+@onready var player = owner.get_parent().find_child("Player")
 @onready var sprite = owner.find_child("Sprite")
 
 func _read():
@@ -20,6 +20,6 @@ func exit():
 func transition():
 	pass
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta):
 	transition()
 	debug.text = name
