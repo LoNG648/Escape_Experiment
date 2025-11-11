@@ -24,5 +24,11 @@ func _physics_process(_delta) -> void:
 	#Colors the line red if it is overlapping something and green if not
 	if special_attack_raycast.is_colliding():
 		dev_line.default_color = Color.RED
+		
+		var hit_object = special_attack_raycast.get_collider()
+		
+		if hit_object and hit_object.has_method("on_hit"):
+			hit_object.on_hit("tankSpecial")
+			
 	else:
 		dev_line.default_color = Color.GREEN
