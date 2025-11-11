@@ -46,7 +46,7 @@ position = Vector2(392, 44)
 texture = ExtResource("1_a1jr2")
 
 [node name="Hurtbox" parent="Death Box" instance=ExtResource("2_2u5ei")]
-damage = 1.0
+damage = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death Box/Hurtbox"]
 position = Vector2(392.25, 43.75)

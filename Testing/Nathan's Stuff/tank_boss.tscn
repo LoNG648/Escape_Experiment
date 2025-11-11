@@ -1,0 +1,211 @@
+[gd_scene load_steps=21 format=3 uid="uid://8egxs5xr1c6s"]
+
+[ext_resource type="Texture2D" uid="uid://b2dmt32vy2lnw" path="res://Assets/Enemy Assets/Boss Assets/Boss Attack/Boss_Attack-4.png" id="1_dgswd"]
+[ext_resource type="Script" uid="uid://bhb7tlsepm2hk" path="res://Testing/Nathan's Stuff/tank_boss.gd" id="1_kdwwd"]
+[ext_resource type="Texture2D" uid="uid://b3sw7hab5c4vy" path="res://Assets/Enemy Assets/Boss Assets/Boss Attack/Boss_Attack-1.png" id="2_pmua5"]
+[ext_resource type="Texture2D" uid="uid://t2alrm087tvo" path="res://Assets/Enemy Assets/Boss Assets/Boss Block/Boss_Block-3.png" id="2_vtvyr"]
+[ext_resource type="Texture2D" uid="uid://bxgn4x6amewfv" path="res://Assets/Enemy Assets/Boss Assets/Boss Attack/Boss_Attack-2.png" id="3_cmpc0"]
+[ext_resource type="Texture2D" uid="uid://b3sl0o37x1ehq" path="res://Assets/Enemy Assets/Boss Assets/Boss Block/Boss_Block-1.png" id="3_kdwwd"]
+[ext_resource type="Texture2D" uid="uid://pwfptm1gymxm" path="res://Assets/Enemy Assets/Boss Assets/Boss Attack/Boss_Attack-3.png" id="4_bmyvc"]
+[ext_resource type="Texture2D" uid="uid://bwj7wbq8r1w6n" path="res://Assets/Enemy Assets/Boss Assets/Boss Block/Boss_Block-2.png" id="4_kbsxq"]
+[ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="4_lq57t"]
+[ext_resource type="Texture2D" uid="uid://knbqu3le3jiw" path="res://Assets/Enemy Assets/Boss Assets/Boss Walk/Boss_Idle-1.png" id="5_0crcx"]
+[ext_resource type="Texture2D" uid="uid://dvxrlkbqkwhig" path="res://Assets/Enemy Assets/Boss Assets/Boss Walk/Boss_Idle-2.png" id="6_g87x0"]
+[ext_resource type="Texture2D" uid="uid://mv73aqbur0xb" path="res://Assets/Enemy Assets/Boss Assets/Boss Walk/Boss_Idle-3.png" id="7_lq57t"]
+[ext_resource type="Script" uid="uid://dxycbvexq3q5s" path="res://Scripts/Hurtbox.gd" id="12_g87x0"]
+[ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/hitbox.gd" id="13_lq57t"]
+[ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/Health.gd" id="14_6n5jb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q5qam"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dgswd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_dgswd")
+}],
+"loop": false,
+"name": &"attack1",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vtvyr")
+}],
+"loop": true,
+"name": &"blocking",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_lq57t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lq57t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lq57t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lq57t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lq57t")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kdwwd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kbsxq")
+}],
+"loop": false,
+"name": &"entering block",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kbsxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kdwwd")
+}],
+"loop": false,
+"name": &"exiting block",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kbsxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kbsxq")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_0crcx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_g87x0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lq57t")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pmua5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cmpc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bmyvc")
+}],
+"loop": false,
+"name": &"windup1",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vtvyr"]
+radius = 16.0
+height = 54.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lq57t"]
+radius = 13.0
+height = 46.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g87x0"]
+radius = 15.0
+height = 54.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g87x0"]
+size = Vector2(26.5, 51)
+
+[node name="TankBoss" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+collision_mask = 3
+script = ExtResource("1_kdwwd")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_q5qam")
+animation = &"windup1"
+autoplay = "walk"
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+light_mask = 0
+shape = SubResource("CapsuleShape2D_vtvyr")
+
+[node name="Floor Raycast" type="RayCast2D" parent="."]
+position = Vector2(-17, 6)
+target_position = Vector2(0, 47)
+
+[node name="Wall Raycast" type="RayCast2D" parent="."]
+position = Vector2(-17, 6)
+target_position = Vector2(-13, 0)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("12_g87x0")
+damage = 40.0
+metadata/_custom_type_script = "uid://dxycbvexq3q5s"
+
+[node name="Hurtbox Collision" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-28.5, 3)
+shape = SubResource("CapsuleShape2D_lq57t")
+disabled = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("13_lq57t")
+metadata/_custom_type_script = "uid://cl8w365iaic6m"
+
+[node name="Hitbox Collision" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_g87x0")
+
+[node name="Detectionbox" type="Area2D" parent="."]
+light_mask = 0
+visibility_layer = 1023
+collision_layer = 0
+collision_mask = 2
+
+[node name="Detectionbox Collision" type="CollisionShape2D" parent="Detectionbox"]
+position = Vector2(-28.25, 1.5)
+shape = SubResource("RectangleShape2D_g87x0")
+
+[node name="BehindDetectionBox" type="Area2D" parent="."]
+
+[node name="Behind Detectionbox Collision" type="CollisionShape2D" parent="BehindDetectionBox"]
+position = Vector2(29, 1.5)
+shape = SubResource("RectangleShape2D_g87x0")
+
+[node name="DirectionTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("14_6n5jb")
+maxHealth = 100.0
+metadata/_custom_type_script = "uid://ccjfqwc5vm62o"
+
+[connection signal="animation_finished" from="Sprite" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Hurtbox" to="Hurtbox" method="_on_area_entered"]
+[connection signal="body_entered" from="Detectionbox" to="." method="_on_detect_player_body_entered"]
+[connection signal="body_exited" from="Detectionbox" to="." method="_on_detect_player_body_exited"]
+[connection signal="body_entered" from="BehindDetectionBox" to="." method="_on_behind_detection_box_body_entered"]
+[connection signal="body_exited" from="BehindDetectionBox" to="." method="_on_behind_detection_box_body_exited"]
+[connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]

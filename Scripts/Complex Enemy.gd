@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 var speed = -125.0
 var held_speed = -125
+var flipping_speed = 0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dead: bool = false
 var facing_left = true
@@ -11,6 +12,7 @@ var windup = false
 var attacking = false
 var holster = false
 var player_in_reach = false
+var player_behind = false
 var blocking = false
 var hit = false
 var multi_hit = false
@@ -66,9 +68,13 @@ func flip():
 	else:
 		speed = abs(speed)
 		held_speed = abs(held_speed)
-	await get_tree().create_timer(choose([0.2,0.4,0.6])).timeout
+	#await get_tree().create_timer(choose([0.2,0.4,0.6])).timeout
 	flipping = false
-	$DirectionTimer.wait_time = choose([3,3.5,4])
+	if player_behind == true:
+		player_behind = false
+		player_in_reach = true
+		_player_still_in_reach()
+	$DirectionTimer.wait_time = choose([2.0,2.5,3])
 		
 #func take_damage(amount: int) -> void:
 	#$AnimatedSprite2D.play("hit")
@@ -111,18 +117,21 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		pass
 		
 
-func move(delta):
+func move(_delta):
 	if dead == false:
-		if is_chasing == false and flipping == false:
+		if is_chasing == false and flipping == false and holster == false and windup == false and attacking == false and hit == false and player_in_reach == false:
+			speed = held_speed
 			velocity.x = speed
 		#elif is_chasing == true and hit == false and windup == false and attacking == false:
 			#var direction_to_player = position.direction_to(player.position) * speed
 			#velocity.x = direction_to_player.x
 		elif flipping == true:
-			velocity.x = 0
+			velocity.x = flipping_speed
+		elif player_in_reach == true:
+			velocity.x = flipping_speed
 		is_roaming = true
 	elif dead == true:
-		speed = 0
+		velocity.x = 0
 
 
 func _on_detect_player_body_entered(body: Node2D) -> void:
@@ -136,6 +145,7 @@ func _on_detect_player_body_entered(body: Node2D) -> void:
 		
 func _player_still_in_reach():
 	if dead == false:
+		player_behind = false
 		windup = true
 		multi_hit = true
 		#await get_tree().create_timer(0.6).timeout
@@ -148,7 +158,7 @@ func _on_detect_player_body_exited(body: Node2D) -> void:
 		player_in_reach = false
 		multi_hit = false
 
-func got_hit():
+func got_hit(_damage: float):
 	hit = true
 	hitbox_collision.disabled = true
 	windup = false
@@ -167,6 +177,7 @@ func death():
 		attacking = false
 		holster = false
 		player_in_reach = false
+		player_behind = false
 		print("Complex enemy dying")
 		sprite.play("death")
 		
@@ -181,3 +192,13 @@ func _on_direction_timer_timeout() -> void:
 			flip()
 		elif facing_left == false and directions == Vector2.LEFT:
 			flip()
+
+
+func _on_behind_detection_box_body_entered(body: Node2D) -> void:
+	if body is Player and dead == false:
+		player_behind = true
+		
+
+func _on_behind_detection_box_body_exited(body: Node2D) -> void:
+	if body is Player:
+		player_behind = false

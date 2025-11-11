@@ -1,8 +1,9 @@
 class_name Basic_Enemy
 extends CharacterBody2D
 
-var speed = 250.0
-var held_speed = 250
+var speed = 200.0
+var held_speed = 200
+var flipping_speed = 0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dead: bool = false
 var facing_right = true
@@ -10,6 +11,7 @@ var directions : Vector2
 var windup = false
 var attacking = false
 var player_in_reach = false
+var player_behind = false
 var blocking = false
 var hit = false
 var is_chasing = false
@@ -26,9 +28,7 @@ var player_in_area = false
 @onready var wall_raycast: RayCast2D = $"Wall Raycast"
 @onready var hurtbox_collision: CollisionShape2D = $"Hurtbox/Hurtbox Collision"
 @onready var hitbox_collision: CollisionShape2D = $"Hitbox/Hitbox Collision"
-@onready var collision: CollisionShape2D = $Collisionbox
 
-#@export var wander_direction : Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _physics_process(delta):
@@ -47,7 +47,7 @@ func _physics_process(delta):
 		
 	move(delta)
 	
-	if windup == false and attacking == false and dead == false and hit == false and flipping == false:
+	if windup == false and attacking == false and dead == false and hit == false and flipping == false and player_in_reach == false:
 		sprite.play("run")
 	elif flipping == true:
 		sprite.play("idle")
@@ -68,8 +68,16 @@ func flip():
 	else:
 		speed = abs(speed) * -1
 		held_speed = abs(held_speed) * -1
-	await get_tree().create_timer(choose([0.1,0.3,0.5])).timeout
+	#await get_tree().create_timer(choose([0.1,0.3,0.5])).timeout
 	flipping = false
+	if player_behind == true:
+		#flipping = false
+		player_behind = false
+		player_in_reach = true
+		_player_still_in_reach()
+	#elif player_behind == false:
+		#await get_tree().create_timer(choose([0.1,0.3,0.5])).timeout
+		#flipping = false
 	$DirectionTimer.wait_time = choose([2.0,2.5,3])
 		
 #func take_damage(amount: int) -> void:
@@ -106,18 +114,21 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	else:
 		pass
 
-func move(delta):
+func move(_delta):
 	if dead == false:
-		if is_chasing == false and flipping == false:
+		if is_chasing == false and flipping == false and windup == false and attacking == false and hit == false and player_in_reach == false:
+			speed = held_speed
 			velocity.x = speed
 		#elif is_chasing == true and hit == false and windup == false and attacking == false:
 			#var direction_to_player = position.direction_to(player.position) * speed
 			#velocity.x = direction_to_player.x
 		elif flipping == true:
-			velocity.x = 0
+			velocity.x = flipping_speed
+		elif player_in_reach == true:
+			velocity.x = flipping_speed
 		is_roaming = true
 	elif dead == true:
-		speed = 0
+		velocity.x = 0
 
 func _on_detect_player_body_entered(body: Node2D) -> void:
 	if body is Player and dead == false:
@@ -134,11 +145,12 @@ func _on_detect_player_body_exited(body: Node2D) -> void:
 		
  
 func _player_still_in_reach():
+	player_behind = false
 	windup = true
 	speed = 0
 	sprite.play("windup1")
 
-func got_hit(_currentHealth: float):
+func got_hit(_damage: float):
 	hit = true
 	hitbox_collision.disabled = true
 	print("Basic enemy hitbox disabled!")
@@ -155,12 +167,13 @@ func death():
 		dead = true
 		windup = false
 		player_in_reach = false
+		player_behind = false
 		print("Basic enemy dying")
 		sprite.play("death")
 
 func _on_direction_timer_timeout() -> void:
 	#$DirectionTimer.wait_time = choose([2.0,2.5,3])
-	if !is_chasing:
+	if !is_chasing and dead == false:
 		directions = choose([Vector2.RIGHT, Vector2.LEFT])
 		if facing_right == true and directions == Vector2.LEFT:
 			flip()
@@ -170,3 +183,13 @@ func _on_direction_timer_timeout() -> void:
 func choose(array):
 	array.shuffle()
 	return array.front()
+
+
+func _on_behind_detection_box_body_entered(body: Node2D) -> void:
+	if body is Player and dead == false:
+		player_behind = true
+		
+
+func _on_behind_detection_box_body_exited(body: Node2D) -> void:
+	if body is Player:
+		player_behind = false
