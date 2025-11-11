@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpxpvarbloji3"]
+
+[ext_resource type="Script" uid="uid://cl2mu4tqdx086" path="res://Wall.gd" id="1_4hdir"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sc7ek"]
+
+[node name="BreakWall" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+script = ExtResource("1_4hdir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_sc7ek")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D/CollisionShape2D/Sprite2D"]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0

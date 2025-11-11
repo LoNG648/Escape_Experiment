@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://cmfsc40rx18fr" path="res://Scenes/spikes.tscn" id="3_h42e4"]
 [ext_resource type="PackedScene" uid="uid://b601u3327g8xu" path="res://Scenes/SpikeBall/spike_ball.tscn" id="4_h42e4"]
 
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qilu"]
 size = Vector2(3800, 420)
 
