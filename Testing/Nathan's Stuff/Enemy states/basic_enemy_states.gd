@@ -70,8 +70,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func mandatory_transition():
-	#andatory_idle_active = true
-	mandatory_idle_active = false
+	mandatory_idle_active = true
+	#mandatory_idle_active = false
 
 func update_attack_area_detection():
 	if direction == Vector2.RIGHT:

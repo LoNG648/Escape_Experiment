@@ -12,9 +12,9 @@ func enter():
 
 func transition():
 	if can_transition:
-		if owner.player_in_range and right_raycast.is_colliding() and owner.direction == Vector2.LEFT:
+		if owner.player_in_range and !right_raycast.is_colliding() and owner.direction == Vector2.LEFT:
 			get_parent().change_state("Chase State")
-		elif owner.player_in_range and left_raycast.is_colliding() and owner.direction == Vector2.RIGHT:
+		elif owner.player_in_range and !left_raycast.is_colliding() and owner.direction == Vector2.RIGHT:
 			get_parent().change_state("Chase State")
 		elif not owner.player_in_range:
 			get_parent().change_state("Idle State")

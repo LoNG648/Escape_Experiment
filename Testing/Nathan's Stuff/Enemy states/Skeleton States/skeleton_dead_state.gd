@@ -16,6 +16,7 @@ func enter():
 	super.enter()
 	sprite.play("death")
 	await sprite.animation_finished
+	queue_free()
 	
 	dead = true
 	#for dropping an item
