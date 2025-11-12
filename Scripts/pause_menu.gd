@@ -1,6 +1,7 @@
 extends Control
 
 var paused: bool = false
+var controls_displayed = false
 
 func resume():
 	paused = false
@@ -37,4 +38,9 @@ func _process(_delta):
 
 
 func _on_controls_pressed() -> void:
-	pass
+	if controls_displayed == false:
+		$Controls.show()
+		controls_displayed = true
+	elif controls_displayed == true:
+		$Controls.hide()
+		controls_displayed = false

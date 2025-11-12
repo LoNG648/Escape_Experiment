@@ -1,13 +1,22 @@
 class_name Basic_Enemy
 extends CharacterBody2D
 
-var speed = 200.0
-var held_speed = 200
+@export var change_direction : float = 2.0
+@export var stop_distance : float = 10
+@export var attack_range : float = 35
+@export var damage_dealt : int = 10
+@export var move_speed = 20
+@export var chase_speed = 60
+@export var knockback_force = Vector2(250, -25)
+
+var speed = 180
+var held_speed = 180
 var flipping_speed = 0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dead: bool = false
 var facing_right = true
 var directions : Vector2
+var direction = Vector2.RIGHT
 var windup = false
 var attacking = false
 var player_in_reach = false
@@ -25,13 +34,25 @@ var player_in_area = false
 @onready var health: Node = $Health #Health variable for health system
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var floor_raycast: RayCast2D = $"Floor Raycast"
-@onready var wall_raycast: RayCast2D = $"Wall Raycast"
+@onready var wall_raycast: RayCast2D = $"Right Raycast"
 @onready var hurtbox_collision: CollisionShape2D = $"Hurtbox/Hurtbox Collision"
 @onready var hitbox_collision: CollisionShape2D = $"Hitbox/Hitbox Collision"
 
 
 # Called when the node enters the scene tree for the first time.
 func _physics_process(delta):
+	var distance_to_player = global_position.distance_to(Globals.player_position)
+	var player_position = Globals.player_position
+	var direction_to_player_x = player_position.x - global_position.x
+	
+	#if is_chasing:
+		#if abs(direction_to_player_x) > stop_distance:
+			#velocity.x = direction.x * chase_speed
+		#else:
+			#velocity.x = 0
+	#else:
+		#velocity.x = direction.x * move_speed
+	
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		
@@ -144,6 +165,16 @@ func _on_detect_player_body_exited(body: Node2D) -> void:
 		player_in_reach = false
 		
  
+func _player_in_chase_range(body):
+	if body is Player and dead == false:
+		is_roaming = false
+		is_chasing = true
+
+func _player_out_chase_range(body):
+	if body is Player and dead == false:
+		is_roaming = true
+		is_chasing = false
+
 func _player_still_in_reach():
 	player_behind = false
 	windup = true
@@ -175,9 +206,9 @@ func _on_direction_timer_timeout() -> void:
 	#$DirectionTimer.wait_time = choose([2.0,2.5,3])
 	if !is_chasing and dead == false:
 		directions = choose([Vector2.RIGHT, Vector2.LEFT])
-		if facing_right == true and directions == Vector2.LEFT:
+		if facing_right == true and directions == Vector2.LEFT and attacking == false and windup == false:
 			flip()
-		elif facing_right == false and directions == Vector2.RIGHT:
+		elif facing_right == false and directions == Vector2.RIGHT and attacking == false and windup == false:
 			flip()
 
 func choose(array):

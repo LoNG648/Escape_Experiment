@@ -188,9 +188,9 @@ func choose(array):
 func _on_direction_timer_timeout() -> void:
 	if !is_chasing:
 		directions = choose([Vector2.RIGHT, Vector2.LEFT])
-		if facing_left == true and directions == Vector2.RIGHT:
+		if facing_left == true and directions == Vector2.RIGHT and attacking == false and windup == false and holster == false:
 			flip()
-		elif facing_left == false and directions == Vector2.LEFT:
+		elif facing_left == false and directions == Vector2.LEFT and attacking == false and windup == false and holster == false:
 			flip()
 
 
