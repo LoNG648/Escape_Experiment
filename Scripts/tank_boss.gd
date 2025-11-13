@@ -18,6 +18,7 @@ var is_chasing = false
 var knockback = 200
 var is_roaming = true
 var flipping = false
+var waiting = false
 
 var player_in_area = false
 #signal in_attack(bool)
@@ -54,6 +55,8 @@ func _physics_process(delta):
 	
 	if windup == false and attacking == false and dead == false and hit == false and flipping == false and player_in_reach == false:
 		sprite.play("walk")
+	elif waiting == true:
+		sprite.play("idle")
 	
 	#velocity = wander_direction.direction * speed * -1
 	move_and_slide()
@@ -104,6 +107,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		hurtbox_collision.disabled = false
 		windup = false
 	elif attacking == true:
+		waiting = true
+		await get_tree().create_timer(0.2).timeout
+		waiting = false
 		attacking = false
 		hurtbox_collision.disabled = true
 		if player_in_reach == true:
