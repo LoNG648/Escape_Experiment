@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="1_nt7fk"]
 [ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="3_yrtag"]
-[ext_resource type="PackedScene" uid="uid://cvnafhg5v34po" path="res://Scenes/Basic Enemy.tscn" id="4_6yxtt"]
+[ext_resource type="PackedScene" uid="uid://dlo3n8cu6ovm1" path="res://Testing/Nathan's Stuff/Interaction Stuff/test_interactable.tscn" id="4_6yxtt"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="4_oosjv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qilu"]
@@ -51,5 +51,6 @@ shape = SubResource("RectangleShape2D_fruoj")
 [node name="Player" parent="." instance=ExtResource("1_nt7fk")]
 position = Vector2(-19, 57)
 
-[node name="Basic Enemy" parent="." instance=ExtResource("4_6yxtt")]
-position = Vector2(502, 79)
+[node name="TestInteractable" parent="." instance=ExtResource("4_6yxtt")]
+position = Vector2(159, 92)
+scale = Vector2(0.5, 0.5)

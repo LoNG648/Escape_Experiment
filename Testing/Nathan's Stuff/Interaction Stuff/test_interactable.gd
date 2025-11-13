@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var label = $Label
-#@onready var player = get_tree().get_first_node_in_group("player")
+@onready var player = get_tree().get_first_node_in_group("Player")
 @onready var collision_shape_2d: CollisionShape2D = $InteractionArea/CollisionShape2D
 
 #const sign_text = "Space to Jump"
