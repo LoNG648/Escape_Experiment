@@ -26,6 +26,8 @@ var specialAttack: String = specialMoveset[0]
 var counterAttack: String = counterMoveset[0]
 var block: String = blockMoveset[0]
 
+
+
 #On Ready Variables
 @onready var collector_sprite: AnimatedSprite2D = $CollectorSprite
 @onready var tank_sprite: AnimatedSprite2D = $TankSprite
@@ -52,8 +54,13 @@ func _ready() -> void:
 	var hearts_parents = health_ui.get_node("HBoxContainer")
 	for child in hearts_parents.get_children():
 		hearts_list.append(child)
+<<<<<<< Updated upstream
 
 #Function that sets counter attack to true if character has blocked damage so they can retaliate back!
+=======
+	
+#Sets counter attack to true if character has blocked damage so they can retaliate back!
+>>>>>>> Stashed changes
 func blockedDamage():
 	#Developer print to understand this function was called; only active in Devmode
 	if Globals.DeveloperMode == true:
