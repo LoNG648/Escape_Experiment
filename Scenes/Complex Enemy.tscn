@@ -330,7 +330,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hit",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -408,8 +408,10 @@ script = ExtResource("1_ad176")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-37, -9)
 sprite_frames = SubResource("SpriteFrames_mvyao")
-animation = &"1windup"
+animation = &"hit"
 autoplay = "idle"
+frame = 2
+frame_progress = 1.0
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
 light_mask = 0

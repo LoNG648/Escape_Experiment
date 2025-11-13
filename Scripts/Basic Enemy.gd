@@ -9,8 +9,8 @@ extends CharacterBody2D
 @export var chase_speed = 60
 @export var knockback_force = Vector2(250, -25)
 
-var speed = 180
-var held_speed = 180
+var speed = 175
+var held_speed = 175
 var flipping_speed = 0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dead: bool = false

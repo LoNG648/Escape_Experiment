@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://8egxs5xr1c6s"]
+[gd_scene load_steps=36 format=3 uid="uid://8egxs5xr1c6s"]
 
 [ext_resource type="Texture2D" uid="uid://b2dmt32vy2lnw" path="res://Assets/Enemy Assets/Boss Assets/Boss Attack/Boss_Attack-4.png" id="1_dgswd"]
 [ext_resource type="Script" uid="uid://bhb7tlsepm2hk" path="res://Scripts/tank_boss.gd" id="1_kdwwd"]
@@ -21,7 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://c8vbn8xt1qj0b" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Attack/Boss_Special-4.png" id="12_vafp6"]
 [ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/hitbox.gd" id="13_lq57t"]
 [ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/Health.gd" id="14_6n5jb"]
-[ext_resource type="Texture2D" uid="uid://dmloekn04w1w2" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-1.png" id="19_y0llx"]
 [ext_resource type="Texture2D" uid="uid://b3npqx5i03vsy" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-2.png" id="20_ihnrf"]
 [ext_resource type="Texture2D" uid="uid://dbucnbwlrh1mt" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-3.png" id="21_mlwt5"]
 [ext_resource type="Texture2D" uid="uid://dxm8kob47s2gp" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-4.png" id="22_grqr2"]
@@ -101,7 +100,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hit",
-"speed": 4.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -180,9 +179,6 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("19_y0llx")
-}, {
-"duration": 1.0,
 "texture": ExtResource("20_ihnrf")
 }, {
 "duration": 1.0,
@@ -202,7 +198,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 7.0
+"speed": 11.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vtvyr"]
@@ -224,7 +220,7 @@ height = 54.0
 size = Vector2(26.5, 51)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l2aqb"]
-size = Vector2(60, 50)
+size = Vector2(47.5, 44.5)
 
 [node name="TankBoss" type="CharacterBody2D"]
 scale = Vector2(2, 2)
@@ -233,7 +229,7 @@ script = ExtResource("1_kdwwd")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_q5qam")
-animation = &"idle"
+animation = &"windup1"
 autoplay = "walk"
 
 [node name="GroundThing" type="AnimatedSprite2D" parent="."]
@@ -241,7 +237,7 @@ visible = false
 position = Vector2(-54.5, 16.5)
 scale = Vector2(2.65625, 0.71875)
 sprite_frames = SubResource("SpriteFrames_0jvec")
-frame = 6
+frame = 5
 frame_progress = 1.0
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
@@ -306,9 +302,11 @@ position = Vector2(29, 1.5)
 shape = SubResource("RectangleShape2D_g87x0")
 
 [node name="DetectionBoxSpecial" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="DetectionboxS Collision" type="CollisionShape2D" parent="DetectionBoxSpecial"]
-position = Vector2(-77.5, 1)
+position = Vector2(-79.25, 3.75)
 shape = SubResource("RectangleShape2D_l2aqb")
 
 [node name="DirectionTimer" type="Timer" parent="."]
@@ -322,8 +320,11 @@ metadata/_custom_type_script = "uid://ccjfqwc5vm62o"
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Hurtbox" to="Hurtbox" method="_on_area_entered"]
+[connection signal="area_entered" from="HurtboxSpecial" to="HurtboxSpecial" method="_on_area_entered"]
 [connection signal="body_entered" from="Detectionbox" to="." method="_on_detect_player_body_entered"]
 [connection signal="body_exited" from="Detectionbox" to="." method="_on_detect_player_body_exited"]
 [connection signal="body_entered" from="BehindDetectionBox" to="." method="_on_behind_detection_box_body_entered"]
 [connection signal="body_exited" from="BehindDetectionBox" to="." method="_on_behind_detection_box_body_exited"]
+[connection signal="body_entered" from="DetectionBoxSpecial" to="." method="_on_detect_special_player_body_entered"]
+[connection signal="body_exited" from="DetectionBoxSpecial" to="." method="_on_detect_special_player_body_exited"]
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]

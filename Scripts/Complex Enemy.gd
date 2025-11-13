@@ -1,8 +1,8 @@
 class_name Complex_Enemy
 extends CharacterBody2D
 
-var speed = -125.0
-var held_speed = -125
+var speed = -110.0
+var held_speed = -110
 var flipping_speed = 0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dead: bool = false
