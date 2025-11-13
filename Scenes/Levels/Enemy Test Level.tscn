@@ -3,7 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="1_v40nj"]
 [ext_resource type="PackedScene" uid="uid://bh2xfihntbwfq" path="res://Scenes/Complex Enemy.tscn" id="2_fq107"]
 [ext_resource type="PackedScene" uid="uid://cmfsc40rx18fr" path="res://Scenes/spikes.tscn" id="3_h42e4"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://b601u3327g8xu" path="res://Scenes/spike_ball.tscn" id="4_h42e4"]
+=======
+[ext_resource type="PackedScene" uid="uid://b601u3327g8xu" path="res://Scenes/SpikeBall/spike_ball.tscn" id="4_h42e4"]
+>>>>>>> parent of 5c677e4 (plat done)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qilu"]
 size = Vector2(3800, 420)
