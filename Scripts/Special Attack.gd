@@ -16,7 +16,8 @@ func _ready() -> void:
 	#Checks if Dev Mode is on and adds a line to help with testing the special attack
 	if Globals.DeveloperMode == true:
 		#dev_line.points.clear()
-		dev_line.show()
+		pass
+		#dev_line.show()
 		#dev_line.add_point(special_attack_raycast.position)
 		#dev_line.add_point(special_attack_raycast.target_position)
 
