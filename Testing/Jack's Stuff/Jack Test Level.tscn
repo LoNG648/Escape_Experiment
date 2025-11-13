@@ -1,10 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyrhw528xyie3"]
+[gd_scene load_steps=13 format=3 uid="uid://cyrhw528xyie3"]
 
 [ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="1_a1jr2"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="2_2u5ei"]
 [ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/Player.tscn" id="3_mioob"]
 [ext_resource type="PackedScene" uid="uid://cvnafhg5v34po" path="res://Scenes/Basic Enemy.tscn" id="4_uygaw"]
-[ext_resource type="PackedScene" uid="uid://b601u3327g8xu" path="res://Scenes/spike_ball.tscn" id="5_5a4uf"]
+[ext_resource type="PackedScene" uid="uid://b601u3327g8xu" path="res://Scenes/SpikeBall/spike_ball.tscn" id="5_5a4uf"]
+[ext_resource type="PackedScene" uid="uid://cyj5xfwgycu48" path="res://Scenes/SpikeBall/spike_ball2.tscn" id="6_bcjgc"]
+[ext_resource type="PackedScene" uid="uid://cipqvcd8y46n5" path="res://Scenes/SpikeBall/spike_ball3.tscn" id="7_n1abm"]
+[ext_resource type="PackedScene" uid="uid://dtbs07fxaokwr" path="res://Scenes/SpikeBall/spike_ball4.tscn" id="8_4y0qv"]
+[ext_resource type="PackedScene" uid="uid://c10ynmv2c26ik" path="res://Scenes/moving_plat.tscn" id="9_tucmf"]
+[ext_resource type="PackedScene" uid="uid://cpxpvarbloji3" path="res://break_wall.tscn" id="10_xsnvw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qilu"]
 size = Vector2(3800, 420)
@@ -35,6 +40,7 @@ offset_right = 3484.0
 offset_bottom = 643.0
 
 [node name="Death Box" type="StaticBody2D" parent="."]
+position = Vector2(428, -4)
 
 [node name="Sprite2D" type="Sprite2D" parent="Death Box"]
 position = Vector2(392, 44)
@@ -54,5 +60,24 @@ position = Vector2(-19, 57)
 position = Vector2(1613, 41)
 
 [node name="Spike Ball" parent="." instance=ExtResource("5_5a4uf")]
-position = Vector2(227, 107)
+position = Vector2(1293, 110)
+scale = Vector2(3, 3)
+
+[node name="Spike Ball2" parent="." instance=ExtResource("6_bcjgc")]
+position = Vector2(770, -191)
+scale = Vector2(3, 3)
+
+[node name="Spike Ball3" parent="." instance=ExtResource("7_n1abm")]
+position = Vector2(-197, 111)
+scale = Vector2(3, 3)
+
+[node name="Spike Ball4" parent="." instance=ExtResource("8_4y0qv")]
+position = Vector2(1678, 105)
+scale = Vector2(3, 3)
+
+[node name="MovingPlat" parent="." instance=ExtResource("9_tucmf")]
+position = Vector2(381, 75)
+
+[node name="BreakWall" parent="." instance=ExtResource("10_xsnvw")]
+position = Vector2(615, 69)
 scale = Vector2(3, 3)
