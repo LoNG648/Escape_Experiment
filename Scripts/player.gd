@@ -14,17 +14,25 @@ var specialAttacking: bool = false #Is character Special Attacking?
 var counterAttackStored: bool = false #Does character have a counter attack?
 var facing: bool = true #Which direction is the character facing (left is false, right is true)
 var hearts_list : Array[TextureRect]
-var moveset: Array = ["baseAttack","baseSpecial","baseCounter","baseBlock"]
-var basicAttack: String = moveset[0]
-var specialAttack: String = moveset[1]
-var counterAttack: String = moveset[2]
-var block: String = moveset[3]
+var absorbed: Array = []
+var attackMoveset: Array = ["baseAttack"]
+var specialMoveset: Array = ["baseSpecial"]
+var counterMoveset: Array = ["baseCounter"]
+var blockMoveset: Array = ["baseBlock"]
+var passiveSet: Array = ["basePassive", "tankPassive", "basicEnemyPassive", "complexEnemyPassive"]
+var passive: String = passiveSet[0]
+var basicAttack: String = attackMoveset[0]
+var specialAttack: String = specialMoveset[0]
+var counterAttack: String = counterMoveset[0]
+var block: String = blockMoveset[0]
 
 #On Ready Variables
 @onready var collector_sprite: AnimatedSprite2D = $CollectorSprite
 @onready var tank_sprite: AnimatedSprite2D = $TankSprite
 @onready var health: Node = $Health #Health Variable
-@onready var collector_special_attack: Node2D = $"Collector Special Attack"
+@onready var tank_special_attack_hurtbox: Hurtbox = $"Tank Special Attack Hurtbox"
+@onready var collector_special_attack_hurtbox: Hurtbox = $"Collector Special Attack Hurtbox"
+@onready var collector_special_attack_hurtbox_collision: CollisionShape2D = $"Collector Special Attack Hurtbox/Collector Special Attack Hurtbox Collision"
 @onready var collector_basic_attack_hurtbox_collision: CollisionShape2D = $"Collector Basic Attack Hurtbox/Collector Basic Attack Hurtbox Collision"
 @onready var tank_basic_attack_hurtbox_collision: CollisionShape2D = $"Tank Basic Attack Hurtbox/Tank Basic Attack Hurtbox Collision"
 @onready var collector_counter_attack_hurtbox_collision: CollisionShape2D = $"Collector Counter Attack Hurtbox/Collector Counter Attack Hurtbox Collision"
@@ -36,6 +44,7 @@ var block: String = moveset[3]
 @onready var block_timer: Timer = $"Timers/Block Timer"
 @onready var animation_timer: Timer = $"Timers/Animation Timer"
 @onready var health_ui: CanvasLayer = $HealthUI
+@onready var pause_menu: Control = $CanvasLayer/PauseMenu
 
 func _ready() -> void:
 	Globals.update_player_position(global_position)
@@ -116,6 +125,7 @@ func _physics_process(delta: float) -> void:
 			#Deaccelerates character down to a stop if not actively pressing a movement input
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 		
+		'''
 		#Handles crouch and reduces Hitbox
 		if Input.is_action_just_pressed("Crouch"):
 			#Only reduces overall player size if character wasn't already crouching
@@ -138,6 +148,7 @@ func _physics_process(delta: float) -> void:
 			await crouch_timer.timeout
 			#Player's scale is reset to normal once the crouch delay is completed
 			scale.y *= 2
+		'''
 		
 		#Attack and Counterattack Mechanic
 		if Input.is_action_just_pressed("Basic Attack"):
@@ -148,26 +159,38 @@ func _physics_process(delta: float) -> void:
 				#Determines counter attack type based off selected moveset and plays respective counter
 				if counterAttack == "baseCounter":
 					collector_sprite.position = Vector2(2, -42)
-					collector_sprite.play("Counter Attack")
-					attacking = true
-					animation_timer.start(2)
-					collector_counter_attack_hurtbox_collision.disabled = false
-					await get_tree().create_timer(0.5).timeout
+					if passive != "basicEnemyPassive":
+						collector_sprite.play("Counter Attack")
+						animation_timer.start(2)
+						await get_tree().create_timer(1.4).timeout
+						collector_counter_attack_hurtbox_collision.disabled = false
+						await get_tree().create_timer(0.4).timeout
+					elif passive == "basicEnemyPassive":
+						collector_sprite.play("Counter Attack",2)
+						animation_timer.start(1)
+						await get_tree().create_timer(0.7).timeout
+						collector_counter_attack_hurtbox_collision.disabled = false
+						await get_tree().create_timer(0.2).timeout
 					collector_counter_attack_hurtbox_collision.disabled = true
 					await animation_timer.timeout
-					attacking = false
 					counterAttackStored = false
 				elif counterAttack == "tankCounter":
 					collector_sprite.visible = false
 					tank_sprite.visible = true
-					tank_sprite.play("Counter Attack")
-					attacking = true
-					animation_timer.start(4)
-					tank_counter_attack_hurtbox_collision.disabled = false
-					await get_tree().create_timer(0.25).timeout
+					if passive != "basicEnemyPassive":
+						tank_sprite.play("Counter Attack")
+						animation_timer.start(1.25)
+						await get_tree().create_timer(1).timeout
+						tank_counter_attack_hurtbox_collision.disabled = false
+						await get_tree().create_timer(0.25).timeout
+					elif passive == "basicEnemyPassive":
+						tank_sprite.play("Counter Attack", 2)
+						animation_timer.start(0.625)
+						await get_tree().create_timer(0.5).timeout
+						tank_counter_attack_hurtbox_collision.disabled = false
+						await get_tree().create_timer(0.125).timeout
 					tank_counter_attack_hurtbox_collision.disabled = true
 					await animation_timer.timeout
-					attacking = false
 					counterAttackStored = false
 					collector_sprite.visible = true
 					tank_sprite.visible = false
@@ -176,27 +199,37 @@ func _physics_process(delta: float) -> void:
 				if basicAttack == "baseAttack":
 					#Does a basic attack if can't do a counter attack
 					collector_sprite.position = Vector2(2, -42)
-					collector_sprite.play("Attack",1.43)
-					animation_timer.start(0.7)
-					attacking = true
-					await get_tree().create_timer(0.35).timeout
-					collector_basic_attack_hurtbox_collision.disabled = false
-					await get_tree().create_timer(0.25).timeout
+					if passive != "basicEnemyPassive":
+						collector_sprite.play("Attack")
+						animation_timer.start(0.7)
+						await get_tree().create_timer(0.5).timeout
+						collector_basic_attack_hurtbox_collision.disabled = false
+						await get_tree().create_timer(0.2).timeout
+					elif passive == "basicEnemyPassive":
+						collector_sprite.play("Attack", 2)
+						animation_timer.start(0.35)
+						await get_tree().create_timer(0.25).timeout
+						collector_basic_attack_hurtbox_collision.disabled = false
+						await get_tree().create_timer(0.1).timeout
 					collector_basic_attack_hurtbox_collision.disabled = true
 					await animation_timer.timeout #Basic Attack Delay
-					attacking = false
 				elif basicAttack == "tankAttack":
 					collector_sprite.visible = false
 					tank_sprite.visible = true
-					tank_sprite.play("Attack")
-					animation_timer.start(2)
-					attacking = true
-					await tank_sprite
-					tank_basic_attack_hurtbox_collision.disabled = false
-					await get_tree().create_timer(0.4).timeout
+					if passive != "basicEnemyPassive":
+						tank_sprite.play("Attack")
+						animation_timer.start(2)
+						await get_tree().create_timer(1.5).timeout
+						tank_basic_attack_hurtbox_collision.disabled = false
+						await get_tree().create_timer(0.5).timeout
+					elif passive == "basicEnemyPassive":
+						tank_sprite.play("Attack", 2)
+						animation_timer.start(1)
+						await get_tree().create_timer(0.75).timeout
+						tank_basic_attack_hurtbox_collision.disabled = false
+						await get_tree().create_timer(0.25).timeout
 					tank_basic_attack_hurtbox_collision.disabled = true
 					await animation_timer.timeout
-					attacking = false
 					collector_sprite.visible = true
 					tank_sprite.visible = false
 		
@@ -229,18 +262,21 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("Special Attack"):
 			if Globals.DeveloperMode == true:
 				print("SPECIAL!")
+			if passive == "complexEnemyPassive":
+				collector_special_attack_hurtbox.damage = 80
+				tank_special_attack_hurtbox.damage = 70
+			else:
+				collector_special_attack_hurtbox.damage = 40
+				tank_special_attack_hurtbox.damage = 35
 			#Determines which special is active and plays the proper special
 			if specialAttack == "baseSpecial":
 				collector_sprite.position = Vector2(2, -42)
 				collector_sprite.play("Special Attack")
-				#collector_special_attack.get_node("Dev Line").visible = true
 				animation_timer.start(1)
-				collector_special_attack.get_node("Special Attack Raycast").enabled = true
-				if collector_special_attack.get_node("Special Attack Raycast").is_colliding():
-					if collector_special_attack.get_node("Special Attack Raycast").get_collider() is Hitbox:
-						collector_special_attack.get_node("Special Attack Raycast").get_collider().get_parent().get_node("Health").takeDamage(collector_special_attack.get_node("Special Attack Raycast").get_collider().get_parent(), 10)
-				await animation_timer.timeout
-				collector_special_attack.get_node("Dev Line").visible = false
+				await get_tree().create_timer(0.6).timeout
+				collector_special_attack_hurtbox_collision.disabled = false
+				await get_tree().create_timer(0.25).timeout
+				collector_special_attack_hurtbox_collision.disabled = true
 			if specialAttack == "tankSpecial":
 				animation_timer.start(2)
 				velocity.x = move_toward(velocity.x, 0, SPEED*2)
@@ -317,8 +353,19 @@ func got_hit(damage: float):
 		collector_sprite.position = Vector2(14, -33)
 		animation_timer.paused = false
 		animation_timer.start(clamped)
+		if passive == "tankPassive":
+			pass
+		else:
+			collector_basic_attack_hurtbox_collision.disabled = true
+			collector_counter_attack_hurtbox_collision.disabled = true
+			collector_special_attack_hurtbox_collision.disabled = true
+			tank_basic_attack_hurtbox_collision.disabled = true
+			tank_special_attack_hurtbox_collision.disabled = true
+			tank_counter_attack_hurtbox_collision.disabled = true
+			tank_sprite.visible = false
+			shockwave_sprite.visible = false
+			collector_sprite.visible = true
 		collector_sprite.play("Hit",(1*animation_timer.get_time_left()))
-		print(animation_timer.get_time_left())
 
 #Handles what happens when the player dies (For godot guy, it makes him spin and then grow big)
 func death():
@@ -341,9 +388,27 @@ func death():
 		get_tree().reload_current_scene()
 
 #Adds moveset of the tank after he is defeated and absorbed
-func _on_tank_boss_boss_tank_defeated() -> void:
-	moveset.append_array(["tankAttack","tankSpecial","tankCounter","tankBlock"])
-	basicAttack = moveset[4]
-	specialAttack = moveset[5]
-	counterAttack = moveset[6]
-	block = moveset[7]
+func _on_tank_boss_defeated() -> void:
+	if passive == "basePassive":
+		attackMoveset.append_array(["tankAttack"])
+		specialMoveset.append_array(["tankSpecial"])
+		counterMoveset.append_array(["tankCounter"])
+		blockMoveset.append_array(["tankBlock"])
+		pause_menu.addBossMoveset()
+		absorbed.append_array([Tank_Boss])
+	else:
+		pass
+
+func _on_basic_enemy_defeated() -> void:
+	if passive == "basePassive":
+		pause_menu.addBasicEnemyPassive()
+		absorbed.append_array([Basic_Enemy])
+	else:
+		pass
+
+func _on_complex_enemy_defeated() -> void:
+	if passive == "basePassive":
+		pause_menu.addComplexEnemyPassive()
+		absorbed.append_array([Complex_Enemy])
+	else:
+		pass

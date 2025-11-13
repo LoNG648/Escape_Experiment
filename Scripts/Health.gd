@@ -15,11 +15,17 @@ func _ready() -> void:
 		print(maxHealth)
 		print(currentHealth)
 
+func heal(heal: float) -> void:
+	currentHealth += heal
+	print("Healed for ", heal, " amount")
+
 #Function to handle taking damage, which is only triggered when a character enters a hurtbox
-func takeDamage(body: Node2D, damage: float) -> void:
+func takeDamage(body: Node2D, damage: float, hurtbox, lifesteal: bool) -> void:
 	#Damage is dealt normally if character is not blocking
 	if body.blocking != true:
 		currentHealth -= (damage*(clamp(100-resistance,10,100)/100))
+		if lifesteal == true:
+			hurtbox.get_parent().get_node("Health").heal((damage*(clamp(100-resistance,10,100)/100)))
 	#Otherwise, character's damage is reduced by their set resistance amount
 	elif body.blocking == true:
 		body.blockedDamage()
