@@ -198,7 +198,7 @@ shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(0, -64)
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(4, 4)
 
 [node name="Hitbox" parent="." instance=ExtResource("3_fkybt")]
 collision_layer = 2

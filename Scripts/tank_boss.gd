@@ -96,9 +96,10 @@ func flip():
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if hit == true:
 		hit = false
+		hitbox_collision.disabled = false
 		if player_in_reach == true and dead == false:
 			_player_still_in_reach()
-			hitbox_collision.disabled = true
+			hurtbox_collision.disabled = true
 		elif player_in_special_reach == true and dead == false:
 			_player_still_in_special_reach()
 			special_collision.disabled = true
@@ -106,7 +107,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			pass
 		else:
 			speed = held_speed
-			hitbox_collision.disabled = false
+			#hitbox_collision.disabled = false
 		#collision.disabled = false
 	elif dead == true:
 		queue_free()
@@ -125,7 +126,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		special_windup = false
 		waiting = true
 		hurtbox_collision.disabled = true
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.6).timeout
 		waiting = false
 		attacking = false
 		if player_in_reach == true:
@@ -150,7 +151,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	elif special_holster == true and dead == false and attacking == false:
 		special_holster == false
 		special_waiting = true
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(2.0).timeout
 		special_waiting = false
 		if player_in_special_reach == true:
 			_player_still_in_special_reach()
@@ -220,8 +221,8 @@ func _player_still_in_special_reach():
 
 func got_hit(_damage: float):
 	hit = true
-	hitbox_collision.disabled = true
-	print("Basic enemy hitbox disabled!")
+	#hitbox_collision.disabled = true
+	#print("Basic enemy hitbox disabled!")
 	windup = false
 	attacking = false
 	speed = 0

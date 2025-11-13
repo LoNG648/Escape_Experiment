@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://bd2k846kuadpr" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Attack/Boss_Special-3.png" id="11_xoi7c"]
 [ext_resource type="Script" uid="uid://dxycbvexq3q5s" path="res://Scripts/Hurtbox.gd" id="12_g87x0"]
 [ext_resource type="Texture2D" uid="uid://c8vbn8xt1qj0b" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Attack/Boss_Special-4.png" id="12_vafp6"]
-[ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/Hitbox.gd" id="13_lq57t"]
+[ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/hitbox.gd" id="13_lq57t"]
 [ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/Health.gd" id="14_6n5jb"]
 [ext_resource type="Texture2D" uid="uid://b3npqx5i03vsy" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-2.png" id="20_ihnrf"]
 [ext_resource type="Texture2D" uid="uid://dbucnbwlrh1mt" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-3.png" id="21_mlwt5"]
@@ -140,6 +140,12 @@ animations = [{
 "texture": ExtResource("11_xoi7c")
 }, {
 "duration": 1.0,
+"texture": ExtResource("11_xoi7c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_vafp6")
+}, {
+"duration": 1.0,
 "texture": ExtResource("12_vafp6")
 }],
 "loop": false,
@@ -163,6 +169,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_pmua5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cmpc0")
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_cmpc0")
@@ -212,9 +221,8 @@ height = 46.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqjbu"]
 size = Vector2(85, 17)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g87x0"]
-radius = 15.0
-height = 54.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7tb0r"]
+size = Vector2(32, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g87x0"]
 size = Vector2(26.5, 51)
@@ -229,7 +237,7 @@ script = ExtResource("1_kdwwd")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_q5qam")
-animation = &"windup1"
+animation = &"hit"
 autoplay = "walk"
 
 [node name="GroundThing" type="AnimatedSprite2D" parent="."]
@@ -283,7 +291,8 @@ script = ExtResource("13_lq57t")
 metadata/_custom_type_script = "uid://cl8w365iaic6m"
 
 [node name="Hitbox Collision" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CapsuleShape2D_g87x0")
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_7tb0r")
 
 [node name="Detectionbox" type="Area2D" parent="."]
 light_mask = 0

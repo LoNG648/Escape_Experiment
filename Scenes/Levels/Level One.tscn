@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=4 uid="uid://b11ucjiugm7md"]
 
 [ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="1_80uqg"]
-[ext_resource type="PackedScene" uid="uid://8egxs5xr1c6s" path="res://Testing/Nathan's Stuff/tank_boss.tscn" id="1_iu5q8"]
+[ext_resource type="PackedScene" uid="uid://8egxs5xr1c6s" path="res://Scenes/tank_boss.tscn" id="1_iu5q8"]
 [ext_resource type="PackedScene" uid="uid://ug1rfgs0rbkb" path="res://MovingPlat.tscn" id="2_jlu84"]
 [ext_resource type="PackedScene" uid="uid://cvnafhg5v34po" path="res://Scenes/Basic Enemy.tscn" id="2_pgoda"]
 [ext_resource type="PackedScene" uid="uid://bh2xfihntbwfq" path="res://Scenes/Complex Enemy.tscn" id="7_rg8ob"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dtbs07fxaokwr" path="res://Scenes/SpikeBall/spike_ball4.tscn" id="8_emo15"]
 [ext_resource type="PackedScene" uid="uid://cpxpvarbloji3" path="res://break_wall.tscn" id="9_qc3wn"]
 [ext_resource type="PackedScene" uid="uid://cyj5xfwgycu48" path="res://Scenes/SpikeBall/spike_ball2.tscn" id="9_vq4q3"]
-[ext_resource type="Script" uid="uid://tavgq4mxcgbj" path="res://Scenes/Levels/rich_text_label_2.gd" id="9_wki8u"]
+[ext_resource type="Script" uid="uid://tavgq4mxcgbj" path="res://Scripts/rich_text_label_2.gd" id="9_wki8u"]
 [ext_resource type="PackedScene" uid="uid://b601u3327g8xu" path="res://Scenes/SpikeBall/spike_ball.tscn" id="10_jlu84"]
 [ext_resource type="PackedScene" uid="uid://cmfsc40rx18fr" path="res://Scenes/SpikeBall/spikes.tscn" id="11_pqm71"]
 [ext_resource type="Texture2D" uid="uid://62yarb6hreki" path="res://Assets/Tilemap/world_tileset.png" id="11_wki8u"]
@@ -540,7 +540,6 @@ position = Vector2(3179, -590)
 position = Vector2(3515, -349)
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 visibility_layer = 5
 offset_left = -1095.0
 offset_top = -2696.0
