@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://8gca4pdxw6d5"]
+
+[ext_resource type="Script" uid="uid://cvxti5jnvqq76" path="res://Upmove.gd" id="1_gog4r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmygv"]
+size = Vector2(68, 12)
+
+[sub_resource type="Animation" id="Animation_yu40m"]
+resource_name = "Move"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(300, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xebdx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gog4r"]
+resource_name = "Up"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.96667, 5.96667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -300), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjy7b"]
+_data = {
+&"Move": SubResource("Animation_yu40m"),
+&"RESET": SubResource("Animation_xebdx"),
+&"Up": SubResource("Animation_gog4r")
+}
+
+[node name="UpPlat" type="Node2D"]
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+script = ExtResource("1_gog4r")
+
+[node name="ColorRect" type="ColorRect" parent="AnimatableBody2D"]
+offset_left = -34.0
+offset_top = -6.0
+offset_right = 34.0
+offset_bottom = 6.0
+color = Color(0.309804, 0.309804, 0.309804, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+shape = SubResource("RectangleShape2D_pmygv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody2D"]
+root_node = NodePath("../ColorRect")
+libraries = {
+&"": SubResource("AnimationLibrary_fjy7b")
+}

@@ -253,7 +253,7 @@ shape = SubResource("RectangleShape2D_5v66d")
 disabled = true
 
 [node name="Tank Special Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
-collision_mask = 4
+collision_mask = 12
 damage = 35.0
 
 [node name="Tank Special Attack Hurtbox Collision" type="CollisionShape2D" parent="Tank Special Attack Hurtbox"]
@@ -283,7 +283,6 @@ one_shot = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("29_kih0c")]
-visible = true
 offset_left = 9.0
 offset_top = 18.0
 offset_right = 9.0

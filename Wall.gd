@@ -1,5 +1,5 @@
-extends StaticBody2D
+extends Area2D
 
-func on_hit(attack_type: String):
-	if attack_type == "tankSpecial":
-		queue_free()  # disappear
+func _on_area_entered(area: Area2D) -> void:
+	print("Youch")
+	pass # Replace with function body.

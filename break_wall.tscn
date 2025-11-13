@@ -1,21 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpxpvarbloji3"]
+[gd_scene load_steps=6 format=3 uid="uid://cpxpvarbloji3"]
 
-[ext_resource type="Script" uid="uid://cl2mu4tqdx086" path="res://Wall.gd" id="1_4hdir"]
+[ext_resource type="Script" uid="uid://dpvotxl7bph2e" path="res://break_wall.gd" id="1_iqo7m"]
+[ext_resource type="PackedScene" uid="uid://cpksl7n51njag" path="res://Scenes/Hitbox.tscn" id="2_yuk6i"]
+[ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/Health.gd" id="3_3mpmu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sc7ek"]
+size = Vector2(14.4578, 22.0482)
 
-[node name="BreakWall" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hdir"]
+size = Vector2(14.0161, 21.0643)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-script = ExtResource("1_4hdir")
+[node name="BreakableWall" type="StaticBody2D"]
+scale = Vector2(1.245, 1.245)
+collision_mask = 0
+script = ExtResource("1_iqo7m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.0241)
 shape = SubResource("RectangleShape2D_sc7ek")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D/CollisionShape2D/Sprite2D"]
-offset_left = -10.0
+[node name="ColorRect" type="ColorRect" parent="CollisionShape2D"]
+offset_left = -7.0
 offset_top = -10.0
-offset_right = 10.0
+offset_right = 7.0
 offset_bottom = 10.0
+color = Color(0.884681, 0.112071, 0.817841, 1)
+
+[node name="Hitbox" parent="." instance=ExtResource("2_yuk6i")]
+collision_layer = 8
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -0.803213)
+shape = SubResource("RectangleShape2D_4hdir")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_3mpmu")
+maxHealth = 10.0
+resistance = 0.0
+metadata/_custom_type_script = "uid://ccjfqwc5vm62o"

@@ -170,12 +170,12 @@ tile_map_data = PackedByteArray("AAD/////AAAIAAAAAAAAAP//AAAIAAAAAAABAP//AAAIAAA
 tile_set = SubResource("TileSet_8ahdc")
 
 [node name="Player" parent="." instance=ExtResource("2_ytpv0")]
+z_index = 3
 position = Vector2(-12, -18)
 
 [node name="Level One Platform" type="StaticBody2D" parent="."]
 material = SubResource("CanvasItemMaterial_ytpv0")
 disable_mode = 1
-collision_layer = 17
 
 [node name="ColorRect32" type="ColorRect" parent="Level One Platform"]
 offset_left = -471.0
