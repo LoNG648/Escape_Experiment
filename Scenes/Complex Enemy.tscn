@@ -330,7 +330,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hit",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -396,10 +396,10 @@ radius = 16.0
 height = 54.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kri20"]
-size = Vector2(78.8, 66.4)
+size = Vector2(85.8, 66.4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rpcp"]
-size = Vector2(62, 68.4)
+size = Vector2(64.6, 68.4)
 
 [node name="Complex Enemy" type="CharacterBody2D"]
 collision_mask = 3
@@ -408,8 +408,10 @@ script = ExtResource("1_ad176")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-37, -9)
 sprite_frames = SubResource("SpriteFrames_mvyao")
-animation = &"1windup"
+animation = &"hit"
 autoplay = "idle"
+frame = 2
+frame_progress = 1.0
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
 light_mask = 0
@@ -429,7 +431,7 @@ collision_mask = 2
 damage = 20.0
 
 [node name="Hurtbox Collision" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-63.4, 4.8)
+position = Vector2(-59.9, 4.8)
 shape = SubResource("RectangleShape2D_kri20")
 disabled = true
 
@@ -440,7 +442,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="Detectionbox Collision" type="CollisionShape2D" parent="Detectionbox"]
-position = Vector2(-50.6, 5.00001)
+position = Vector2(-49.3, 5.00001)
 shape = SubResource("RectangleShape2D_3rpcp")
 
 [node name="Hitbox" type="Area2D" parent="."]

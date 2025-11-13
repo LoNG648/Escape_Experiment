@@ -190,7 +190,7 @@ scale = Vector2(5, -1)
 sprite_frames = SubResource("SpriteFrames_wosd6")
 animation = &"Shockwave"
 frame = 6
-frame_progress = 0.238349
+frame_progress = 1.0
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -32)
