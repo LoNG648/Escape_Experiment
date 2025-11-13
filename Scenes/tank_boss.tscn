@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dvxrlkbqkwhig" path="res://Assets/Enemy Assets/Boss Assets/Boss Walk/Boss_Idle-2.png" id="6_g87x0"]
 [ext_resource type="Texture2D" uid="uid://mv73aqbur0xb" path="res://Assets/Enemy Assets/Boss Assets/Boss Walk/Boss_Idle-3.png" id="7_lq57t"]
 [ext_resource type="Script" uid="uid://dxycbvexq3q5s" path="res://Scripts/Hurtbox.gd" id="12_g87x0"]
-[ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/Hitbox.gd" id="13_lq57t"]
+[ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/hitbox.gd" id="13_lq57t"]
 [ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/Health.gd" id="14_6n5jb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q5qam"]

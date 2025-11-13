@@ -174,9 +174,9 @@ func death():
 func _on_direction_timer_timeout() -> void:
 	if !is_chasing:
 		directions = choose([Vector2.RIGHT, Vector2.LEFT])
-		if facing_left == true and directions == Vector2.RIGHT:
+		if facing_left == true and directions == Vector2.RIGHT and windup == false and attacking == false:
 			flip()
-		elif facing_left == false and directions == Vector2.LEFT:
+		elif facing_left == false and directions == Vector2.LEFT and windup == false and attacking == false:
 			flip()
 
 func choose(array):

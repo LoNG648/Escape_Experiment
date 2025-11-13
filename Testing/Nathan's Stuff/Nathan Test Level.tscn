@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b11nec1uqjb11"]
+[gd_scene load_steps=7 format=3 uid="uid://b11nec1uqjb11"]
 
-[ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="1_orbnq"]
-[ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="2_vmh8c"]
-[ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="3_iwbx0"]
-[ext_resource type="PackedScene" uid="uid://dvsfqtas4n5iq" path="res://Scenes/pause_menu.tscn" id="4_be063"]
-[ext_resource type="PackedScene" uid="uid://8egxs5xr1c6s" path="res://Scenes/tank_boss.tscn" id="5_1pos5"]
+[ext_resource type="PackedScene" uid="uid://vaeq3uf103py" path="res://Scenes/player.tscn" id="1_nt7fk"]
+[ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="3_yrtag"]
+[ext_resource type="PackedScene" uid="uid://dlo3n8cu6ovm1" path="res://Testing/Nathan's Stuff/Interaction Stuff/test_interactable.tscn" id="4_6yxtt"]
+[ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="4_oosjv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qilu"]
 size = Vector2(3800, 420)
@@ -39,9 +38,9 @@ position = Vector2(0, 75)
 
 [node name="Sprite2D" type="Sprite2D" parent="Death Box"]
 position = Vector2(395, -338)
-texture = ExtResource("1_orbnq")
+texture = ExtResource("3_yrtag")
 
-[node name="Hurtbox" parent="Death Box" instance=ExtResource("2_vmh8c")]
+[node name="Hurtbox" parent="Death Box" instance=ExtResource("4_oosjv")]
 position = Vector2(3, -382)
 damage = 100.0
 
@@ -49,17 +48,9 @@ damage = 100.0
 position = Vector2(392.25, 43.75)
 shape = SubResource("RectangleShape2D_fruoj")
 
-[node name="Player" parent="." instance=ExtResource("3_iwbx0")]
+[node name="Player" parent="." instance=ExtResource("1_nt7fk")]
 position = Vector2(-19, 57)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_be063")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-
-[node name="TankBoss" parent="." instance=ExtResource("5_1pos5")]
-position = Vector2(369, 41)
+[node name="TestInteractable" parent="." instance=ExtResource("4_6yxtt")]
+position = Vector2(159, 92)
+scale = Vector2(0.5, 0.5)

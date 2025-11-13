@@ -20,9 +20,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -122.0
-offset_top = -126.0
+offset_top = -146.0
 offset_right = 127.0
-offset_bottom = 127.0
+offset_bottom = 148.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -37,7 +37,6 @@ layout_mode = 2
 text = "Resume"
 
 [node name="Controls" type="Button" parent="PanelContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 text = "Controls"
 
@@ -48,6 +47,58 @@ text = "Restart"
 [node name="Quit" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="Controls" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 64.0
+offset_right = 319.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Controls"]
+layout_mode = 2
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="Title" type="Label" parent="Controls/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 35
+text = "Controls:"
+
+[node name="Attacking" type="Label" parent="Controls/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "LMB - Basic Attack
+Q - Special Attack 
+RMB - Block"
+
+[node name="Movement" type="Label" parent="Controls/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "WASD/ARROWS - Move
+SPACE - Jump 
+CTRL - Crouch"
+
+[node name="Interaction" type="Label" parent="Controls/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "E - Interact
+ESC - Pause/Unpause"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]

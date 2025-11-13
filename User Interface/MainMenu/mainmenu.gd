@@ -34,7 +34,7 @@ func _on_test_room_pressed() -> void:
 		get_tree().change_scene_to_file("res://Testing/Max's Stuff/Max Test Level.tscn")
 		Globals.set("DeveloperName", "Max")
 	elif dev_node.DeveloperName == "Nathan":
-		get_tree().change_scene_to_file("res://Testing/Nathan's Stuff/Levels/Nathan Test Level.tscn")
+		get_tree().change_scene_to_file("res://Testing/Nathan's Stuff/Nathan Test Level.tscn")
 		Globals.set("DeveloperName", "Nathan")
 	elif dev_node.DeveloperName == "Ryan":
 		get_tree().change_scene_to_file("res://Testing/Ryan's Stuff/Ryan Test Level.tscn")
