@@ -26,4 +26,5 @@ func _on_area_entered(area: Area2D) -> void:
 		body = area.get_parent()
 		body.get_node("Health").takeDamage(body, damage)
 		if body is Tank_Boss and body.get_node("Health").currentHealth <= 0:
+			print("Boss defeated!")
 			hurtbox.get_parent()._on_tank_boss_boss_tank_defeated()

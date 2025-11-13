@@ -177,20 +177,21 @@ animation = &"Special Attack"
 
 [node name="TankSprite" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(2, -32.6506)
-scale = Vector2(-1, 1.14)
+position = Vector2(-15.5446, -28.0926)
+rotation = 3.14159
+scale = Vector2(1.11726, -0.980859)
 sprite_frames = SubResource("SpriteFrames_bfbt0")
-animation = &"Special Attack"
+animation = &"Attack"
 
 [node name="Shockwave Sprite" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(104, -16)
+position = Vector2(97.8577, -13.7664)
 rotation = 3.14159
-scale = Vector2(5, -1)
+scale = Vector2(5.62121, -0.860402)
 sprite_frames = SubResource("SpriteFrames_wosd6")
 animation = &"Shockwave"
 frame = 6
-frame_progress = 0.238349
+frame_progress = 1.0
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -32)

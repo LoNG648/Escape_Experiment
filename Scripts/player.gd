@@ -191,6 +191,7 @@ func _physics_process(delta: float) -> void:
 					tank_sprite.play("Attack")
 					animation_timer.start(2)
 					attacking = true
+					await tank_sprite
 					tank_basic_attack_hurtbox_collision.disabled = false
 					await get_tree().create_timer(0.4).timeout
 					tank_basic_attack_hurtbox_collision.disabled = true
