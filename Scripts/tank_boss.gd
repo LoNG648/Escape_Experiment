@@ -236,7 +236,7 @@ func death():
 		windup = false
 		player_in_reach = false
 		player_behind = false
-		print("Tank Boss dying")
+		print("Basic enemy dying")
 		sprite.play("death")
 		bossTankDefeated.emit()
 
