@@ -518,7 +518,7 @@ autostart = true
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_fiwu0")
-initial_state = NodePath("EnemyFollow")
+initial_state = NodePath("EnemyIdle")
 
 [node name="EnemyIdle" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("7_gmpam")
