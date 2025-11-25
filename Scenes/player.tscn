@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://vaeq3uf103py"]
+[gd_scene load_steps=40 format=3 uid="uid://vaeq3uf103py"]
 
 [ext_resource type="Script" uid="uid://ba8iqvap47p8y" path="res://Scripts/player.gd" id="1_onrkg"]
 [ext_resource type="SpriteFrames" uid="uid://ddcusyusn8m1a" path="res://Assets/Player Assets/PlayerAnims.tres" id="2_6t5aa"]
@@ -162,6 +162,15 @@ size = Vector2(80, 68)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfbt0"]
 size = Vector2(180, 28)
 
+[sub_resource type="Gradient" id="Gradient_y6uwr"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y6uwr"]
+gradient = SubResource("Gradient_y6uwr")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
@@ -296,3 +305,9 @@ offset_left = 9.0
 offset_top = 18.0
 offset_right = 9.0
 offset_bottom = 18.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -30)
+scale = Vector2(5, 5)
+color = Color(0.663439, 0.668751, 0.504524, 1)
+texture = SubResource("GradientTexture2D_y6uwr")
