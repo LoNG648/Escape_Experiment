@@ -2,7 +2,7 @@ extends State
 class_name EnemyIdle
 
 @export var enemy: CharacterBody2D
-@export var move_speed := 80
+@export var move_speed := 70
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var player: CharacterBody2D
 
@@ -28,9 +28,14 @@ func Update(delta: float):
 func Physics_Update(delta: float):
 	if enemy:
 		enemy.velocity = move_direction * move_speed
+		enemy.velocity.y = gravity * delta
 		
 	var direction = player.global_position - enemy.global_position
-	if direction.length() < 30:
+	#if direction.length() < 20:
+		#Transitioned.emit(self, "EnemyFollow")
+
+func _on_body_entered(body):
+	if body is Player:
 		Transitioned.emit(self, "EnemyFollow")
 
 func exit():

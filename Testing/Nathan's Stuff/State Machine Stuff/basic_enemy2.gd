@@ -5,6 +5,8 @@ extends Node
 var current_state : State
 var states : Dictionary = {}
 
+@onready var label = $"../Label"
+
 func _ready():
 	for child in get_children():
 		if child is State:
@@ -17,6 +19,7 @@ func _ready():
 func _process(delta):
 	if current_state:
 		current_state.Update(delta)
+	label.set_text(str(current_state))
 
 func _physics_process(delta):
 	if current_state:

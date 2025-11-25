@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://c1e3nvh3aqr4x"]
+[gd_scene load_steps=69 format=3 uid="uid://c1e3nvh3aqr4x"]
 
 [ext_resource type="Script" uid="uid://c0plbduf4xlp5" path="res://Testing/Nathan's Stuff/basic_enemy_state.gd" id="1_wek8t"]
 [ext_resource type="Texture2D" uid="uid://b1bssce881pl2" path="res://Assets/Enemy Assets/NightBorne/NightBorne.png" id="2_vmj5o"]
@@ -438,6 +438,9 @@ height = 54.4
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xno3g"]
 size = Vector2(26, 64.8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vmj5o"]
+size = Vector2(405, 113)
+
 [node name="Basic Enemy" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_wek8t")
@@ -507,6 +510,14 @@ visibility_layer = 1023
 position = Vector2(-24.3556, -2.8)
 shape = SubResource("RectangleShape2D_xno3g")
 
+[node name="StateArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="StateCollision" type="CollisionShape2D" parent="StateArea"]
+position = Vector2(2.5, -35.5)
+shape = SubResource("RectangleShape2D_vmj5o")
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource("5_ntwd2")
 maxHealth = 30.0
@@ -515,6 +526,10 @@ metadata/_custom_type_script = "uid://ccjfqwc5vm62o"
 [node name="DirectionTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_fiwu0")
@@ -535,4 +550,6 @@ metadata/_custom_type_script = "uid://cah17ut5xta40"
 [connection signal="body_exited" from="FrontDetectionbox" to="." method="_on_detect_player_body_exited"]
 [connection signal="body_entered" from="BehindDetectionBox" to="." method="_on_behind_detection_box_body_entered"]
 [connection signal="body_exited" from="BehindDetectionBox" to="." method="_on_behind_detection_box_body_exited"]
+[connection signal="body_entered" from="StateArea" to="State Machine/EnemyIdle" method="_on_body_entered"]
+[connection signal="body_exited" from="StateArea" to="State Machine/EnemyFollow" method="_on_body_exited"]
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
