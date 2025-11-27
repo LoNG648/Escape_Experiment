@@ -85,4 +85,13 @@ scale = Vector2(3, 3)
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(770, -191)
 scale = Vector2(3, 3)
-color = Color(0.412152, 0.412152, 0.412152, 1)
+color = Color(0.151276, 0.151276, 0.151276, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+visibility_layer = 5
+offset_left = -285.0
+offset_top = -225.0
+offset_right = 592.0
+offset_bottom = 308.0
+color = Color(0.889744, 0.457282, 0.688342, 1)
