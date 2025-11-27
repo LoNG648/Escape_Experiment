@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cyrhw528xyie3"]
+[gd_scene load_steps=14 format=3 uid="uid://cyrhw528xyie3"]
 
 [ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="1_a1jr2"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="2_2u5ei"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dtbs07fxaokwr" path="res://Scenes/SpikeBall/spike_ball4.tscn" id="8_4y0qv"]
 [ext_resource type="PackedScene" uid="uid://c10ynmv2c26ik" path="res://Scenes/moving_plat.tscn" id="9_tucmf"]
 [ext_resource type="PackedScene" uid="uid://cpxpvarbloji3" path="res://break_wall.tscn" id="10_xsnvw"]
+[ext_resource type="PackedScene" uid="uid://6yhm037kvuba" path="res://Scenes/torch.tscn" id="11_08lvd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qilu"]
 size = Vector2(3800, 420)
@@ -95,3 +96,15 @@ offset_top = -225.0
 offset_right = 592.0
 offset_bottom = 308.0
 color = Color(0.889744, 0.457282, 0.688342, 1)
+
+[node name="Torch" parent="." instance=ExtResource("11_08lvd")]
+position = Vector2(100, 7)
+
+[node name="Torch2" parent="." instance=ExtResource("11_08lvd")]
+position = Vector2(-93, 7)
+
+[node name="Torch3" parent="." instance=ExtResource("11_08lvd")]
+position = Vector2(-132, 87)
+
+[node name="Torch4" parent="." instance=ExtResource("11_08lvd")]
+position = Vector2(176, 85)

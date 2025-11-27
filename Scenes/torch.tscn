@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://6yhm037kvuba"]
+
+[ext_resource type="Texture2D" uid="uid://dtw1cqd6qkgkx" path="res://Scenes/Light.tres" id="1_wced7"]
+[ext_resource type="Texture2D" uid="uid://1gddvvel1ic1" path="res://Assets/Pixel Adventure 1/Free/Other/Dust Particle.png" id="2_h1t0l"]
+
+[node name="Torch" type="Node2D"]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = ExtResource("1_wced7")
+
+[node name="DustParticle" type="Sprite2D" parent="PointLight2D"]
+texture = ExtResource("2_h1t0l")

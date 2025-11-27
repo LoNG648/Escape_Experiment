@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://vaeq3uf103py"]
+[gd_scene load_steps=39 format=3 uid="uid://vaeq3uf103py"]
 
 [ext_resource type="Script" uid="uid://ba8iqvap47p8y" path="res://Scripts/player.gd" id="1_onrkg"]
 [ext_resource type="SpriteFrames" uid="uid://ddcusyusn8m1a" path="res://Assets/Player Assets/PlayerAnims.tres" id="2_6t5aa"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://csjgm3tyr8ckq" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-5.png" id="26_avx33"]
 [ext_resource type="Texture2D" uid="uid://dxtlka3h8e8av" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-6.png" id="27_rxg2u"]
 [ext_resource type="Texture2D" uid="uid://cwfc2ymddtpdy" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-7.png" id="28_xixlo"]
+[ext_resource type="Texture2D" uid="uid://dtw1cqd6qkgkx" path="res://Scenes/Light.tres" id="29_83xs0"]
 [ext_resource type="PackedScene" uid="uid://dvsfqtas4n5iq" path="res://Scenes/pause_menu.tscn" id="29_kih0c"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bfbt0"]
@@ -161,15 +162,6 @@ size = Vector2(80, 68)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfbt0"]
 size = Vector2(180, 28)
-
-[sub_resource type="Gradient" id="Gradient_y6uwr"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_y6uwr"]
-gradient = SubResource("Gradient_y6uwr")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(0.5, 0.5)
@@ -310,4 +302,6 @@ offset_bottom = 18.0
 position = Vector2(0, -30)
 scale = Vector2(3, 3)
 color = Color(0.663439, 0.668751, 0.504524, 1)
-texture = SubResource("GradientTexture2D_y6uwr")
+shadow_enabled = true
+texture = ExtResource("29_83xs0")
+height = 30.0
