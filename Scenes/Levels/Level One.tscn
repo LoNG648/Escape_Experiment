@@ -445,6 +445,7 @@ position = Vector2(113, -41)
 [node name="Basic Enemy" type="Node" parent="."]
 
 [node name="Basic Enemy" parent="Basic Enemy" instance=ExtResource("2_pgoda")]
+z_index = 2
 position = Vector2(826, -195)
 
 [node name="Basic Enemy2" parent="Basic Enemy" instance=ExtResource("2_pgoda")]
@@ -644,6 +645,10 @@ position = Vector2(331, -118)
 
 [node name="Torch2" parent="Map" instance=ExtResource("14_2k6f5")]
 position = Vector2(415, -218)
+
+[node name="Torch3" parent="Map" instance=ExtResource("14_2k6f5")]
+z_index = 1
+position = Vector2(729, -208)
 
 [node name="MovingPlat" type="Node" parent="."]
 

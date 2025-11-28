@@ -6,8 +6,9 @@
 [node name="Torch" type="Node2D"]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(3, 3)
 shadow_enabled = true
 texture = ExtResource("1_wced7")
 
-[node name="DustParticle" type="Sprite2D" parent="PointLight2D"]
+[node name="DustParticle" type="Sprite2D" parent="."]
 texture = ExtResource("2_h1t0l")
