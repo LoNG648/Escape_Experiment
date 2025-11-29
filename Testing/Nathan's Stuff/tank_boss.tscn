@@ -141,8 +141,10 @@ script = ExtResource("1_kdwwd")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_q5qam")
-animation = &"windup1"
+animation = &"attack1"
 autoplay = "walk"
+frame = 1
+frame_progress = 1.0
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 light_mask = 0

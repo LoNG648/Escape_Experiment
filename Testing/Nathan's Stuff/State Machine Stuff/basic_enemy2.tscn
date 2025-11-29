@@ -448,9 +448,10 @@ script = ExtResource("1_wek8t")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4q34a")
-animation = &"idle"
+animation = &"attack1"
 autoplay = "idle"
-frame_progress = 0.519511
+frame = 2
+frame_progress = 1.0
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
 position = Vector2(1, 8.5)
@@ -549,8 +550,9 @@ script = ExtResource("8_vmj5o")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://cah17ut5xta40"
 
-[node name="EnemyAttack" type="Node" parent="State Machine"]
+[node name="EnemyAttack" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("9_cqefd")
+enemy = NodePath("../..")
 
 [node name="EnemyHit" type="Node" parent="State Machine"]
 
