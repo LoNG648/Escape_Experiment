@@ -21,6 +21,9 @@ func Physics_Update(delta):
 	enemy.velocity = direction.normalized() * move_speed
 	enemy.velocity.y = gravity * delta
 	
+	if in_range == true:
+		Transitioned.emit(self, "EnemyAttack")
+	
 	#if direction.length() < 20:
 		#enemy.velocity = direction.normalized() * move_speed
 		#enemy.velocity.y = gravity * delta
@@ -41,4 +44,4 @@ func exit():
 
 func _on_front_detectionbox_body_entered(body: Node2D) -> void:
 	if body is Player:
-		Transitioned.emit(self, "EnemyAttack")
+		in_range = true
