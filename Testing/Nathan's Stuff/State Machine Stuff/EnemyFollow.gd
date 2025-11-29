@@ -38,3 +38,7 @@ func _on_body_exited(body):
 
 func exit():
 	pass
+
+func _on_front_detectionbox_body_entered(body: Node2D) -> void:
+	if body is Player:
+		Transitioned.emit(self, "EnemyAttack")

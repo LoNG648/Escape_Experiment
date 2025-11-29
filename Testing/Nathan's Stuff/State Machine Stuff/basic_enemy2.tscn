@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://c1e3nvh3aqr4x"]
+[gd_scene load_steps=70 format=3 uid="uid://c1e3nvh3aqr4x"]
 
 [ext_resource type="Script" uid="uid://c0plbduf4xlp5" path="res://Testing/Nathan's Stuff/basic_enemy_state.gd" id="1_wek8t"]
 [ext_resource type="Texture2D" uid="uid://b1bssce881pl2" path="res://Assets/Enemy Assets/NightBorne/NightBorne.png" id="2_vmj5o"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bw7c7fvt0q8k2" path="res://Testing/Nathan's Stuff/State Machine Stuff/basic_enemy2.gd" id="6_fiwu0"]
 [ext_resource type="Script" uid="uid://b55e3c4pq3ve8" path="res://Testing/Nathan's Stuff/State Machine Stuff/EnemyIdle.gd" id="7_gmpam"]
 [ext_resource type="Script" uid="uid://cah17ut5xta40" path="res://Testing/Nathan's Stuff/State Machine Stuff/EnemyFollow.gd" id="8_vmj5o"]
+[ext_resource type="Script" uid="uid://d0my7cax6qv0f" path="res://Testing/Nathan's Stuff/State Machine Stuff/EnemyAttack.gd" id="9_cqefd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xvijc"]
 atlas = ExtResource("2_vmj5o")
@@ -436,7 +437,7 @@ radius = 13.0
 height = 54.4
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xno3g"]
-size = Vector2(26, 64.8)
+size = Vector2(27.8, 64.8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmj5o"]
 size = Vector2(405, 113)
@@ -487,7 +488,7 @@ collision_mask = 2
 [node name="Front Detectionbox Collision" type="CollisionShape2D" parent="FrontDetectionbox"]
 light_mask = 0
 visibility_layer = 1023
-position = Vector2(26.2, -2.8)
+position = Vector2(27.1, -2.8)
 shape = SubResource("RectangleShape2D_xno3g")
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -501,14 +502,17 @@ position = Vector2(1, 8.5)
 shape = SubResource("CapsuleShape2D_3pxrr")
 
 [node name="BehindDetectionBox" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
+monitoring = false
 
 [node name="Behind Detectionbox Collision" type="CollisionShape2D" parent="BehindDetectionBox"]
 light_mask = 0
 visibility_layer = 1023
 position = Vector2(-24.3556, -2.8)
 shape = SubResource("RectangleShape2D_xno3g")
+disabled = true
 
 [node name="StateArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -545,9 +549,16 @@ script = ExtResource("8_vmj5o")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://cah17ut5xta40"
 
+[node name="EnemyAttack" type="Node" parent="State Machine"]
+script = ExtResource("9_cqefd")
+
+[node name="EnemyHit" type="Node" parent="State Machine"]
+
+[node name="EnemyDead" type="Node" parent="State Machine"]
+
 [connection signal="animation_finished" from="Sprite" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="body_entered" from="FrontDetectionbox" to="." method="_on_detect_player_body_entered"]
-[connection signal="body_exited" from="FrontDetectionbox" to="." method="_on_detect_player_body_exited"]
+[connection signal="body_entered" from="FrontDetectionbox" to="State Machine/EnemyFollow" method="_on_front_detectionbox_body_entered"]
+[connection signal="body_exited" from="FrontDetectionbox" to="State Machine/EnemyAttack" method="_on_front_detectionbox_body_exited"]
 [connection signal="body_entered" from="BehindDetectionBox" to="." method="_on_behind_detection_box_body_entered"]
 [connection signal="body_exited" from="BehindDetectionBox" to="." method="_on_behind_detection_box_body_exited"]
 [connection signal="body_entered" from="StateArea" to="State Machine/EnemyIdle" method="_on_body_entered"]
