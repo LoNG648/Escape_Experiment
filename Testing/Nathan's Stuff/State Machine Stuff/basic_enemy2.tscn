@@ -474,7 +474,7 @@ damage = 10.0
 [node name="Hurtbox Collision" type="CollisionShape2D" parent="Hurtbox"]
 light_mask = 0
 visibility_layer = 4
-position = Vector2(27.4, 1.2)
+position = Vector2(27, 1.2)
 shape = SubResource("CapsuleShape2D_1f64y")
 disabled = true
 
@@ -487,7 +487,7 @@ collision_mask = 2
 [node name="Front Detectionbox Collision" type="CollisionShape2D" parent="FrontDetectionbox"]
 light_mask = 0
 visibility_layer = 1023
-position = Vector2(27.1, -2.8)
+position = Vector2(27, -2.8)
 shape = SubResource("RectangleShape2D_xno3g")
 
 [node name="Hitbox" type="Area2D" parent="."]

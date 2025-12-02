@@ -48,6 +48,7 @@ func exit():
 func _on_front_detectionbox_body_entered(body: Node2D) -> void:
 	if body is Player:
 		in_range = true
+		$"../EnemyAttack".held_speed = enemy.velocity.x
 
 func _on_front_detectionbox_body_exited(body: Node2D) -> void:
 	if body is Player:
