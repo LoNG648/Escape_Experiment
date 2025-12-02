@@ -32,6 +32,7 @@ func Physics_Update(delta: float):
 	if enemy:
 		enemy.velocity = move_direction * move_speed
 		enemy.velocity.y = gravity * delta
+		$"../../Sprite".play("run")
 	
 	if !floor_raycast.is_colliding() && enemy.is_on_floor():
 		move_direction = move_direction * -1

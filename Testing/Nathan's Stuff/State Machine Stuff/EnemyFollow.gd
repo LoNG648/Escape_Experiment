@@ -7,6 +7,8 @@ var in_range = false
 #var player: CharacterBody2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+@onready var hurtbox_collision = $"../../Hurtbox/Hurtbox Collision"
+
 #@onready var player = get_tree().get_first_node_in_group("player")
 
 func Enter(): 
@@ -20,6 +22,7 @@ func Physics_Update(delta):
 	
 	enemy.velocity = direction.normalized() * move_speed
 	enemy.velocity.y = gravity * delta
+	$"../../Sprite".play("run")
 	
 	if in_range == true:
 		Transitioned.emit(self, "EnemyAttack")
@@ -45,3 +48,7 @@ func exit():
 func _on_front_detectionbox_body_entered(body: Node2D) -> void:
 	if body is Player:
 		in_range = true
+
+func _on_front_detectionbox_body_exited(body: Node2D) -> void:
+	if body is Player:
+		in_range = false
