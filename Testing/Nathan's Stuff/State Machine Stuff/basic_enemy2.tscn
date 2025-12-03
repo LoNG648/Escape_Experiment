@@ -1,14 +1,15 @@
-[gd_scene load_steps=70 format=3 uid="uid://c1e3nvh3aqr4x"]
+[gd_scene load_steps=71 format=3 uid="uid://c1e3nvh3aqr4x"]
 
 [ext_resource type="Script" uid="uid://c0plbduf4xlp5" path="res://Testing/Nathan's Stuff/basic_enemy_state.gd" id="1_wek8t"]
 [ext_resource type="Texture2D" uid="uid://b1bssce881pl2" path="res://Assets/Enemy Assets/NightBorne/NightBorne.png" id="2_vmj5o"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="3_cqefd"]
 [ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/hitbox.gd" id="4_052ra"]
 [ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/Health.gd" id="5_ntwd2"]
-[ext_resource type="Script" uid="uid://bw7c7fvt0q8k2" path="res://Testing/Nathan's Stuff/State Machine Stuff/basic_enemy2.gd" id="6_fiwu0"]
+[ext_resource type="Script" uid="uid://bw7c7fvt0q8k2" path="res://Testing/Nathan's Stuff/State Machine Stuff/statemachine.gd" id="6_fiwu0"]
 [ext_resource type="Script" uid="uid://b55e3c4pq3ve8" path="res://Testing/Nathan's Stuff/State Machine Stuff/EnemyIdle.gd" id="7_gmpam"]
 [ext_resource type="Script" uid="uid://cah17ut5xta40" path="res://Testing/Nathan's Stuff/State Machine Stuff/EnemyFollow.gd" id="8_vmj5o"]
 [ext_resource type="Script" uid="uid://d0my7cax6qv0f" path="res://Testing/Nathan's Stuff/State Machine Stuff/EnemyAttack.gd" id="9_cqefd"]
+[ext_resource type="Script" uid="uid://lto7sveo7ka0" path="res://Testing/Nathan's Stuff/State Machine Stuff/EnemyHit.gd" id="10_052ra"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xvijc"]
 atlas = ExtResource("2_vmj5o")
@@ -17,10 +18,6 @@ region = Rect2(720, 160, 80, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_4sqap"]
 atlas = ExtResource("2_vmj5o")
 region = Rect2(800, 160, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qk4b0"]
-atlas = ExtResource("2_vmj5o")
-region = Rect2(880, 160, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xno3g"]
 atlas = ExtResource("2_vmj5o")
@@ -134,6 +131,10 @@ region = Rect2(240, 240, 80, 80)
 atlas = ExtResource("2_vmj5o")
 region = Rect2(320, 240, 80, 80)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qk4b0"]
+atlas = ExtResource("2_vmj5o")
+region = Rect2(880, 160, 80, 80)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1f64y"]
 atlas = ExtResource("2_vmj5o")
 region = Rect2(0, 0, 80, 80)
@@ -238,13 +239,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4sqap")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qk4b0")
 }],
 "loop": false,
 "name": &"attack1",
-"speed": 10.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -342,6 +340,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_qk4b0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qk4b0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qk4b0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qk4b0")
+}],
+"loop": false,
+"name": &"holster1",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1f64y")
 }, {
 "duration": 1.0,
@@ -403,6 +418,9 @@ animations = [{
 "texture": SubResource("AtlasTexture_gckoq")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_gckoq")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_vrwm8")
 }, {
 "duration": 1.0,
@@ -425,7 +443,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"windup1",
-"speed": 10.0
+"speed": 8.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3pxrr"]
@@ -448,7 +466,7 @@ script = ExtResource("1_wek8t")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4q34a")
-animation = &"attack1"
+animation = &"windup1"
 autoplay = "idle"
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
@@ -552,11 +570,14 @@ metadata/_custom_type_script = "uid://cah17ut5xta40"
 script = ExtResource("9_cqefd")
 enemy = NodePath("../..")
 
-[node name="EnemyHit" type="Node" parent="State Machine"]
+[node name="EnemyHit" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("10_052ra")
+enemy = NodePath("../..")
 
 [node name="EnemyDead" type="Node" parent="State Machine"]
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="Sprite" to="State Machine/EnemyHit" method="_animation_finished"]
 [connection signal="body_entered" from="FrontDetectionbox" to="State Machine/EnemyFollow" method="_on_front_detectionbox_body_entered"]
 [connection signal="body_exited" from="FrontDetectionbox" to="State Machine/EnemyAttack" method="_on_front_detectionbox_body_exited"]
 [connection signal="body_entered" from="BehindDetectionBox" to="." method="_on_behind_detection_box_body_entered"]

@@ -150,7 +150,7 @@ func _physics_process(delta: float) -> void:
 					#Does a basic attack if can't do a counter attack
 					collector_sprite.position = Vector2(14, -33)
 					collector_sprite.play("Attack")
-					animation_timer.start(1)
+					animation_timer.start(0.8)
 					attacking = true
 					collector_basic_attack_hurtbox_collision.disabled = false
 					await get_tree().create_timer(0.2).timeout
