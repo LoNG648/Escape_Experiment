@@ -348,20 +348,20 @@ func _physics_process(delta: float) -> void:
 #Handles what happens when player takes damage
 func got_hit(damage: float):
 	if blocking == false:
-		var original = (damage/health.maxHealth)*10
-		var clamped = clamp(original,0.75,1.5)
+		var original = damage/health.maxHealth
+		var clamped = clamp(original,0.6,1.3)
 		collector_sprite.position = Vector2(14, -33)
 		animation_timer.paused = false
 		animation_timer.start(clamped)
 		if passive == "tankPassive":
 			pass
 		else:
-			collector_basic_attack_hurtbox_collision.disabled = true
-			collector_counter_attack_hurtbox_collision.disabled = true
-			collector_special_attack_hurtbox_collision.disabled = true
-			tank_basic_attack_hurtbox_collision.disabled = true
-			tank_special_attack_hurtbox_collision.disabled = true
-			tank_counter_attack_hurtbox_collision.disabled = true
+			collector_basic_attack_hurtbox_collision.set_deferred("disabled",true)
+			collector_counter_attack_hurtbox_collision.set_deferred("disabled",true)
+			collector_special_attack_hurtbox_collision.set_deferred("disabled",true)
+			tank_basic_attack_hurtbox_collision.set_deferred("disabled",true)
+			tank_special_attack_hurtbox_collision.set_deferred("disabled",true)
+			tank_counter_attack_hurtbox_collision.set_deferred("disabled",true)
 			tank_sprite.visible = false
 			shockwave_sprite.visible = false
 			collector_sprite.visible = true

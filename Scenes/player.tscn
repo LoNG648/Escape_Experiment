@@ -148,7 +148,7 @@ size = Vector2(16, 62.25)
 size = Vector2(12, 62.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkybt"]
-size = Vector2(32, 58)
+size = Vector2(32, 69)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x63xi"]
 size = Vector2(18, 29)
@@ -172,7 +172,7 @@ script = ExtResource("1_onrkg")
 position = Vector2(2, -42)
 scale = Vector2(1, 1.3)
 sprite_frames = ExtResource("2_6t5aa")
-animation = &"Special Attack"
+animation = &"Attack"
 
 [node name="TankSprite" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -193,6 +193,7 @@ frame = 6
 frame_progress = 1.0
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-0.5, -32)
 shape = SubResource("RectangleShape2D_onrkg")
 
@@ -201,6 +202,7 @@ position = Vector2(0, -64)
 zoom = Vector2(4, 4)
 
 [node name="Hitbox" parent="." instance=ExtResource("3_fkybt")]
+visible = false
 collision_layer = 2
 
 [node name="Hitbox Collision" type="CollisionShape2D" parent="Hitbox"]
@@ -213,11 +215,12 @@ collision_mask = 4
 damage = 25.0
 
 [node name="Collector Basic Attack Hurtbox Collision" type="CollisionShape2D" parent="Collector Basic Attack Hurtbox"]
-position = Vector2(19, 32)
+position = Vector2(19, 26.5)
 shape = SubResource("RectangleShape2D_fkybt")
 disabled = true
 
 [node name="Tank Basic Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
+visible = false
 scale = Vector2(2, 2)
 collision_mask = 4
 damage = 30.0
@@ -233,6 +236,7 @@ maxHealth = 100.0
 resistance = 25.0
 
 [node name="Collector Counter Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
+visible = false
 collision_mask = 4
 damage = 50.0
 
@@ -242,6 +246,7 @@ shape = SubResource("RectangleShape2D_3smsa")
 disabled = true
 
 [node name="Tank Counter Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
+visible = false
 collision_mask = 4
 damage = 100.0
 
@@ -251,6 +256,7 @@ shape = SubResource("RectangleShape2D_5v66d")
 disabled = true
 
 [node name="Collector Special Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
+visible = false
 position = Vector2(0, -64)
 collision_mask = 4
 damage = 40.0
@@ -261,6 +267,7 @@ shape = SubResource("RectangleShape2D_fkybt")
 disabled = true
 
 [node name="Tank Special Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
+visible = false
 collision_mask = 12
 damage = 35.0
 

@@ -1,69 +1,70 @@
-[gd_resource type="SpriteFrames" load_steps=41 format=3 uid="uid://ddcusyusn8m1a"]
+[gd_resource type="SpriteFrames" load_steps=45 format=3 uid="uid://ddcusyusn8m1a"]
 
+[ext_resource type="Texture2D" uid="uid://j747i2arxfya" path="res://Assets/Player Assets/Basic Attack/EE_Attack-1.png" id="1_fckkl"]
 [ext_resource type="Texture2D" uid="uid://biqtne7mj8i0v" path="res://Assets/Player Assets/Walk/EE_walking_-1.png" id="2_3om6v"]
+[ext_resource type="Texture2D" uid="uid://dbl0wdvcfm64u" path="res://Assets/Player Assets/Basic Attack/EE_Attack-2.png" id="2_66aaw"]
 [ext_resource type="Texture2D" uid="uid://dwrfvovhnoitl" path="res://Assets/Player Assets/Walk/EE_walking_-2.png" id="3_nx6in"]
+[ext_resource type="Texture2D" uid="uid://bqg6q1a6n5mo6" path="res://Assets/Player Assets/Basic Attack/EE_Attack-3.png" id="3_uee4n"]
 [ext_resource type="Texture2D" uid="uid://bqw4qp3ivqitn" path="res://Assets/Player Assets/Walk/EE_walking_-3.png" id="4_qhvau"]
+[ext_resource type="Texture2D" uid="uid://t35toe3idubl" path="res://Assets/Player Assets/Basic Attack/EE_Attack-4.png" id="4_y8loc"]
 [ext_resource type="Texture2D" uid="uid://fjloh0rfrlay" path="res://Assets/Player Assets/Walk/EE_walking_-4.png" id="5_8dhp3"]
+[ext_resource type="Texture2D" uid="uid://7r4w02j55dly" path="res://Assets/Player Assets/Basic Attack/EE_Attack-5.png" id="5_qyxe4"]
+[ext_resource type="Texture2D" uid="uid://dxy00gso6kr38" path="res://Assets/Player Assets/Basic Attack/EE_Attack-6.png" id="6_k6skm"]
 [ext_resource type="Texture2D" uid="uid://c5ym7er66h6a6" path="res://Assets/Player Assets/Walk/EE_walking_-5.png" id="6_x6pn5"]
 [ext_resource type="Texture2D" uid="uid://s7gr38fd0oop" path="res://Assets/Player Assets/Walk/EE_walking_-6.png" id="7_4b3vg"]
-[ext_resource type="Texture2D" uid="uid://bm5v6elpfbfd0" path="res://Assets/Player Assets/Basic Attack/EE_Attack-7.png" id="7_6lpsu"]
-[ext_resource type="Texture2D" uid="uid://b1n0pd5ytqap" path="res://Assets/Player Assets/Block/EE_Block-1.png" id="8_6lpsu"]
+[ext_resource type="Texture2D" uid="uid://csv6bo5vumn6m" path="res://Assets/Player Assets/Block/EE_Block-1.png" id="8_6lpsu"]
 [ext_resource type="Texture2D" uid="uid://cavgyhaerbjp" path="res://Assets/Player Assets/Walk/EE_walking_-7.png" id="8_jy3n2"]
 [ext_resource type="Texture2D" uid="uid://drfkgq3vcmwda" path="res://Assets/Player Assets/Walk/EE_walking_-8.png" id="9_fafbc"]
-[ext_resource type="Texture2D" uid="uid://osdi31gxp76j" path="res://Assets/Player Assets/Block/EE_Block-2.png" id="9_sjyai"]
+[ext_resource type="Texture2D" uid="uid://c0f0jqvaj0evq" path="res://Assets/Player Assets/Block/EE_Block-2.png" id="9_sjyai"]
 [ext_resource type="Texture2D" uid="uid://c5jo055r15str" path="res://Assets/Player Assets/Walk/EE_walking_-9.png" id="10_oswld"]
-[ext_resource type="Texture2D" uid="uid://d1cqvkeiss8dw" path="res://Assets/Player Assets/Block/EE_Block-3.png" id="10_saxs2"]
-[ext_resource type="Texture2D" uid="uid://c0cof3bswxqad" path="res://Assets/Player Assets/Block/EE_Block-4.png" id="11_vy8ul"]
-[ext_resource type="Texture2D" uid="uid://b6kvuednmrbec" path="res://Assets/Player Assets/Block/EE_Block-5.png" id="12_36686"]
-[ext_resource type="Texture2D" uid="uid://dn6vx41xjqqdl" path="res://Assets/Player Assets/Block/EE_Block-6.png" id="13_cg42t"]
+[ext_resource type="Texture2D" uid="uid://b14auj2qndfrh" path="res://Assets/Player Assets/Block/EE_Block-3.png" id="10_saxs2"]
+[ext_resource type="Texture2D" uid="uid://54q372ta3leq" path="res://Assets/Player Assets/Counter attack/Old Counter/EE_Counter-1.png" id="11_uhpfe"]
+[ext_resource type="Texture2D" uid="uid://bw1bkuga6mlvv" path="res://Assets/Player Assets/Block/EE_Block-4.png" id="11_vy8ul"]
+[ext_resource type="Texture2D" uid="uid://chlhbkoqxdn2q" path="res://Assets/Player Assets/Counter attack/Old Counter/EE_Counter-2.png" id="12_8olok"]
+[ext_resource type="Texture2D" uid="uid://dfue0m5trb32l" path="res://Assets/Player Assets/Counter attack/Old Counter/EE_Counter-3.png" id="13_uyh4u"]
 [ext_resource type="Texture2D" uid="uid://b6fe5xkpkofw7" path="res://Assets/Player Assets/Death/EE_Death-1.png" id="14_36686"]
-[ext_resource type="Texture2D" uid="uid://54q372ta3leq" path="res://Assets/Player Assets/Counter attack/EE_Counter-1.png" id="14_kvdj3"]
-[ext_resource type="Texture2D" uid="uid://chlhbkoqxdn2q" path="res://Assets/Player Assets/Counter attack/EE_Counter-2.png" id="15_5g6q5"]
+[ext_resource type="Texture2D" uid="uid://b2ytvwuq7406p" path="res://Assets/Player Assets/Counter attack/Old Counter/EE_Counter-4.png" id="14_s7884"]
 [ext_resource type="Texture2D" uid="uid://cesppmys4gxy1" path="res://Assets/Player Assets/Death/EE_Death-2.png" id="15_cg42t"]
+[ext_resource type="Texture2D" uid="uid://dlt8kjg13mfvl" path="res://Assets/Player Assets/Counter attack/Old Counter/EE_Counter-5.png" id="15_vldg8"]
 [ext_resource type="Texture2D" uid="uid://xccgo00fe6lg" path="res://Assets/Player Assets/Death/EE_Death-3.png" id="16_ietyy"]
-[ext_resource type="Texture2D" uid="uid://dfue0m5trb32l" path="res://Assets/Player Assets/Counter attack/EE_Counter-3.png" id="16_vwsun"]
+[ext_resource type="Texture2D" uid="uid://b6eyb4b3yfwcg" path="res://Assets/Player Assets/Counter attack/Old Counter/EE_Counter-6.png" id="16_re45h"]
 [ext_resource type="Texture2D" uid="uid://bd482i1qu6n30" path="res://Assets/Player Assets/Death/EE_Death-4.png" id="17_fhs7n"]
-[ext_resource type="Texture2D" uid="uid://b2ytvwuq7406p" path="res://Assets/Player Assets/Counter attack/EE_Counter-4.png" id="17_m4ffc"]
-[ext_resource type="Texture2D" uid="uid://dlt8kjg13mfvl" path="res://Assets/Player Assets/Counter attack/EE_Counter-5.png" id="18_imeh1"]
+[ext_resource type="Texture2D" uid="uid://6k20eyf4kjel" path="res://Assets/Player Assets/Counter attack/Old Counter/EE_Counter-7.png" id="17_njvy2"]
 [ext_resource type="Texture2D" uid="uid://dsmvgy22yul10" path="res://Assets/Player Assets/Death/EE_Death-5.png" id="18_ix35n"]
-[ext_resource type="Texture2D" uid="uid://b6eyb4b3yfwcg" path="res://Assets/Player Assets/Counter attack/EE_Counter-6.png" id="19_feob4"]
-[ext_resource type="Texture2D" uid="uid://6k20eyf4kjel" path="res://Assets/Player Assets/Counter attack/EE_Counter-7.png" id="20_o77up"]
-[ext_resource type="Texture2D" uid="uid://ccpxv11vlo78i" path="res://Assets/Player Assets/Counter attack/EE_Counter-8.png" id="21_fckkl"]
-[ext_resource type="Texture2D" uid="uid://36sryqpg4j8w" path="res://Assets/Player Assets/Counter attack/EE_Counter-9.png" id="22_66aaw"]
-[ext_resource type="Texture2D" uid="uid://cfjr1tausfs2d" path="res://Assets/Player Assets/Counter attack/EE_Counter-10.png" id="23_uee4n"]
-[ext_resource type="Texture2D" uid="uid://d107oi4w2iec2" path="res://Assets/Player Assets/Special Attack/EE_Special-1.png" id="32_m4ffc"]
-[ext_resource type="Texture2D" uid="uid://nqxmtuak5o8d" path="res://Assets/Player Assets/Special Attack/EE_Special-2.png" id="33_imeh1"]
-[ext_resource type="Texture2D" uid="uid://ceyr2encfd221" path="res://Assets/Player Assets/Special Attack/EE_Special-3.png" id="34_feob4"]
-[ext_resource type="Texture2D" uid="uid://sw4le3h2u5o5" path="res://Assets/Player Assets/Special Attack/EE_Special-4.png" id="35_o77up"]
-[ext_resource type="Texture2D" uid="uid://dgunod5miggwm" path="res://Assets/Player Assets/Special Attack/EE_Special-5.png" id="36_fckkl"]
-[ext_resource type="Texture2D" uid="uid://djq7iyow2ikes" path="res://Assets/Player Assets/Special Attack/EE_Special-6.png" id="37_66aaw"]
-[ext_resource type="Texture2D" uid="uid://bdjim4av5045o" path="res://Assets/Player Assets/Special Attack/EE_Special-7.png" id="38_uee4n"]
-[ext_resource type="Texture2D" uid="uid://c3s70o5i32sdx" path="res://Assets/Player Assets/Special Attack/EE_Special-8.png" id="39_y8loc"]
-[ext_resource type="Texture2D" uid="uid://5nyw4he0bc4g" path="res://Assets/Player Assets/Special Attack/EE_Special-9.png" id="40_qyxe4"]
+[ext_resource type="Texture2D" uid="uid://ccpxv11vlo78i" path="res://Assets/Player Assets/Counter attack/Old Counter/EE_Counter-8.png" id="18_qswm8"]
+[ext_resource type="Texture2D" uid="uid://36sryqpg4j8w" path="res://Assets/Player Assets/Counter attack/Old Counter/EE_Counter-9.png" id="19_l3sb0"]
+[ext_resource type="Texture2D" uid="uid://cfjr1tausfs2d" path="res://Assets/Player Assets/Counter attack/Old Counter/EE_Counter-10.png" id="20_umiva"]
+[ext_resource type="Texture2D" uid="uid://bm5v6elpfbfd0" path="res://Assets/Player Assets/Basic Attack/Old Attack/EE_Attack-7.png" id="26_4ecq7"]
+[ext_resource type="Texture2D" uid="uid://d107oi4w2iec2" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-1.png" id="36_8adtl"]
+[ext_resource type="Texture2D" uid="uid://nqxmtuak5o8d" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-2.png" id="37_ioqym"]
+[ext_resource type="Texture2D" uid="uid://ceyr2encfd221" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-3.png" id="38_tulc8"]
+[ext_resource type="Texture2D" uid="uid://sw4le3h2u5o5" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-4.png" id="39_6kpaq"]
+[ext_resource type="Texture2D" uid="uid://dgunod5miggwm" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-5.png" id="40_euloi"]
+[ext_resource type="Texture2D" uid="uid://djq7iyow2ikes" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-6.png" id="41_lrfpr"]
+[ext_resource type="Texture2D" uid="uid://bdjim4av5045o" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-7.png" id="42_qa2fb"]
+[ext_resource type="Texture2D" uid="uid://c3s70o5i32sdx" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-8.png" id="43_ta05g"]
+[ext_resource type="Texture2D" uid="uid://5nyw4he0bc4g" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-9.png" id="44_4ra2d"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("14_kvdj3")
+"texture": ExtResource("1_fckkl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_5g6q5")
+"texture": ExtResource("2_66aaw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_vwsun")
+"texture": ExtResource("3_uee4n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_m4ffc")
+"texture": ExtResource("4_y8loc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("18_imeh1")
+"texture": ExtResource("5_qyxe4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("22_66aaw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_uee4n")
+"texture": ExtResource("6_k6skm")
 }],
 "loop": false,
 "name": &"Attack",
@@ -81,12 +82,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("11_vy8ul")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_36686")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_cg42t")
 }],
 "loop": false,
 "name": &"Block",
@@ -94,34 +89,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("14_kvdj3")
+"texture": ExtResource("11_uhpfe")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_5g6q5")
+"texture": ExtResource("12_8olok")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_vwsun")
+"texture": ExtResource("13_uyh4u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_m4ffc")
+"texture": ExtResource("14_s7884")
 }, {
 "duration": 1.0,
-"texture": ExtResource("18_imeh1")
+"texture": ExtResource("15_vldg8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("19_feob4")
+"texture": ExtResource("16_re45h")
 }, {
 "duration": 1.0,
-"texture": ExtResource("20_o77up")
+"texture": ExtResource("17_njvy2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("21_fckkl")
+"texture": ExtResource("18_qswm8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("22_66aaw")
+"texture": ExtResource("19_l3sb0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("23_uee4n")
+"texture": ExtResource("20_umiva")
 }],
 "loop": false,
 "name": &"Counter Attack",
@@ -149,7 +144,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_6lpsu")
+"texture": ExtResource("26_4ecq7")
 }],
 "loop": false,
 "name": &"Hit",
@@ -202,31 +197,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("32_m4ffc")
+"texture": ExtResource("36_8adtl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("33_imeh1")
+"texture": ExtResource("37_ioqym")
 }, {
 "duration": 1.0,
-"texture": ExtResource("34_feob4")
+"texture": ExtResource("38_tulc8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("35_o77up")
+"texture": ExtResource("39_6kpaq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("36_fckkl")
+"texture": ExtResource("40_euloi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("37_66aaw")
+"texture": ExtResource("41_lrfpr")
 }, {
 "duration": 2.0,
-"texture": ExtResource("38_uee4n")
+"texture": ExtResource("42_qa2fb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("39_y8loc")
+"texture": ExtResource("43_ta05g")
 }, {
 "duration": 1.0,
-"texture": ExtResource("40_qyxe4")
+"texture": ExtResource("44_4ra2d")
 }],
 "loop": false,
 "name": &"Special Attack",
