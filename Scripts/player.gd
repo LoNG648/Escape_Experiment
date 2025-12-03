@@ -76,7 +76,7 @@ func blockedDamage():
 func _physics_process(delta: float) -> void:
 	#Get the input direction and handle the movement/deceleration
 	var direction := Input.get_axis("Move Left","Move Right")
-		
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -92,7 +92,6 @@ func _physics_process(delta: float) -> void:
 	#Animation code which only runs if no existing animation is running
 	if animation_timer.get_time_left() == 0:
 		#Resets sprite to its normal position (since other animations have a weird offset)
-		collector_sprite.position = Vector2(0, -42)
 		if is_on_floor():
 			if direction == 0:
 				#Plays idle animation if not moving
@@ -158,7 +157,6 @@ func _physics_process(delta: float) -> void:
 			if counterAttackStored == true:
 				#Determines counter attack type based off selected moveset and plays respective counter
 				if counterAttack == "baseCounter":
-					collector_sprite.position = Vector2(2, -42)
 					if passive != "basicEnemyPassive":
 						collector_sprite.play("Counter Attack")
 						animation_timer.start(2)
@@ -198,17 +196,16 @@ func _physics_process(delta: float) -> void:
 				#Determines basic attack off of moveset selected and plays respective basic attack
 				if basicAttack == "baseAttack":
 					#Does a basic attack if can't do a counter attack
-					collector_sprite.position = Vector2(2, -42)
 					if passive != "basicEnemyPassive":
 						collector_sprite.play("Attack")
-						animation_timer.start(0.7)
-						await get_tree().create_timer(0.5).timeout
+						animation_timer.start(0.6)
+						await get_tree().create_timer(0.3).timeout
 						collector_basic_attack_hurtbox_collision.disabled = false
 						await get_tree().create_timer(0.2).timeout
 					elif passive == "basicEnemyPassive":
 						collector_sprite.play("Attack", 2)
-						animation_timer.start(0.35)
-						await get_tree().create_timer(0.25).timeout
+						animation_timer.start(0.3)
+						await get_tree().create_timer(0.15).timeout
 						collector_basic_attack_hurtbox_collision.disabled = false
 						await get_tree().create_timer(0.1).timeout
 					collector_basic_attack_hurtbox_collision.disabled = true
@@ -237,7 +234,6 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("Block"):
 			#Determines block type from moveset and conducts proper selected block
 			if block == "baseBlock":
-				collector_sprite.position = Vector2(2, -42)
 				animation_timer.start(1)
 				collector_sprite.play("Block")
 				blocking = true
@@ -270,7 +266,6 @@ func _physics_process(delta: float) -> void:
 				tank_special_attack_hurtbox.damage = 35
 			#Determines which special is active and plays the proper special
 			if specialAttack == "baseSpecial":
-				collector_sprite.position = Vector2(2, -42)
 				collector_sprite.play("Special Attack")
 				animation_timer.start(1)
 				await get_tree().create_timer(0.6).timeout
@@ -349,10 +344,9 @@ func _physics_process(delta: float) -> void:
 func got_hit(damage: float):
 	if blocking == false:
 		var original = damage/health.maxHealth
-		var clamped = clamp(original,0.6,1.3)
-		collector_sprite.position = Vector2(14, -33)
+		var stun = remap(original,0,1,0.5,1.25)
 		animation_timer.paused = false
-		animation_timer.start(clamped)
+		animation_timer.start(stun)
 		if passive == "tankPassive":
 			pass
 		else:
@@ -371,7 +365,6 @@ func got_hit(damage: float):
 func death():
 	#Only triggers if health is less than or equal to 0 and you aren't already dead
 	if health.currentHealth <= 0 and dead == false:
-		collector_sprite.position = Vector2(-2, -42)
 		dead = true
 		scale.x = abs(scale.x) * -1
 		collector_sprite.play("Dying", 0.5)
