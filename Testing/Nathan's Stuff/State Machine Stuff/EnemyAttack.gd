@@ -12,11 +12,12 @@ var from_hit = false
 
 @onready var animation_player = $"../../Sprite"
 @onready var hurtbox_collision = $"../../Hurtbox/Hurtbox Collision"
-@onready var detection_box = $"../../FrontDetectionbox/Front Detectionbox Collision"
+@onready var detection_box = $"../../Detectionbox/Detectionbox Collision"
 #@onready var enemy = $"../.."
 
 func Enter():
-	attacking = true 
+	attacking = true
+	$"../EnemyHit".in_hit = false
 	#animating = true
 	#animation_player.play("windup1")
 	#await animation_player.animation_finished
@@ -44,18 +45,18 @@ func Physics_Update(delta):
 	
 	if attacking == true and animating == false:
 		animating = true
-		animation_player.play("windup1")
-		if animation_player.get_animation() == "windup1":
+		animation_player.play("1windup")
+		if animation_player.get_animation() == "1windup":
 			await animation_player.animation_finished
-			animation_player.play("attack1")
+			animation_player.play("1attack")
 			#hurtbox_collision.disabled = false
 			hurtbox_collision.set_deferred("disabled", false)
-			if animation_player.get_animation() == "attack1":
+			if animation_player.get_animation() == "1attack":
 				await animation_player.animation_finished
 				#hurtbox_collision.disabled = true
 				hurtbox_collision.set_deferred("disabled", true)
-				animation_player.play("holster1")
-				if animation_player.get_animation() == "holster1":
+				animation_player.play("1holster")
+				if animation_player.get_animation() == "1holster":
 					await animation_player.animation_finished
 		#await get_tree().create_timer(0.3).timeout
 		animating = false
@@ -64,7 +65,8 @@ func Physics_Update(delta):
 func _on_front_detectionbox_body_exited(body: Node2D) -> void:
 	if body is Player:
 		$"../EnemyFollow".in_range = false
-		hurtbox_collision.disabled = true
+		#hurtbox_collision.disabled = true
+		hurtbox_collision.set_deferred("disabled", true)
 		await animation_player.animation_finished
 		attacking = false
 		await get_tree().create_timer(0.35).timeout
@@ -81,3 +83,6 @@ func exit():
 
 func go_to_hit():
 	Transitioned.emit(self, "EnemyHit")
+
+func go_to_absorb():
+	Transitioned.emit(self, "EnemyAbsorb")

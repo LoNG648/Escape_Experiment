@@ -9,7 +9,7 @@ class_name EnemyHit
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var hit_ms = 0
-#var in_hit = false
+var in_hit = false
 
 func Enter():
 	#hitbox_collision.disabled = true

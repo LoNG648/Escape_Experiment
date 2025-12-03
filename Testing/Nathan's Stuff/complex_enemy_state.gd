@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Basic_Enemy2
+class_name Complex_Enemy2
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_left = false
@@ -35,16 +35,18 @@ func _physics_process(delta):
 	
 	
 	if velocity.x > 0:
-		$Sprite.flip_h = false
+		#$Sprite.flip_h = false
+		$Sprite.scale.x = abs($Sprite.scale.x) * signf(velocity.x)
 	elif velocity.x < 0:
-		$Sprite.flip_h = true
+		$Sprite.scale.x = abs($Sprite.scale.x) * signf(velocity.x)
+		#$Sprite.flip_h = true
 	if velocity.x != 0:
 		hurtbox_collision.position.x = abs(hurtbox_collision.position.x) * signf(velocity.x)
 		detection_box.position.x = abs(detection_box.position.x) * signf(velocity.x)
-		hitbox_collision.position.x = abs(hurtbox_collision.position.x) * signf(velocity.x)
+		#hitbox_collision.position.x = abs(hurtbox_collision.position.x) * signf(velocity.x)
 		wall_raycast.position.x = abs(wall_raycast.position.x) * signf(velocity.x)
 		floor_raycast.position.x = abs(floor_raycast.position.x) * signf(velocity.x)
-		collision.position.x = abs(collision.position.x) * signf(velocity.x)
+		#collision.position.x = abs(collision.position.x) * signf(velocity.x)
 
 
 func got_hit(_damage: float):
