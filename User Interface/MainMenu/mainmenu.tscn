@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dipu344wyyx21"]
+[gd_scene load_steps=8 format=3 uid="uid://c071vduxkcrkp"]
 
 [ext_resource type="Texture2D" uid="uid://ddhd81cb6nhdk" path="res://User Interface/MainMenu/Day/1.png" id="1_3tv8c"]
 [ext_resource type="Script" uid="uid://y3qu4hp6ytir" path="res://User Interface/MainMenu/mainmenu.gd" id="1_rrxur"]
@@ -23,7 +23,7 @@ script = ExtResource("2_rwt2c")
 [node name="Dev Node" type="Node" parent="Globals"]
 script = ExtResource("2_eswma")
 DeveloperMode = true
-DeveloperName = "Ryan"
+DeveloperName = "Jack"
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1

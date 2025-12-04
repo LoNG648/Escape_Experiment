@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://36sryqpg4j8w"
-path="res://.godot/imported/EE_Counter-9.png-97d92bbafff4567e2a248e5c963fc7c3.ctex"
+uid="uid://ccpxv11vlo78i"
+path="res://.godot/imported/EE_Counter-8.png-fcdf6d5c62e3ef96491422f5f54a4300.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player Assets/Counter attack/Old Counter/EE_Counter-9.png"
-dest_files=["res://.godot/imported/EE_Counter-9.png-97d92bbafff4567e2a248e5c963fc7c3.ctex"]
+source_file="res://Assets/Player Assets/Counter attack/EE_Counter-8.png"
+dest_files=["res://.godot/imported/EE_Counter-8.png-fcdf6d5c62e3ef96491422f5f54a4300.ctex"]
 
 [params]
 

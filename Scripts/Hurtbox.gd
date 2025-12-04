@@ -29,12 +29,11 @@ func _on_area_entered(area: Area2D) -> void:
 		else:
 			body.get_node("Health").takeDamage(body, damage, hurtbox, false)
 		
-		if hurtbox.get_parent().name == "Player" and hurtbox.name == "Collector Special Attack Hurtbox":
+		if hurtbox.get_parent().name == "Player":
 			if body not in hurtbox.get_parent().absorbed:
 				if body is Tank_Boss and body.get_node("Health").currentHealth <= 0:
 					hurtbox.get_parent()._on_tank_boss_defeated()
-				elif body is Basic_Enemy2 and body.get_node("Health").currentHealth <= 0:
+				elif body is Basic_Enemy and body.get_node("Health").currentHealth <= 0:
 					hurtbox.get_parent()._on_basic_enemy_defeated()
-					body.get_node("State Machine")._on_child_transition(body.get_node("State Machine/EnemyAbsorb"), "EnemyDead")
 				elif body is Complex_Enemy and body.get_node("Health").currentHealth <= 0:
 					hurtbox.get_parent()._on_complex_enemy_defeated()
