@@ -1,8 +1,8 @@
 class_name Complex_Enemy
 extends CharacterBody2D
 
-var speed = -125.0
-var held_speed = -125
+var speed = -110.0
+var held_speed = -110
 var flipping_speed = 0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dead: bool = false
@@ -188,9 +188,9 @@ func choose(array):
 func _on_direction_timer_timeout() -> void:
 	if !is_chasing:
 		directions = choose([Vector2.RIGHT, Vector2.LEFT])
-		if facing_left == true and directions == Vector2.RIGHT:
+		if facing_left == true and directions == Vector2.RIGHT and attacking == false and windup == false and holster == false:
 			flip()
-		elif facing_left == false and directions == Vector2.LEFT:
+		elif facing_left == false and directions == Vector2.LEFT and attacking == false and windup == false and holster == false:
 			flip()
 
 

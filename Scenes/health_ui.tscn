@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dk15s7tqgmiid"]
 
-[ext_resource type="PackedScene" uid="uid://dmu7xufl48uyl" path="res://Heart.tscn" id="1_fwugr"]
+[ext_resource type="PackedScene" uid="uid://dmu7xufl48uyl" path="res://Scenes/Heart.tscn" id="1_fwugr"]
 
 [node name="HealthUI" type="CanvasLayer"]
 
