@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://vaeq3uf103py"]
+[gd_scene load_steps=38 format=3 uid="uid://cooxth6rfditg"]
 
 [ext_resource type="Script" uid="uid://ba8iqvap47p8y" path="res://Scripts/player.gd" id="1_onrkg"]
 [ext_resource type="SpriteFrames" uid="uid://ddcusyusn8m1a" path="res://Assets/Player Assets/PlayerAnims.tres" id="2_6t5aa"]
@@ -27,7 +27,6 @@
 [ext_resource type="Texture2D" uid="uid://csjgm3tyr8ckq" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-5.png" id="26_avx33"]
 [ext_resource type="Texture2D" uid="uid://dxtlka3h8e8av" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-6.png" id="27_rxg2u"]
 [ext_resource type="Texture2D" uid="uid://cwfc2ymddtpdy" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-7.png" id="28_xixlo"]
-[ext_resource type="Texture2D" uid="uid://dtw1cqd6qkgkx" path="res://Scenes/Light.tres" id="29_83xs0"]
 [ext_resource type="PackedScene" uid="uid://dvsfqtas4n5iq" path="res://Scenes/pause_menu.tscn" id="29_kih0c"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bfbt0"]
@@ -149,7 +148,7 @@ size = Vector2(16, 62.25)
 size = Vector2(12, 62.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkybt"]
-size = Vector2(32, 58)
+size = Vector2(32, 69)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x63xi"]
 size = Vector2(18, 29)
@@ -173,7 +172,7 @@ script = ExtResource("1_onrkg")
 position = Vector2(2, -42)
 scale = Vector2(1, 1.3)
 sprite_frames = ExtResource("2_6t5aa")
-animation = &"Special Attack"
+animation = &"Counter Attack"
 
 [node name="TankSprite" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -181,7 +180,7 @@ position = Vector2(-15.5446, -28.0926)
 rotation = 3.14159
 scale = Vector2(1.11726, -0.980859)
 sprite_frames = SubResource("SpriteFrames_bfbt0")
-animation = &"Attack"
+animation = &"Counter Attack"
 
 [node name="Shockwave Sprite" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -194,6 +193,7 @@ frame = 6
 frame_progress = 1.0
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-0.5, -32)
 shape = SubResource("RectangleShape2D_onrkg")
 
@@ -202,6 +202,7 @@ position = Vector2(0, -64)
 zoom = Vector2(4, 4)
 
 [node name="Hitbox" parent="." instance=ExtResource("3_fkybt")]
+visible = false
 collision_layer = 2
 
 [node name="Hitbox Collision" type="CollisionShape2D" parent="Hitbox"]
@@ -211,14 +212,15 @@ shape = SubResource("RectangleShape2D_x3wgy")
 [node name="Collector Basic Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
 position = Vector2(0, -64)
 collision_mask = 4
-damage = 25.0
+damage = 15.0
 
 [node name="Collector Basic Attack Hurtbox Collision" type="CollisionShape2D" parent="Collector Basic Attack Hurtbox"]
-position = Vector2(19, 32)
+position = Vector2(19, 26.5)
 shape = SubResource("RectangleShape2D_fkybt")
 disabled = true
 
 [node name="Tank Basic Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
+visible = false
 scale = Vector2(2, 2)
 collision_mask = 4
 damage = 30.0
@@ -234,6 +236,7 @@ maxHealth = 100.0
 resistance = 25.0
 
 [node name="Collector Counter Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
+visible = false
 collision_mask = 4
 damage = 50.0
 
@@ -243,6 +246,7 @@ shape = SubResource("RectangleShape2D_3smsa")
 disabled = true
 
 [node name="Tank Counter Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
+visible = false
 collision_mask = 4
 damage = 100.0
 
@@ -262,6 +266,7 @@ shape = SubResource("RectangleShape2D_fkybt")
 disabled = true
 
 [node name="Tank Special Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
+visible = false
 collision_mask = 12
 damage = 35.0
 
@@ -297,11 +302,3 @@ offset_left = 9.0
 offset_top = 18.0
 offset_right = 9.0
 offset_bottom = 18.0
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(0, -30)
-scale = Vector2(1.5, 1.5)
-color = Color(0.663439, 0.668751, 0.504524, 1)
-shadow_enabled = true
-texture = ExtResource("29_83xs0")
-height = 30.0

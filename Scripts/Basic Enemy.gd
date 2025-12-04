@@ -189,6 +189,8 @@ func got_hit(_damage: float):
 	attacking = false
 	speed = 0
 	sprite.play("hit")
+	await sprite.animation_finished
+	hitbox_collision.disabled = false
 #need a hitbox that is separate from the collisionbox so that i can disable it while playing the hit animation
 #also need to ask Ryan what collision layer the attacks are on for said hitbox
 
