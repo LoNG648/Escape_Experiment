@@ -8,6 +8,7 @@ class_name EnemyAbsorb
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func Enter():
+	$"../../Label2".show()
 	animation_player.play("absorb")
 	await animation_player.animation_finished
 	animation_player.play("absorb_static")
@@ -15,4 +16,4 @@ func Enter():
 	Transitioned.emit(self, "EnemyDead")
 
 func exit():
-	pass
+	$"../../Label2".hide()
