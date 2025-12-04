@@ -8,6 +8,8 @@ var in_range = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var hurtbox_collision = $"../../Hurtbox/Hurtbox Collision"
+@onready var floor_raycast: RayCast2D = $"../../Floor Raycast"
+@onready var wall_raycast: RayCast2D = $"../../Wall Raycast"
 
 #@onready var player = get_tree().get_first_node_in_group("player")
 
@@ -26,6 +28,14 @@ func Physics_Update(delta):
 	
 	if in_range == true:
 		Transitioned.emit(self, "EnemyAttack")
+	
+	#if !floor_raycast.is_colliding() && enemy.is_on_floor():
+		#enemy.velocity.x = 0
+		#$"../../Sprite".play("idle")
+	
+	#if wall_raycast.is_colliding() && enemy.is_on_floor():
+		#enemy.velocity.x = 0
+		#$"../../Sprite".play("idle")
 	
 	#if direction.length() < 20:
 		#enemy.velocity = direction.normalized() * move_speed

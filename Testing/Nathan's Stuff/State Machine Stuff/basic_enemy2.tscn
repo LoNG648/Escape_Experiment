@@ -494,13 +494,13 @@ shape = SubResource("CapsuleShape2D_3pxrr")
 [node name="Floor Raycast" type="RayCast2D" parent="."]
 light_mask = 16
 visibility_layer = 16
-position = Vector2(14, 9)
-target_position = Vector2(0, 30)
+position = Vector2(16, 9)
+target_position = Vector2(0, 27)
 
 [node name="Wall Raycast" type="RayCast2D" parent="."]
 light_mask = 0
 visibility_layer = 16
-position = Vector2(12, 18)
+position = Vector2(12, 16)
 target_position = Vector2(13, 0)
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_cqefd")]

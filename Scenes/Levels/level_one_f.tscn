@@ -996,9 +996,6 @@ position = Vector2(579, -353)
 [node name="Complex Enemy" parent="Comp Enemys" instance=ExtResource("8_mu652")]
 position = Vector2(391, 167)
 
-[node name="Complex Enemy2" parent="Comp Enemys" instance=ExtResource("8_mu652")]
-position = Vector2(1255, 51)
-
 [node name="Complex Enemy3" parent="Comp Enemys" instance=ExtResource("8_mu652")]
 position = Vector2(1280, 149)
 
