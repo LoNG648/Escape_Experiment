@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cooxth6rfditg"]
+[gd_scene load_steps=38 format=3 uid="uid://cooxth6rfditg"]
 
 [ext_resource type="Script" uid="uid://ba8iqvap47p8y" path="res://Scripts/player.gd" id="1_onrkg"]
 [ext_resource type="SpriteFrames" uid="uid://ddcusyusn8m1a" path="res://Assets/Player Assets/PlayerAnims.tres" id="2_6t5aa"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b3sl0o37x1ehq" path="res://Assets/Enemy Assets/Boss Assets/Boss Block/Boss_Block-1.png" id="7_70hv0"]
 [ext_resource type="Texture2D" uid="uid://bwj7wbq8r1w6n" path="res://Assets/Enemy Assets/Boss Assets/Boss Block/Boss_Block-2.png" id="8_8flut"]
 [ext_resource type="Texture2D" uid="uid://t2alrm087tvo" path="res://Assets/Enemy Assets/Boss Assets/Boss Block/Boss_Block-3.png" id="9_u7x0b"]
+[ext_resource type="Texture2D" uid="uid://knbqu3le3jiw" path="res://Assets/Enemy Assets/Boss Assets/Boss Walk/Boss_Idle-1.png" id="10_utwlt"]
 [ext_resource type="Texture2D" uid="uid://bd2k846kuadpr" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Attack/Boss_Special-3.png" id="11_kih0c"]
 [ext_resource type="Texture2D" uid="uid://c1bbl51bbmge5" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Attack/Boss_Special-1.png" id="12_lyrkg"]
 [ext_resource type="Texture2D" uid="uid://dcf23fbm7tmkw" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Attack/Boss_Special-2.png" id="13_c43xd"]
@@ -63,7 +64,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("12_lyrkg")
+"texture": ExtResource("10_utwlt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xixlo")
 }, {
 "duration": 1.0,
 "texture": ExtResource("13_c43xd")
@@ -73,7 +77,15 @@ animations = [{
 }],
 "loop": false,
 "name": &"Counter Attack",
-"speed": 2.0
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_utwlt")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -135,16 +147,16 @@ size = Vector2(16, 62.25)
 size = Vector2(12, 62.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkybt"]
-size = Vector2(32, 69)
+size = Vector2(36, 69)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x63xi"]
-size = Vector2(18, 29)
+size = Vector2(30, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3smsa"]
-size = Vector2(42, 72)
+size = Vector2(59, 72)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5v66d"]
-size = Vector2(80, 68)
+size = Vector2(96, 82)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfbt0"]
 size = Vector2(180, 28)
@@ -159,15 +171,15 @@ script = ExtResource("1_onrkg")
 position = Vector2(2, -42)
 scale = Vector2(1, 1.3)
 sprite_frames = ExtResource("2_6t5aa")
-animation = &"Block"
+animation = &"Idle"
 
 [node name="TankSprite" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(-15.5446, -28.0926)
+position = Vector2(2, -32)
 rotation = 3.14159
-scale = Vector2(1.11726, -0.980859)
+scale = Vector2(1.11726, -1.12674)
 sprite_frames = SubResource("SpriteFrames_bfbt0")
-animation = &"Counter Attack"
+animation = &"Idle"
 
 [node name="Shockwave Sprite" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -180,7 +192,6 @@ frame = 6
 frame_progress = 1.0
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-0.5, -32)
 shape = SubResource("RectangleShape2D_onrkg")
 
@@ -189,7 +200,6 @@ position = Vector2(0, -64)
 zoom = Vector2(4, 4)
 
 [node name="Hitbox" parent="." instance=ExtResource("3_fkybt")]
-visible = false
 collision_layer = 2
 
 [node name="Hitbox Collision" type="CollisionShape2D" parent="Hitbox"]
@@ -207,13 +217,12 @@ shape = SubResource("RectangleShape2D_fkybt")
 disabled = true
 
 [node name="Tank Basic Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
-visible = false
 scale = Vector2(2, 2)
 collision_mask = 4
 damage = 30.0
 
 [node name="Tank Basic Attack Hurtbox Collision" type="CollisionShape2D" parent="Tank Basic Attack Hurtbox"]
-position = Vector2(5, -14.5)
+position = Vector2(7, -15)
 shape = SubResource("RectangleShape2D_x63xi")
 disabled = true
 
@@ -223,22 +232,20 @@ maxHealth = 100.0
 resistance = 25.0
 
 [node name="Collector Counter Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
-visible = false
 collision_mask = 4
 damage = 50.0
 
 [node name="Collector Counter Attack Hurtbox Collision" type="CollisionShape2D" parent="Collector Counter Attack Hurtbox"]
-position = Vector2(21, -32)
+position = Vector2(24.5, -36)
 shape = SubResource("RectangleShape2D_3smsa")
 disabled = true
 
 [node name="Tank Counter Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
-visible = false
 collision_mask = 4
 damage = 100.0
 
 [node name="Tank Counter Attack Hurtbox Collision" type="CollisionShape2D" parent="Tank Counter Attack Hurtbox"]
-position = Vector2(38, -34)
+position = Vector2(10, -41)
 shape = SubResource("RectangleShape2D_5v66d")
 disabled = true
 
@@ -248,12 +255,11 @@ collision_mask = 4
 damage = 40.0
 
 [node name="Collector Special Attack Hurtbox Collision" type="CollisionShape2D" parent="Collector Special Attack Hurtbox"]
-position = Vector2(20, 29)
+position = Vector2(14, 29)
 shape = SubResource("RectangleShape2D_fkybt")
 disabled = true
 
 [node name="Tank Special Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
-visible = false
 collision_mask = 12
 damage = 35.0
 

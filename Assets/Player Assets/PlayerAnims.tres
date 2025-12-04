@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=40 format=3 uid="uid://ddcusyusn8m1a"]
+[gd_resource type="SpriteFrames" load_steps=39 format=3 uid="uid://ddcusyusn8m1a"]
 
 [ext_resource type="Texture2D" uid="uid://j747i2arxfya" path="res://Assets/Player Assets/Basic Attack/EE_Attack-1.png" id="1_fckkl"]
 [ext_resource type="Texture2D" uid="uid://dbl0wdvcfm64u" path="res://Assets/Player Assets/Basic Attack/EE_Attack-2.png" id="2_66aaw"]
@@ -30,15 +30,14 @@
 [ext_resource type="Texture2D" uid="uid://dnn7f6k7eqj7c" path="res://Assets/Player Assets/Jump/Character_Jump-1.png" id="20_vwsun"]
 [ext_resource type="Texture2D" uid="uid://cjp33htnbhw5t" path="res://Assets/Player Assets/Jump/Character_Jump-2.png" id="21_m4ffc"]
 [ext_resource type="Texture2D" uid="uid://8td3tmkper5j" path="res://Assets/Player Assets/Jump/Character_Jump-3.png" id="22_imeh1"]
-[ext_resource type="Texture2D" uid="uid://d107oi4w2iec2" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-1.png" id="36_8adtl"]
-[ext_resource type="Texture2D" uid="uid://nqxmtuak5o8d" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-2.png" id="37_ioqym"]
-[ext_resource type="Texture2D" uid="uid://ceyr2encfd221" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-3.png" id="38_tulc8"]
-[ext_resource type="Texture2D" uid="uid://sw4le3h2u5o5" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-4.png" id="39_6kpaq"]
-[ext_resource type="Texture2D" uid="uid://dgunod5miggwm" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-5.png" id="40_euloi"]
-[ext_resource type="Texture2D" uid="uid://djq7iyow2ikes" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-6.png" id="41_lrfpr"]
-[ext_resource type="Texture2D" uid="uid://bdjim4av5045o" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-7.png" id="42_qa2fb"]
-[ext_resource type="Texture2D" uid="uid://c3s70o5i32sdx" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-8.png" id="43_ta05g"]
-[ext_resource type="Texture2D" uid="uid://5nyw4he0bc4g" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-9.png" id="44_4ra2d"]
+[ext_resource type="Texture2D" uid="uid://bslqqirvkwcqy" path="res://Assets/Player Assets/Special Attack/EE_Special-1.png" id="31_5g6q5"]
+[ext_resource type="Texture2D" uid="uid://bat71fqauf066" path="res://Assets/Player Assets/Special Attack/EE_Special-2.png" id="32_vwsun"]
+[ext_resource type="Texture2D" uid="uid://dwi6lg65y5ye3" path="res://Assets/Player Assets/Special Attack/EE_Special-3.png" id="33_m4ffc"]
+[ext_resource type="Texture2D" uid="uid://brr4n4ggwwy7n" path="res://Assets/Player Assets/Special Attack/EE_Special-4.png" id="34_imeh1"]
+[ext_resource type="Texture2D" uid="uid://c4jjak05rji0k" path="res://Assets/Player Assets/Special Attack/EE_Special-5.png" id="35_feob4"]
+[ext_resource type="Texture2D" uid="uid://bdjlnkuvhfxyi" path="res://Assets/Player Assets/Special Attack/EE_Special-6.png" id="36_o77up"]
+[ext_resource type="Texture2D" uid="uid://btnsvbvqmhaj4" path="res://Assets/Player Assets/Special Attack/EE_Special-7.png" id="37_fckkl"]
+[ext_resource type="Texture2D" uid="uid://clfo0uls7vxwb" path="res://Assets/Player Assets/Special Attack/EE_Special-8.png" id="38_66aaw"]
 
 [resource]
 animations = [{
@@ -153,7 +152,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Jump",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -186,31 +185,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("36_8adtl")
+"texture": ExtResource("31_5g6q5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("37_ioqym")
+"texture": ExtResource("32_vwsun")
 }, {
 "duration": 1.0,
-"texture": ExtResource("38_tulc8")
+"texture": ExtResource("33_m4ffc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("39_6kpaq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("40_euloi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("41_lrfpr")
+"texture": ExtResource("34_imeh1")
 }, {
 "duration": 2.0,
-"texture": ExtResource("42_qa2fb")
+"texture": ExtResource("35_feob4")
+}, {
+"duration": 2.0,
+"texture": ExtResource("36_o77up")
 }, {
 "duration": 1.0,
-"texture": ExtResource("43_ta05g")
+"texture": ExtResource("37_fckkl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("44_4ra2d")
+"texture": ExtResource("38_66aaw")
 }],
 "loop": false,
 "name": &"Special Attack",
