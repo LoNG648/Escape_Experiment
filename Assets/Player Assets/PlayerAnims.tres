@@ -1,7 +1,6 @@
-[gd_resource type="SpriteFrames" load_steps=38 format=3 uid="uid://ddcusyusn8m1a"]
+[gd_resource type="SpriteFrames" load_steps=40 format=3 uid="uid://ddcusyusn8m1a"]
 
 [ext_resource type="Texture2D" uid="uid://j747i2arxfya" path="res://Assets/Player Assets/Basic Attack/EE_Attack-1.png" id="1_fckkl"]
-[ext_resource type="Texture2D" uid="uid://biqtne7mj8i0v" path="res://Assets/Player Assets/Walk/EE_walking_-1.png" id="2_3om6v"]
 [ext_resource type="Texture2D" uid="uid://dbl0wdvcfm64u" path="res://Assets/Player Assets/Basic Attack/EE_Attack-2.png" id="2_66aaw"]
 [ext_resource type="Texture2D" uid="uid://dwrfvovhnoitl" path="res://Assets/Player Assets/Walk/EE_walking_-2.png" id="3_nx6in"]
 [ext_resource type="Texture2D" uid="uid://bqg6q1a6n5mo6" path="res://Assets/Player Assets/Basic Attack/EE_Attack-3.png" id="3_uee4n"]
@@ -28,6 +27,9 @@
 [ext_resource type="Texture2D" uid="uid://xccgo00fe6lg" path="res://Assets/Player Assets/Death/EE_Death-3.png" id="16_ietyy"]
 [ext_resource type="Texture2D" uid="uid://bd482i1qu6n30" path="res://Assets/Player Assets/Death/EE_Death-4.png" id="17_fhs7n"]
 [ext_resource type="Texture2D" uid="uid://dsmvgy22yul10" path="res://Assets/Player Assets/Death/EE_Death-5.png" id="18_ix35n"]
+[ext_resource type="Texture2D" uid="uid://dnn7f6k7eqj7c" path="res://Assets/Player Assets/Jump/Character_Jump-1.png" id="20_vwsun"]
+[ext_resource type="Texture2D" uid="uid://cjp33htnbhw5t" path="res://Assets/Player Assets/Jump/Character_Jump-2.png" id="21_m4ffc"]
+[ext_resource type="Texture2D" uid="uid://8td3tmkper5j" path="res://Assets/Player Assets/Jump/Character_Jump-3.png" id="22_imeh1"]
 [ext_resource type="Texture2D" uid="uid://d107oi4w2iec2" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-1.png" id="36_8adtl"]
 [ext_resource type="Texture2D" uid="uid://nqxmtuak5o8d" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-2.png" id="37_ioqym"]
 [ext_resource type="Texture2D" uid="uid://ceyr2encfd221" path="res://Assets/Player Assets/Special Attack/Old Special/EE_Special-3.png" id="38_tulc8"]
@@ -150,7 +152,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_3om6v")
+"texture": ExtResource("20_vwsun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_m4ffc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_imeh1")
 }],
 "loop": false,
 "name": &"Jump",

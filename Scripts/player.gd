@@ -366,7 +366,7 @@ func death():
 	#Only triggers if health is less than or equal to 0 and you aren't already dead
 	if health.currentHealth <= 0 and dead == false:
 		dead = true
-		scale.x = abs(scale.x) * -1
+		collector_sprite.flip_h = true
 		collector_sprite.play("Dying", 0.5)
 		Engine.time_scale = 0.5
 		for i in range(hearts_list.size()):
