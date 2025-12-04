@@ -24,6 +24,7 @@ InteractionManager="*res://Testing/Nathan's Stuff/Interaction Stuff/interaction_
 
 window/size/viewport_width=1080
 window/size/viewport_height=660
+window/size/mode=3
 
 [global_group]
 

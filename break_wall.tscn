@@ -36,5 +36,4 @@ shape = SubResource("RectangleShape2D_4hdir")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_3mpmu")
 maxHealth = 10.0
-resistance = 0.0
 metadata/_custom_type_script = "uid://ccjfqwc5vm62o"
