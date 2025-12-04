@@ -34,6 +34,8 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	
+	
+	
 	if velocity.x > 0:
 		$Sprite.flip_h = false
 	elif velocity.x < 0:

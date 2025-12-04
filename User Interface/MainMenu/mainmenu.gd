@@ -14,7 +14,7 @@ func _ready() -> void:
 		Globals.set("DeveloperMode", true)
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Levels/Level One.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Levels/level_one_f.tscn")
 
 func _on_help_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/helpscreen.tscn")
