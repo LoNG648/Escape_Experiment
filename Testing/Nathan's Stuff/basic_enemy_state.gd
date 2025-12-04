@@ -41,7 +41,7 @@ func _physics_process(delta):
 	if velocity.x != 0:
 		hurtbox_collision.position.x = abs(hurtbox_collision.position.x) * signf(velocity.x)
 		detection_box.position.x = abs(detection_box.position.x) * signf(velocity.x)
-		hitbox_collision.position.x = abs(hurtbox_collision.position.x) * signf(velocity.x)
+		hitbox_collision.position.x = abs(hitbox_collision.position.x) * signf(velocity.x)
 		wall_raycast.position.x = abs(wall_raycast.position.x) * signf(velocity.x)
 		floor_raycast.position.x = abs(floor_raycast.position.x) * signf(velocity.x)
 		collision.position.x = abs(collision.position.x) * signf(velocity.x)

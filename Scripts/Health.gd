@@ -17,7 +17,10 @@ func _ready() -> void:
 
 func heal(healAmount: float) -> void:
 	currentHealth += healAmount
-	print("Healed for ", healAmount, " amount")
+	currentHealth = clamp(currentHealth, 0, maxHealth)
+	if Globals.DeveloperMode == true:
+		print("Healed for ", healAmount, " amount")
+		print(currentHealth)
 
 #Function to handle taking damage, which is only triggered when a character enters a hurtbox
 func takeDamage(body: Node2D, damage: float, hurtbox, lifesteal: bool) -> void:

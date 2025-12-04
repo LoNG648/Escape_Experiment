@@ -16,4 +16,4 @@ func Enter():
 	Transitioned.emit(self, "EnemyDead")
 
 func exit():
-	$"../../Label2".hide()
+	pass

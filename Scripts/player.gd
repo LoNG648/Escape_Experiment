@@ -60,12 +60,12 @@ func blockedDamage():
 		print("Nope!")
 	#Resets counter attack timer if there was already an opportunity to counter attack
 	if counterAttackStored == true:
-		counter_attack_timer.start()
+		counter_attack_timer.start(5)
 		return
 	#Sets counter attack to true and starts the counter attack timer if there was not already an opportunity to counter attack
 	elif counterAttackStored == false:
 		counterAttackStored = true
-		counter_attack_timer.start()
+		counter_attack_timer.start(5)
 	await counter_attack_timer.timeout
 	#Developer print to know that the counter attack is lost
 	if Globals.DeveloperMode == true:
@@ -81,13 +81,13 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-	#Disables code hereafter if dead to not allow player movement and attacks
-	if dead:
-		return
-	
 	#Handles updates to player Health in real time for the UI
 	for i in range(hearts_list.size()):
 		hearts_list[i].visible = i < (health.currentHealth/10)
+	
+	#Disables code hereafter if dead to not allow player movement and attacks
+	if dead:
+		return
 	
 	#Animation code which only runs if no existing animation is running
 	if animation_timer.get_time_left() == 0:
@@ -149,86 +149,44 @@ func _physics_process(delta: float) -> void:
 			scale.y *= 2
 		'''
 		
-		#Attack and Counterattack Mechanic
+		#Attack Mechanic
 		if Input.is_action_just_pressed("Basic Attack"):
-			if Globals.DeveloperMode == true:
-				print(counterAttackStored)
-			#Promotes the attack to a counter attack if possible
-			if counterAttackStored == true:
-				#Determines counter attack type based off selected moveset and plays respective counter
-				if counterAttack == "baseCounter":
-					if passive != "basicEnemyPassive":
-						collector_sprite.play("Counter Attack")
-						animation_timer.start(2)
-						await get_tree().create_timer(1.4).timeout
-						collector_counter_attack_hurtbox_collision.disabled = false
-						await get_tree().create_timer(0.4).timeout
-					elif passive == "basicEnemyPassive":
-						collector_sprite.play("Counter Attack",2)
-						animation_timer.start(1)
-						await get_tree().create_timer(0.7).timeout
-						collector_counter_attack_hurtbox_collision.disabled = false
-						await get_tree().create_timer(0.2).timeout
-					collector_counter_attack_hurtbox_collision.disabled = true
-					await animation_timer.timeout
-					counterAttackStored = false
-				elif counterAttack == "tankCounter":
-					collector_sprite.visible = false
-					tank_sprite.visible = true
-					if passive != "basicEnemyPassive":
-						tank_sprite.play("Counter Attack")
-						animation_timer.start(1.25)
-						await get_tree().create_timer(1).timeout
-						tank_counter_attack_hurtbox_collision.disabled = false
-						await get_tree().create_timer(0.25).timeout
-					elif passive == "basicEnemyPassive":
-						tank_sprite.play("Counter Attack", 2)
-						animation_timer.start(0.625)
-						await get_tree().create_timer(0.5).timeout
-						tank_counter_attack_hurtbox_collision.disabled = false
-						await get_tree().create_timer(0.125).timeout
-					tank_counter_attack_hurtbox_collision.disabled = true
-					await animation_timer.timeout
-					counterAttackStored = false
-					collector_sprite.visible = true
-					tank_sprite.visible = false
-			else:
-				#Determines basic attack off of moveset selected and plays respective basic attack
-				if basicAttack == "baseAttack":
-					#Does a basic attack if can't do a counter attack
-					if passive != "basicEnemyPassive":
-						collector_sprite.play("Attack")
-						animation_timer.start(0.6)
-						await get_tree().create_timer(0.3).timeout
-						collector_basic_attack_hurtbox_collision.disabled = false
-						await get_tree().create_timer(0.2).timeout
-					elif passive == "basicEnemyPassive":
-						collector_sprite.play("Attack", 2)
-						animation_timer.start(0.3)
-						await get_tree().create_timer(0.15).timeout
-						collector_basic_attack_hurtbox_collision.disabled = false
-						await get_tree().create_timer(0.1).timeout
-					collector_basic_attack_hurtbox_collision.disabled = true
-					await animation_timer.timeout #Basic Attack Delay
-				elif basicAttack == "tankAttack":
-					collector_sprite.visible = false
-					tank_sprite.visible = true
-					if passive != "basicEnemyPassive":
-						tank_sprite.play("Attack")
-						animation_timer.start(2)
-						await get_tree().create_timer(1.5).timeout
-						tank_basic_attack_hurtbox_collision.disabled = false
-						await get_tree().create_timer(0.5).timeout
-					elif passive == "basicEnemyPassive":
-						tank_sprite.play("Attack", 2)
-						animation_timer.start(1)
-						await get_tree().create_timer(0.75).timeout
-						tank_basic_attack_hurtbox_collision.disabled = false
-						await get_tree().create_timer(0.25).timeout
-					tank_basic_attack_hurtbox_collision.disabled = true
-					await animation_timer.timeout
-					collector_sprite.visible = true
-					tank_sprite.visible = false
+			#Determines basic attack off of moveset selected and plays respective basic attack
+			if basicAttack == "baseAttack":
+				#Does a basic attack if can't do a counter attack
+				if passive != "basicEnemyPassive":
+					collector_sprite.play("Attack")
+					animation_timer.start(0.6)
+					await get_tree().create_timer(0.3).timeout
+					collector_basic_attack_hurtbox_collision.disabled = false
+					await get_tree().create_timer(0.2).timeout
+				elif passive == "basicEnemyPassive":
+					collector_sprite.play("Attack", 2)
+					animation_timer.start(0.3)
+					await get_tree().create_timer(0.15).timeout
+					collector_basic_attack_hurtbox_collision.disabled = false
+					await get_tree().create_timer(0.1).timeout
+				collector_basic_attack_hurtbox_collision.disabled = true
+				await animation_timer.timeout #Basic Attack Delay
+			elif basicAttack == "tankAttack":
+				collector_sprite.visible = false
+				tank_sprite.visible = true
+				if passive != "basicEnemyPassive":
+					tank_sprite.play("Attack")
+					animation_timer.start(2)
+					await get_tree().create_timer(1.5).timeout
+					tank_basic_attack_hurtbox_collision.disabled = false
+					await get_tree().create_timer(0.5).timeout
+				elif passive == "basicEnemyPassive":
+					tank_sprite.play("Attack", 2)
+					animation_timer.start(1)
+					await get_tree().create_timer(0.75).timeout
+					tank_basic_attack_hurtbox_collision.disabled = false
+					await get_tree().create_timer(0.25).timeout
+				tank_basic_attack_hurtbox_collision.disabled = true
+				await animation_timer.timeout
+				collector_sprite.visible = true
+				tank_sprite.visible = false
 		
 		#Apply Blocking Mechanic
 		if Input.is_action_just_pressed("Block"):
@@ -304,7 +262,53 @@ func _physics_process(delta: float) -> void:
 					scale.x = abs(scale.x) * -1
 					facing = true
 				
+				#CounterAttack Mechanic
+				if Input.is_action_just_pressed("Basic Attack"):
+					if Globals.DeveloperMode == true:
+						print(counterAttackStored)
+					if counterAttackStored == true:
+						if counterAttack == "baseCounter":
+							if passive != "basicEnemyPassive":
+								collector_sprite.play("Counter Attack")
+								animation_timer.start(1.6)
+								await get_tree().create_timer(0.6).timeout
+								collector_counter_attack_hurtbox_collision.disabled = false
+								await get_tree().create_timer(0.4).timeout
+								collector_sprite.play("Block")
+								collector_sprite.set_frame_and_progress(2,1)
+							elif passive == "basicEnemyPassive":
+								collector_sprite.play("Counter Attack",2)
+								animation_timer.start(0.9)
+								await get_tree().create_timer(0.7).timeout
+								collector_counter_attack_hurtbox_collision.disabled = false
+								await get_tree().create_timer(0.2).timeout
+							collector_counter_attack_hurtbox_collision.disabled = true
+							await animation_timer.timeout
+						elif counterAttack == "tankCounter":
+							collector_sprite.visible = false
+							tank_sprite.visible = true
+							if passive != "basicEnemyPassive":
+								tank_sprite.play("Counter Attack")
+								animation_timer.start(1.25)
+								await get_tree().create_timer(1).timeout
+								tank_counter_attack_hurtbox_collision.disabled = false
+								await get_tree().create_timer(0.25).timeout
+							elif passive == "basicEnemyPassive":
+								tank_sprite.play("Counter Attack", 2)
+								animation_timer.start(0.625)
+								await get_tree().create_timer(0.5).timeout
+								tank_counter_attack_hurtbox_collision.disabled = false
+								await get_tree().create_timer(0.125).timeout
+							tank_counter_attack_hurtbox_collision.disabled = true
+							await animation_timer.timeout
+							collector_sprite.visible = true
+							tank_sprite.visible = false
+						counter_attack_timer.start(0.05)
+					
 				if Input.is_action_just_released("Block"):
+					counter_attack_timer.start(0.05)
+					if collector_sprite.animation != "Block":
+						await collector_sprite.animation_finished
 					if block_timer.get_time_left() != 0:
 						await block_timer.timeout
 					collector_sprite.play_backwards("Block")

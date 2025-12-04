@@ -8,6 +8,7 @@ class_name EnemyDead
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func Enter():
+	$"../../Label2".hide()
 	animation_player.play("death")
 	await animation_player.animation_finished
 	enemy.queue_free()

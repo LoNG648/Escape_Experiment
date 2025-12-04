@@ -81,15 +81,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_o77up")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_fckkl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_66aaw")
-}, {
-"duration": 1.0,
 "texture": ExtResource("10_kvdj3")
 }, {
 "duration": 1.0,
@@ -98,17 +89,17 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("12_vwsun")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("13_m4ffc")
 }, {
 "duration": 1.0,
 "texture": ExtResource("12_vwsun")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_kvdj3")
+"texture": ExtResource("11_5g6q5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_66aaw")
+"texture": ExtResource("10_kvdj3")
 }],
 "loop": false,
 "name": &"Counter Attack",
