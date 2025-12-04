@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=4 uid="uid://b11ucjiugm7md"]
 
-[ext_resource type="PackedScene" uid="uid://cooxth6rfditg" path="res://Scenes/Player.tscn" id="1_80uqg"]
+[ext_resource type="PackedScene" uid="uid://cooxth6rfditg" path="res://Scenes/player.tscn" id="1_80uqg"]
 [ext_resource type="PackedScene" uid="uid://8egxs5xr1c6s" path="res://Scenes/tank_boss.tscn" id="1_iu5q8"]
 [ext_resource type="PackedScene" uid="uid://ug1rfgs0rbkb" path="res://MovingPlat.tscn" id="2_jlu84"]
 [ext_resource type="PackedScene" uid="uid://cvnafhg5v34po" path="res://Scenes/Basic Enemy.tscn" id="2_pgoda"]
