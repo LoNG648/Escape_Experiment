@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cyj5xfwgycu48"]
 
-[ext_resource type="Script" uid="uid://1twg5sb42tjn" path="res://Scenes/SpikeBall/BackandForth.gd" id="1_6re5m"]
+[ext_resource type="Script" uid="uid://1twg5sb42tjn" path="res://Scripts/BackandForth.gd" id="1_6re5m"]
 [ext_resource type="Texture2D" uid="uid://dec01fbuuxcka" path="res://Assets/Pixel Adventure 1/Free/Traps/Spiked Ball/Spiked Ball.png" id="2_ge7eo"]
 [ext_resource type="Script" uid="uid://dxycbvexq3q5s" path="res://Scripts/Hurtbox.gd" id="3_0bbvx"]
 
@@ -16,7 +16,6 @@ point_count = 2
 radius = 14.0357
 
 [node name="Spike Ball" type="Node2D"]
-scale = Vector2(1.5, 1.5)
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_esy8q")

@@ -6,7 +6,7 @@
 [node name="Torch" type="Node2D"]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-scale = Vector2(3, 3)
+scale = Vector2(6, 6)
 shadow_enabled = true
 texture = ExtResource("1_wced7")
 
