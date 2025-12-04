@@ -184,7 +184,6 @@ func _physics_process(delta: float) -> void:
 					tank_basic_attack_hurtbox_collision.disabled = false
 					await get_tree().create_timer(0.25).timeout
 				tank_basic_attack_hurtbox_collision.disabled = true
-				await animation_timer.timeout
 				collector_sprite.visible = true
 				tank_sprite.visible = false
 		
@@ -197,14 +196,13 @@ func _physics_process(delta: float) -> void:
 				blocking = true
 				block_timer.start(0.5)
 				await block_timer.timeout
-				collector_sprite.set_frame_and_progress(5,0)
+				collector_sprite.set_frame_and_progress(2,0)
 				collector_sprite.pause()
 				animation_timer.paused = true
 			elif block == "tankBlock":
 				collector_sprite.visible = false
 				tank_sprite.visible = true
 				animation_timer.start(1)
-				print(animation_timer.get_time_left())
 				tank_sprite.play("Block")
 				blocking = true
 				block_timer.start(0.5)
@@ -270,45 +268,46 @@ func _physics_process(delta: float) -> void:
 						if counterAttack == "baseCounter":
 							if passive != "basicEnemyPassive":
 								collector_sprite.play("Counter Attack")
-								animation_timer.start(1.6)
 								await get_tree().create_timer(0.6).timeout
 								collector_counter_attack_hurtbox_collision.disabled = false
 								await get_tree().create_timer(0.4).timeout
-								collector_sprite.play("Block")
-								collector_sprite.set_frame_and_progress(2,1)
 							elif passive == "basicEnemyPassive":
 								collector_sprite.play("Counter Attack",2)
-								animation_timer.start(0.9)
-								await get_tree().create_timer(0.7).timeout
+								await get_tree().create_timer(0.3).timeout
 								collector_counter_attack_hurtbox_collision.disabled = false
 								await get_tree().create_timer(0.2).timeout
 							collector_counter_attack_hurtbox_collision.disabled = true
-							await animation_timer.timeout
+							await collector_sprite.animation_finished
+							collector_sprite.play("Block")
+							collector_sprite.set_frame_and_progress(2,0)
 						elif counterAttack == "tankCounter":
 							collector_sprite.visible = false
 							tank_sprite.visible = true
 							if passive != "basicEnemyPassive":
 								tank_sprite.play("Counter Attack")
-								animation_timer.start(1.25)
 								await get_tree().create_timer(1).timeout
 								tank_counter_attack_hurtbox_collision.disabled = false
 								await get_tree().create_timer(0.25).timeout
 							elif passive == "basicEnemyPassive":
 								tank_sprite.play("Counter Attack", 2)
-								animation_timer.start(0.625)
 								await get_tree().create_timer(0.5).timeout
 								tank_counter_attack_hurtbox_collision.disabled = false
 								await get_tree().create_timer(0.125).timeout
 							tank_counter_attack_hurtbox_collision.disabled = true
-							await animation_timer.timeout
 							collector_sprite.visible = true
 							tank_sprite.visible = false
+							tank_sprite.play("Idle")
 						counter_attack_timer.start(0.05)
+						counterAttackStored = false
 					
 				if Input.is_action_just_released("Block"):
 					counter_attack_timer.start(0.05)
+					counterAttackStored = false
 					if collector_sprite.animation != "Block":
 						await collector_sprite.animation_finished
+						await get_tree().create_timer(0.05).timeout
+					elif tank_sprite.animation == "Counter Attack":
+						await tank_sprite.animation_finished
 					if block_timer.get_time_left() != 0:
 						await block_timer.timeout
 					collector_sprite.play_backwards("Block")
@@ -316,7 +315,7 @@ func _physics_process(delta: float) -> void:
 					blocking = false
 			elif block == "tankBlock":
 				#Allows player to move while blocking if he is blocking with the tank's block
-				if animation_timer.paused == true:
+				if collector_sprite.animation != "Counter Attack" and tank_sprite.animation != "Counter Attack":
 					if direction:
 						velocity.x = direction * SPEED
 						if velocity.x < 0 and facing == true:
@@ -327,14 +326,66 @@ func _physics_process(delta: float) -> void:
 							facing = true
 					else:
 						velocity.x = move_toward(velocity.x, 0, SPEED)
-				elif animation_timer.paused == false:
+				else:
 					velocity.x = move_toward(velocity.x, 0, SPEED/60)
+					if Input.is_action_just_pressed("Move Left") and facing == true:
+						scale.x = abs(scale.x) * -1
+						facing = false
+					elif Input.is_action_just_pressed("Move Right") and facing == false:
+						scale.x = abs(scale.x) * -1
+						facing = true
 				
+				#CounterAttack Mechanic
+				if Input.is_action_just_pressed("Basic Attack"):
+					if Globals.DeveloperMode == true:
+						print(counterAttackStored)
+					if counterAttackStored == true:
+						if counterAttack == "baseCounter":
+							collector_sprite.visible = true
+							tank_sprite.visible = false
+							if passive != "basicEnemyPassive":
+								collector_sprite.play("Counter Attack")
+								await get_tree().create_timer(0.6).timeout
+								collector_counter_attack_hurtbox_collision.disabled = false
+								await get_tree().create_timer(0.4).timeout
+							elif passive == "basicEnemyPassive":
+								collector_sprite.play("Counter Attack",2)
+								await get_tree().create_timer(0.3).timeout
+								collector_counter_attack_hurtbox_collision.disabled = false
+								await get_tree().create_timer(0.2).timeout
+							collector_counter_attack_hurtbox_collision.disabled = true
+							await collector_sprite.animation_finished
+							collector_sprite.visible = false
+							tank_sprite.visible = true
+							collector_sprite.play("Idle")
+						elif counterAttack == "tankCounter":
+							if passive != "basicEnemyPassive":
+								tank_sprite.play("Counter Attack")
+								await get_tree().create_timer(1).timeout
+								tank_counter_attack_hurtbox_collision.disabled = false
+								await get_tree().create_timer(0.25).timeout
+							elif passive == "basicEnemyPassive":
+								tank_sprite.play("Counter Attack", 2)
+								await get_tree().create_timer(0.5).timeout
+								tank_counter_attack_hurtbox_collision.disabled = false
+								await get_tree().create_timer(0.125).timeout
+							tank_counter_attack_hurtbox_collision.disabled = true
+							tank_sprite.play("Block")
+							tank_sprite.set_frame_and_progress(2,0)
+						counter_attack_timer.start(0.05)
+						counterAttackStored = false
+					
 				if Input.is_action_just_released("Block"):
+					counter_attack_timer.start(0.05)
+					counterAttackStored = false
+					if tank_sprite.animation != "Block":
+						await tank_sprite.animation_finished
+						await get_tree().create_timer(0.05).timeout
+					elif collector_sprite.animation == "Counter Attack":
+						await collector_sprite.animation_finished
 					if block_timer.get_time_left() != 0:
 						await block_timer.timeout
-					print(animation_timer.get_time_left())
-					tank_sprite.play("Block")
+					tank_sprite.play_backwards("Block")
 					animation_timer.paused = false
 					blocking = false
 					await animation_timer.timeout
@@ -386,26 +437,17 @@ func death():
 
 #Adds moveset of the tank after he is defeated and absorbed
 func _on_tank_boss_defeated() -> void:
-	if passive == "basePassive":
-		attackMoveset.append_array(["tankAttack"])
-		specialMoveset.append_array(["tankSpecial"])
-		counterMoveset.append_array(["tankCounter"])
-		blockMoveset.append_array(["tankBlock"])
-		pause_menu.addBossMoveset()
-		absorbed.append_array([Tank_Boss])
-	else:
-		pass
+	attackMoveset.append_array(["tankAttack"])
+	specialMoveset.append_array(["tankSpecial"])
+	counterMoveset.append_array(["tankCounter"])
+	blockMoveset.append_array(["tankBlock"])
+	pause_menu.addBossMoveset()
+	absorbed.append_array(["Tank_Boss"])
 
 func _on_basic_enemy_defeated() -> void:
-	if passive == "basePassive":
-		pause_menu.addBasicEnemyPassive()
-		absorbed.append_array([Basic_Enemy])
-	else:
-		pass
+	pause_menu.addBasicEnemyPassive()
+	absorbed.append_array(["Basic_Enemy"])
 
 func _on_complex_enemy_defeated() -> void:
-	if passive == "basePassive":
-		pause_menu.addComplexEnemyPassive()
-		absorbed.append_array([Complex_Enemy])
-	else:
-		pass
+	pause_menu.addComplexEnemyPassive()
+	absorbed.append_array(["Complex_Enemy"])

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c0plbduf4xlp5" path="res://Testing/Nathan's Stuff/basic_enemy_state.gd" id="1_wek8t"]
 [ext_resource type="Texture2D" uid="uid://b1bssce881pl2" path="res://Assets/Enemy Assets/NightBorne/NightBorne.png" id="2_vmj5o"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="3_cqefd"]
-[ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/Hitbox.gd" id="4_052ra"]
+[ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/hitbox.gd" id="4_052ra"]
 [ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/Health.gd" id="5_ntwd2"]
 [ext_resource type="Script" uid="uid://bw7c7fvt0q8k2" path="res://Testing/Nathan's Stuff/State Machine Stuff/statemachine.gd" id="6_fiwu0"]
 [ext_resource type="Script" uid="uid://b55e3c4pq3ve8" path="res://Testing/Nathan's Stuff/State Machine Stuff/EnemyIdle.gd" id="7_gmpam"]
@@ -484,7 +484,7 @@ script = ExtResource("1_wek8t")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4q34a")
-animation = &"absorb_static"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]

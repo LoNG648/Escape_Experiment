@@ -24,13 +24,14 @@ func _on_area_entered(area: Area2D) -> void:
 			print("Hitbox found")
 		#Code to grab the parent of the hitbox area which is the respective player/enemy and then call the takeDamage function for the said player/enemy
 		body = area.get_parent()
-		if hurtbox.name == "Collector Special Attack Hurtbox":
+		var parent = hurtbox.get_parent()
+		if parent.name == "Player" and parent.passive == "basePassive":
 			body.get_node("Health").takeDamage(body, damage, hurtbox, true)
 		else:
 			body.get_node("Health").takeDamage(body, damage, hurtbox, false)
 		
-		if hurtbox.get_parent().name == "Player" and hurtbox.name == "Collector Special Attack Hurtbox":
-			if body not in hurtbox.get_parent().absorbed:
+		if parent.name == "Player" and hurtbox.name == "Collector Special Attack Hurtbox":
+			if body.get_script().get_global_name() not in hurtbox.get_parent().absorbed:
 				if body is Tank_Boss and body.get_node("Health").currentHealth <= 0:
 					hurtbox.get_parent()._on_tank_boss_defeated()
 				elif body is Basic_Enemy2 and body.get_node("Health").currentHealth <= 0:
