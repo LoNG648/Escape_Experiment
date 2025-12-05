@@ -9,11 +9,12 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var floor_raycast: RayCast2D = $"../../Floor Raycast"
 @onready var wall_raycast: RayCast2D = $"../../Wall Raycast"
 
-var move_direction : Vector2
+var move_direction : float
 var wander_time : float
 
 func randomize_wander():
-	move_direction = Vector2(randf_range(-1,1),0).normalized()
+	#move_direction = randf_range(-1,1)
+	move_direction = 1 if randi() % 2 == 0 else -1
 	wander_time= randf_range(2,4)
 
 func Enter():
@@ -30,17 +31,15 @@ func Update(delta: float):
 
 func Physics_Update(delta: float):
 	if enemy:
-		enemy.velocity = move_direction * move_speed
-		enemy.velocity.y = gravity * delta
+		enemy.velocity.x = move_direction * move_speed
+		if not enemy.is_on_floor():
+			enemy.velocity.y += gravity * delta
 		$"../../Sprite".play("run")
 	
-	if !floor_raycast.is_colliding() && enemy.is_on_floor():
-		move_direction = move_direction * -1
-		wander_time= randf_range(2,3)
+	if (!floor_raycast.is_colliding() || wall_raycast.is_colliding()) && enemy.is_on_floor():
+		move_direction = -move_direction
+		wander_time = randf_range(2, 3)
 	
-	if wall_raycast.is_colliding() && enemy.is_on_floor():
-		move_direction = move_direction * -1
-		wander_time= randf_range(2,3)
 		
 	#var direction = player.global_position - enemy.global_position
 	#if direction.length() < 20:

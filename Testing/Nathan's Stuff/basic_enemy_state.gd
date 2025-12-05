@@ -13,15 +13,11 @@ var flip = false
 @onready var floor_raycast = $"Floor Raycast"
 @onready var wall_raycast = $"Wall Raycast"
 @onready var hitbox_collision = $"Hitbox/Hitbox Collision"
+@onready var player_raycast: RayCast2D = $"Player Detect Raycast"
 
 @onready var state_machine = $"State Machine"
 
 func _ready() -> void:
-	#for child in state_machine.get_children():
-		#if child is State:
-			#state_machine.states[child.name.to_lower()] = child
-			#child.Transitioned.connect(got_hit)
-			#child.Transitioned.connect(death)
 	pass
 
 func _physics_process(delta):
@@ -45,8 +41,12 @@ func _physics_process(delta):
 		detection_box.position.x = abs(detection_box.position.x) * signf(velocity.x)
 		hitbox_collision.position.x = abs(hitbox_collision.position.x) * signf(velocity.x)
 		wall_raycast.position.x = abs(wall_raycast.position.x) * signf(velocity.x)
+		wall_raycast.scale = abs(wall_raycast.scale) * signf(velocity.x)
 		floor_raycast.position.x = abs(floor_raycast.position.x) * signf(velocity.x)
+		#floor_raycast.scale = abs(floor_raycast.scale) * signf(velocity.x)
 		collision.position.x = abs(collision.position.x) * signf(velocity.x)
+		player_raycast.position.x = abs(player_raycast.position.x) * signf(velocity.x)
+		player_raycast.scale = abs(player_raycast.scale) * signf(velocity.x)
 
 
 func got_hit(_damage: float):

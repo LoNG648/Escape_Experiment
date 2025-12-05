@@ -406,7 +406,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hit",
-"speed": 7.5
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -473,7 +473,7 @@ radius = 13.0
 height = 54.4
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xno3g"]
-size = Vector2(27.8, 64.8)
+size = Vector2(26.9, 63.6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmj5o"]
 size = Vector2(326.25, 104.25)
@@ -494,14 +494,21 @@ shape = SubResource("CapsuleShape2D_3pxrr")
 [node name="Floor Raycast" type="RayCast2D" parent="."]
 light_mask = 16
 visibility_layer = 16
-position = Vector2(16, 9)
-target_position = Vector2(0, 27)
+position = Vector2(14, 13)
+target_position = Vector2(0, 20)
 
 [node name="Wall Raycast" type="RayCast2D" parent="."]
 light_mask = 0
 visibility_layer = 16
-position = Vector2(12, 16)
+position = Vector2(12, 13)
 target_position = Vector2(13, 0)
+
+[node name="Player Detect Raycast" type="RayCast2D" parent="."]
+position = Vector2(-10, 5)
+target_position = Vector2(-153, 0)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_cqefd")]
 collision_mask = 2
@@ -523,7 +530,7 @@ collision_mask = 2
 [node name="Detectionbox Collision" type="CollisionShape2D" parent="Detectionbox"]
 light_mask = 0
 visibility_layer = 1023
-position = Vector2(27, -2.8)
+position = Vector2(26.55, -2.2)
 shape = SubResource("RectangleShape2D_xno3g")
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -554,7 +561,6 @@ wait_time = 2.0
 autostart = true
 
 [node name="Label" type="Label" parent="."]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -613,6 +619,7 @@ script = ExtResource("12_fiwu0")
 enemy = NodePath("../..")
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="Sprite" to="State Machine/EnemyAttack" method="_on_sprite_animation_finished"]
 [connection signal="animation_finished" from="Sprite" to="State Machine/EnemyHit" method="_animation_finished"]
 [connection signal="body_entered" from="Detectionbox" to="State Machine/EnemyFollow" method="_on_front_detectionbox_body_entered"]
 [connection signal="body_exited" from="Detectionbox" to="State Machine/EnemyAttack" method="_on_front_detectionbox_body_exited"]
