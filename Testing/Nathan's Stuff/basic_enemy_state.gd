@@ -30,23 +30,36 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	
-	
-	
-	if velocity.x > 0:
-		$Sprite.flip_h = false
-	elif velocity.x < 0:
-		$Sprite.flip_h = true
-	if velocity.x != 0:
-		hurtbox_collision.position.x = abs(hurtbox_collision.position.x) * signf(velocity.x)
-		detection_box.position.x = abs(detection_box.position.x) * signf(velocity.x)
-		hitbox_collision.position.x = abs(hitbox_collision.position.x) * signf(velocity.x)
-		wall_raycast.position.x = abs(wall_raycast.position.x) * signf(velocity.x)
-		wall_raycast.scale = abs(wall_raycast.scale) * signf(velocity.x)
-		floor_raycast.position.x = abs(floor_raycast.position.x) * signf(velocity.x)
-		#floor_raycast.scale = abs(floor_raycast.scale) * signf(velocity.x)
-		collision.position.x = abs(collision.position.x) * signf(velocity.x)
-		player_raycast.position.x = abs(player_raycast.position.x) * signf(velocity.x)
-		player_raycast.scale = abs(player_raycast.scale) * signf(velocity.x)
+
+
+	#if velocity.x != 0:
+		#hurtbox_collision.position.x = abs(hurtbox_collision.position.x) * signf(velocity.x)
+		#detection_box.position.x = abs(detection_box.position.x) * signf(velocity.x)
+		#hitbox_collision.position.x = abs(hitbox_collision.position.x) * signf(velocity.x)
+		#wall_raycast.position.x = abs(wall_raycast.position.x) * signf(velocity.x)
+		#wall_raycast.scale = abs(wall_raycast.scale) * signf(velocity.x)
+		#floor_raycast.position.x = abs(floor_raycast.position.x) * signf(velocity.x)
+		#collision.position.x = abs(collision.position.x) * signf(velocity.x)
+		#player_raycast.position.x = abs(player_raycast.position.x) * signf(velocity.x)
+		#player_raycast.scale = abs(player_raycast.scale) * signf(velocity.x)
+	#if velocity.x > 0:
+		#$Sprite.flip_h = false
+	#elif velocity.x < 0:
+		#$Sprite.flip_h = true
+
+func update_facing(dir: float):
+	var s: float = signf(dir)
+	hurtbox_collision.position.x = abs(hurtbox_collision.position.x) * s
+	detection_box.position.x = abs(detection_box.position.x) * s
+	hitbox_collision.position.x = abs(hitbox_collision.position.x) * s
+	wall_raycast.position.x = abs(wall_raycast.position.x) * s
+	wall_raycast.scale = abs(wall_raycast.scale) * s
+	floor_raycast.position.x = abs(floor_raycast.position.x) * s
+	collision.position.x = abs(collision.position.x) * s
+	player_raycast.position.x = abs(player_raycast.position.x) * s
+	player_raycast.scale = abs(player_raycast.scale) * s
+	$Sprite.flip_h = (s < 0)
+
 
 
 func got_hit(_damage: float):

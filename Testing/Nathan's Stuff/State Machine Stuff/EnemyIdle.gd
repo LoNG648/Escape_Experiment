@@ -31,19 +31,15 @@ func Update(delta: float):
 
 func Physics_Update(delta: float):
 	if enemy:
+		enemy.update_facing(move_direction)
 		enemy.velocity.x = move_direction * move_speed
-		if not enemy.is_on_floor():
-			enemy.velocity.y += gravity * delta
 		$"../../Sprite".play("run")
-	
-	if (!floor_raycast.is_colliding() || wall_raycast.is_colliding()) && enemy.is_on_floor():
-		move_direction = -move_direction
-		wander_time = randf_range(2, 3)
-	
 		
-	#var direction = player.global_position - enemy.global_position
-	#if direction.length() < 20:
-		#Transitioned.emit(self, "EnemyFollow")
+		if (!floor_raycast.is_colliding() || wall_raycast.is_colliding()) && enemy.is_on_floor():
+			move_direction *= -1
+			enemy.update_facing(move_direction)
+			enemy.velocity.x = move_direction * move_speed
+			wander_time = randf_range(2, 3)
 
 func _on_body_entered(body):
 	if body is Player:
