@@ -11,9 +11,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var hit_ms = 0
 
 func Enter():
-	hitbox_collision.disabled = true
+	#hitbox_collision.disabled = true
 	#in_hit = true
-	#hitbox_collision.set_deferred("disabled", true)
+	hitbox_collision.set_deferred("disabled", true)
 	animation_player.play("hit")
 	#Transitioned.emit(self, "EnemyFollow")
 	var current_animation = animation_player.get_animation()
