@@ -77,13 +77,8 @@ func _on_front_detectionbox_body_exited(body: Node2D) -> void:
 		await animation_player.animation_finished
 		hurtbox_collision.set_deferred("disabled", true)
 		attacking = false
-		#Transitioned.emit(self, "EnemyFollow")
 
 func exit():
-	#if held_speed < 0:
-		#hurtbox_collision.scale.x = abs(hurtbox_collision.scale) * -1
-		#detection_box.scale.x = abs(detection_box.scale) * -1
-	#hurtbox_collision.disabled = true
 	hurtbox_collision.set_deferred("disabled", true)
 	animating = false
 	attacking = false

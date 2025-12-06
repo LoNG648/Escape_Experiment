@@ -476,7 +476,7 @@ height = 54.4
 size = Vector2(26.9, 63.6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmj5o"]
-size = Vector2(326.25, 104.25)
+size = Vector2(309, 104.25)
 
 [node name="Basic Enemy" type="CharacterBody2D"]
 collision_mask = 3
@@ -505,10 +505,8 @@ target_position = Vector2(13, 0)
 
 [node name="Player Detect Raycast" type="RayCast2D" parent="."]
 position = Vector2(-10, 5)
-target_position = Vector2(-153, 0)
+target_position = Vector2(-144, 0)
 collision_mask = 2
-collide_with_areas = true
-collide_with_bodies = false
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_cqefd")]
 collision_mask = 2
@@ -548,7 +546,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="StateCollision" type="CollisionShape2D" parent="StateArea"]
-position = Vector2(0, -32)
+position = Vector2(0.5, -31)
 shape = SubResource("RectangleShape2D_vmj5o")
 
 [node name="Health" type="Node" parent="."]

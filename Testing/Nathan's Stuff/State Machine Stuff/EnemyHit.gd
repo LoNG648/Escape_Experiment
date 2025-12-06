@@ -9,24 +9,27 @@ class_name EnemyHit
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var hit_ms = 0
-var in_hit = false
 
 func Enter():
-	#hitbox_collision.disabled = true
+	hitbox_collision.disabled = true
 	#in_hit = true
-	hitbox_collision.set_deferred("disabled", true)
+	#hitbox_collision.set_deferred("disabled", true)
 	animation_player.play("hit")
 	#Transitioned.emit(self, "EnemyFollow")
+	var current_animation = animation_player.get_animation()
+	await animation_player.animation_finished
+	if current_animation == "hit":
+		Transitioned.emit(self, "EnemyFollow")
 
 func Physics_Update(delta):
 	#hitbox_collision.disabled = true
 	enemy.velocity.x = hit_ms
 	enemy.velocity.y = gravity * delta
 
-func _animation_finished():
-	var current_animation = animation_player.get_animation()
-	if current_animation == "hit":
-		Transitioned.emit(self, "EnemyFollow")
+#func _animation_finished():
+	#var current_animation = animation_player.get_animation()
+	#if current_animation == "hit":
+		#Transitioned.emit(self, "EnemyFollow")
 
 func exit():
 	enemy_attack.from_hit = true

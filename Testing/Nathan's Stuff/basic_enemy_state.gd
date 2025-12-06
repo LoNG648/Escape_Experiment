@@ -31,22 +31,6 @@ func _physics_process(delta):
 	
 	
 
-
-	#if velocity.x != 0:
-		#hurtbox_collision.position.x = abs(hurtbox_collision.position.x) * signf(velocity.x)
-		#detection_box.position.x = abs(detection_box.position.x) * signf(velocity.x)
-		#hitbox_collision.position.x = abs(hitbox_collision.position.x) * signf(velocity.x)
-		#wall_raycast.position.x = abs(wall_raycast.position.x) * signf(velocity.x)
-		#wall_raycast.scale = abs(wall_raycast.scale) * signf(velocity.x)
-		#floor_raycast.position.x = abs(floor_raycast.position.x) * signf(velocity.x)
-		#collision.position.x = abs(collision.position.x) * signf(velocity.x)
-		#player_raycast.position.x = abs(player_raycast.position.x) * signf(velocity.x)
-		#player_raycast.scale = abs(player_raycast.scale) * signf(velocity.x)
-	#if velocity.x > 0:
-		#$Sprite.flip_h = false
-	#elif velocity.x < 0:
-		#$Sprite.flip_h = true
-
 func update_facing(dir: float):
 	var s: float = signf(dir)
 	hurtbox_collision.position.x = abs(hurtbox_collision.position.x) * s
@@ -63,7 +47,6 @@ func update_facing(dir: float):
 
 
 func got_hit(_damage: float):
-	#state_machine._on_child_transition(state_machine.current_state,"EnemyHit")
 	$"State Machine/EnemyAttack".go_to_hit()
 
 func death():
