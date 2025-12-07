@@ -1,0 +1,435 @@
+[gd_scene load_steps=45 format=3 uid="uid://cjyis04sfvrgw"]
+
+[ext_resource type="Script" uid="uid://blc7a21qec8dy" path="res://Testing/Nathan's Stuff/tank_boss_2.gd" id="1_ldecf"]
+[ext_resource type="Texture2D" uid="uid://b2dmt32vy2lnw" path="res://Assets/Enemy Assets/Boss Assets/Boss Attack/Boss_Attack-4.png" id="2_l0i85"]
+[ext_resource type="Texture2D" uid="uid://gdsaim0iftxn" path="res://Assets/Enemy Assets/Boss Assets/Boss Attack/Boss_Attack-5.png" id="2_ldecf"]
+[ext_resource type="Texture2D" uid="uid://t2alrm087tvo" path="res://Assets/Enemy Assets/Boss Assets/Boss Block/Boss_Block-3.png" id="3_xeow0"]
+[ext_resource type="Texture2D" uid="uid://b3sl0o37x1ehq" path="res://Assets/Enemy Assets/Boss Assets/Boss Block/Boss_Block-1.png" id="5_7sing"]
+[ext_resource type="Texture2D" uid="uid://bwj7wbq8r1w6n" path="res://Assets/Enemy Assets/Boss Assets/Boss Block/Boss_Block-2.png" id="6_wc1gi"]
+[ext_resource type="Texture2D" uid="uid://knbqu3le3jiw" path="res://Assets/Enemy Assets/Boss Assets/Boss Walk/Boss_Idle-1.png" id="7_imwiq"]
+[ext_resource type="Texture2D" uid="uid://drmaht6nriual" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Attack/Boss_Special-5.png" id="8_ldecf"]
+[ext_resource type="Texture2D" uid="uid://bcs7o6m1hveya" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Attack/Boss_Special-6.png" id="9_k6sxp"]
+[ext_resource type="Texture2D" uid="uid://c1bbl51bbmge5" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Attack/Boss_Special-1.png" id="10_twvfl"]
+[ext_resource type="Texture2D" uid="uid://dcf23fbm7tmkw" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Attack/Boss_Special-2.png" id="11_ojpck"]
+[ext_resource type="Texture2D" uid="uid://bd2k846kuadpr" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Attack/Boss_Special-3.png" id="12_ndks2"]
+[ext_resource type="Texture2D" uid="uid://c8vbn8xt1qj0b" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Attack/Boss_Special-4.png" id="13_lqpw5"]
+[ext_resource type="Texture2D" uid="uid://dvxrlkbqkwhig" path="res://Assets/Enemy Assets/Boss Assets/Boss Walk/Boss_Idle-2.png" id="14_du0ox"]
+[ext_resource type="Texture2D" uid="uid://mv73aqbur0xb" path="res://Assets/Enemy Assets/Boss Assets/Boss Walk/Boss_Idle-3.png" id="15_k5euk"]
+[ext_resource type="Texture2D" uid="uid://b3sw7hab5c4vy" path="res://Assets/Enemy Assets/Boss Assets/Boss Attack/Boss_Attack-1.png" id="16_811nt"]
+[ext_resource type="Texture2D" uid="uid://bxgn4x6amewfv" path="res://Assets/Enemy Assets/Boss Assets/Boss Attack/Boss_Attack-2.png" id="17_ay37l"]
+[ext_resource type="Texture2D" uid="uid://pwfptm1gymxm" path="res://Assets/Enemy Assets/Boss Assets/Boss Attack/Boss_Attack-3.png" id="18_mad18"]
+[ext_resource type="Texture2D" uid="uid://b3npqx5i03vsy" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-2.png" id="19_efymg"]
+[ext_resource type="Texture2D" uid="uid://dbucnbwlrh1mt" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-3.png" id="20_s1krr"]
+[ext_resource type="Texture2D" uid="uid://dxm8kob47s2gp" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-4.png" id="21_gbals"]
+[ext_resource type="Texture2D" uid="uid://csjgm3tyr8ckq" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-5.png" id="22_0qun8"]
+[ext_resource type="Texture2D" uid="uid://dxtlka3h8e8av" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-6.png" id="23_n6sws"]
+[ext_resource type="Texture2D" uid="uid://cwfc2ymddtpdy" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Effect/Special_Effect-7.png" id="24_3m5ki"]
+[ext_resource type="Script" uid="uid://dxycbvexq3q5s" path="res://Scripts/Hurtbox.gd" id="25_2sw01"]
+[ext_resource type="Script" uid="uid://cl8w365iaic6m" path="res://Scripts/hitbox.gd" id="26_0dli6"]
+[ext_resource type="Script" uid="uid://ccjfqwc5vm62o" path="res://Scripts/Health.gd" id="27_leek8"]
+[ext_resource type="Script" uid="uid://bw7c7fvt0q8k2" path="res://Testing/Nathan's Stuff/State Machine Stuff/statemachine.gd" id="28_k6sxp"]
+[ext_resource type="Script" uid="uid://b55e3c4pq3ve8" path="res://Testing/Nathan's Stuff/State Machine Stuff/EnemyIdle.gd" id="29_twvfl"]
+[ext_resource type="Script" uid="uid://cah17ut5xta40" path="res://Testing/Nathan's Stuff/State Machine Stuff/EnemyFollow.gd" id="30_ojpck"]
+[ext_resource type="Script" uid="uid://d0my7cax6qv0f" path="res://Testing/Nathan's Stuff/State Machine Stuff/EnemyAttack.gd" id="31_ndks2"]
+[ext_resource type="Script" uid="uid://lto7sveo7ka0" path="res://Testing/Nathan's Stuff/State Machine Stuff/EnemyHit.gd" id="32_lqpw5"]
+[ext_resource type="Script" uid="uid://demlrqyioy78c" path="res://Testing/Nathan's Stuff/State Machine Stuff/EnemyDead.gd" id="33_du0ox"]
+[ext_resource type="Script" uid="uid://dpvrapfxseaqe" path="res://Testing/Nathan's Stuff/State Machine Stuff/EnemyAbsorb.gd" id="34_k5euk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6sxp"]
+atlas = ExtResource("2_ldecf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q5qam"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6sxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6sxp")
+}],
+"loop": false,
+"name": &"1attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l0i85")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ay37l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_811nt")
+}],
+"loop": false,
+"name": &"1holster",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_811nt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ay37l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ay37l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_mad18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_l0i85")
+}],
+"loop": false,
+"name": &"1windup",
+"speed": 3.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"absorb",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"absorb_static",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xeow0")
+}],
+"loop": true,
+"name": &"blocking",
+"speed": 2.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_7sing")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wc1gi")
+}],
+"loop": false,
+"name": &"entering block",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wc1gi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7sing")
+}],
+"loop": false,
+"name": &"exiting block",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wc1gi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wc1gi")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_imwiq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_imwiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_du0ox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_k5euk")
+}],
+"loop": true,
+"name": &"run",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_ldecf")
+}],
+"loop": false,
+"name": &"special attack",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_k6sxp")
+}],
+"loop": false,
+"name": &"special holster",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_twvfl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ojpck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ndks2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ndks2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ndks2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_lqpw5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_lqpw5")
+}],
+"loop": false,
+"name": &"special windup",
+"speed": 3.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0jvec"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_efymg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_s1krr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_gbals")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_0qun8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_n6sws")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_3m5ki")
+}],
+"loop": false,
+"name": &"default",
+"speed": 11.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vtvyr"]
+radius = 16.0
+height = 54.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lq57t"]
+radius = 11.5
+height = 46.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqjbu"]
+size = Vector2(85, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7tb0r"]
+size = Vector2(32, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g87x0"]
+size = Vector2(26.5, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldecf"]
+size = Vector2(254.5, 91.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2aqb"]
+size = Vector2(48.5, 35.5)
+
+[node name="TankBoss" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+collision_mask = 3
+script = ExtResource("1_ldecf")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_q5qam")
+animation = &"special windup"
+autoplay = "run"
+
+[node name="GroundThing" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(56.5, 16.5)
+scale = Vector2(-2.656, 0.719)
+sprite_frames = SubResource("SpriteFrames_0jvec")
+frame = 5
+frame_progress = 1.0
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+light_mask = 0
+shape = SubResource("CapsuleShape2D_vtvyr")
+
+[node name="Floor Raycast" type="RayCast2D" parent="."]
+position = Vector2(15.5, 19.5)
+target_position = Vector2(0, 18.5)
+
+[node name="Wall Raycast" type="RayCast2D" parent="."]
+position = Vector2(14.5, 20)
+target_position = Vector2(14, 0)
+
+[node name="Player Detect Raycast" type="RayCast2D" parent="."]
+position = Vector2(-14, 18.5)
+target_position = Vector2(-90, 0)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("25_2sw01")
+damage = 30.0
+metadata/_custom_type_script = "uid://dxycbvexq3q5s"
+
+[node name="Hurtbox Collision" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(28, 3)
+shape = SubResource("CapsuleShape2D_lq57t")
+disabled = true
+
+[node name="HurtboxSpecial" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("25_2sw01")
+damage = 40.0
+metadata/_custom_type_script = "uid://dxycbvexq3q5s"
+
+[node name="Hurtbox Special Collision" type="CollisionShape2D" parent="HurtboxSpecial"]
+position = Vector2(56.5, 19.5)
+shape = SubResource("RectangleShape2D_kqjbu")
+disabled = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("26_0dli6")
+metadata/_custom_type_script = "uid://cl8w365iaic6m"
+
+[node name="Hitbox Collision" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_7tb0r")
+
+[node name="Detectionbox" type="Area2D" parent="."]
+light_mask = 0
+visibility_layer = 1023
+collision_layer = 0
+collision_mask = 2
+
+[node name="Detectionbox Collision" type="CollisionShape2D" parent="Detectionbox"]
+position = Vector2(29.25, 1.5)
+shape = SubResource("RectangleShape2D_g87x0")
+
+[node name="StateArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="StateCollision" type="CollisionShape2D" parent="StateArea"]
+position = Vector2(23.25, -18.75)
+shape = SubResource("RectangleShape2D_ldecf")
+
+[node name="DetectionBoxSpecial" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="DetectionboxS Collision" type="CollisionShape2D" parent="DetectionBoxSpecial"]
+position = Vector2(84.25, 8.25)
+shape = SubResource("RectangleShape2D_l2aqb")
+
+[node name="DirectionTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("27_leek8")
+maxHealth = 100.0
+metadata/_custom_type_script = "uid://ccjfqwc5vm62o"
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -31.5
+offset_right = 20.0
+offset_bottom = -8.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -9.0
+offset_right = 57.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "Press 'Q' to Absorb!"
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("28_k6sxp")
+initial_state = NodePath("EnemyIdle")
+
+[node name="EnemyIdle" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("29_twvfl")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://b55e3c4pq3ve8"
+
+[node name="EnemyFollow" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("30_ojpck")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://cah17ut5xta40"
+
+[node name="EnemyAttack" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("31_ndks2")
+enemy = NodePath("../..")
+
+[node name="EnemyHit" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("32_lqpw5")
+enemy = NodePath("../..")
+
+[node name="EnemyDead" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("33_du0ox")
+enemy = NodePath("../..")
+
+[node name="EnemyAbsorb" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("34_k5euk")
+enemy = NodePath("../..")
+static_time = 60000.0
+
+[connection signal="animation_finished" from="Sprite" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Hurtbox" to="Hurtbox" method="_on_area_entered"]
+[connection signal="area_entered" from="HurtboxSpecial" to="HurtboxSpecial" method="_on_area_entered"]
+[connection signal="body_entered" from="Detectionbox" to="." method="_on_detect_player_body_entered"]
+[connection signal="body_entered" from="Detectionbox" to="State Machine/EnemyFollow" method="_on_front_detectionbox_body_entered"]
+[connection signal="body_exited" from="Detectionbox" to="." method="_on_detect_player_body_exited"]
+[connection signal="body_exited" from="Detectionbox" to="State Machine/EnemyFollow" method="_on_front_detectionbox_body_exited"]
+[connection signal="body_exited" from="Detectionbox" to="State Machine/EnemyAttack" method="_on_front_detectionbox_body_exited"]
+[connection signal="body_entered" from="StateArea" to="State Machine/EnemyIdle" method="_on_body_entered"]
+[connection signal="body_exited" from="StateArea" to="State Machine/EnemyFollow" method="_on_body_exited"]
+[connection signal="body_entered" from="DetectionBoxSpecial" to="." method="_on_detect_special_player_body_entered"]
+[connection signal="body_exited" from="DetectionBoxSpecial" to="." method="_on_detect_special_player_body_exited"]
+[connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]

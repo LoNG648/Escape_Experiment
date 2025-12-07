@@ -431,7 +431,7 @@ size = Vector2(79.8, 63)
 size = Vector2(80, 68.4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40lm1"]
-size = Vector2(295, 106.5)
+size = Vector2(304, 98.5)
 
 [node name="Complex Enemy" type="CharacterBody2D"]
 collision_mask = 3
@@ -441,7 +441,7 @@ script = ExtResource("1_t4jyk")
 position = Vector2(37, -9)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_mvyao")
-animation = &"1holster"
+animation = &"death"
 autoplay = "idle"
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
@@ -450,16 +450,16 @@ position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_vjjuq")
 
 [node name="Floor Raycast" type="RayCast2D" parent="."]
-position = Vector2(16, 18)
-target_position = Vector2(0, 27)
+position = Vector2(16, 27)
+target_position = Vector2(0, 19)
 
 [node name="Wall Raycast" type="RayCast2D" parent="."]
-position = Vector2(16, 27)
+position = Vector2(16, 28)
 target_position = Vector2(14, 0)
 
 [node name="Player Detect Raycast" type="RayCast2D" parent="."]
 position = Vector2(-10, 5)
-target_position = Vector2(-137, 0)
+target_position = Vector2(-142, 0)
 collision_mask = 2
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_7xa6p")]
@@ -486,7 +486,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="StateCollision" type="CollisionShape2D" parent="StateArea"]
-position = Vector2(0.5, -24.75)
+position = Vector2(0, -17.75)
 shape = SubResource("RectangleShape2D_40lm1")
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -502,7 +502,7 @@ shape = SubResource("CapsuleShape2D_vjjuq")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("5_nyohx")
-maxHealth = 100.0
+maxHealth = 75.0
 metadata/_custom_type_script = "uid://ccjfqwc5vm62o"
 
 [node name="DirectionTimer" type="Timer" parent="."]
@@ -530,9 +530,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -75.0
-offset_top = -37.5
+offset_top = -39.5
 offset_right = 75.0
-offset_bottom = -14.5
+offset_bottom = -16.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Press 'Q' to Absorb!"
@@ -566,6 +566,7 @@ enemy = NodePath("../..")
 [node name="EnemyAbsorb" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("12_8addd")
 enemy = NodePath("../..")
+static_time = 5.0
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Detectionbox" to="." method="_on_detect_player_body_entered"]
