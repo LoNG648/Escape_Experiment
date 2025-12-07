@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://by6qryu1tex63" path="res://Testing/Max's Stuff/ambience noise.mp3" id="5_4hp5x"]
 [ext_resource type="PackedScene" uid="uid://ug1rfgs0rbkb" path="res://MovingPlat.tscn" id="6_al4ne"]
 [ext_resource type="PackedScene" uid="uid://txxbav1a02mo" path="res://Testing/Nathan's Stuff/complex_enemy2.tscn" id="8_q4kvp"]
-[ext_resource type="PackedScene" uid="uid://8egxs5xr1c6s" path="res://Scenes/tank_boss.tscn" id="9_wlg5s"]
+[ext_resource type="PackedScene" uid="uid://cjyis04sfvrgw" path="res://Testing/Nathan's Stuff/tank_boss2.tscn" id="9_4hp5x"]
 [ext_resource type="PackedScene" uid="uid://dtbs07fxaokwr" path="res://Scenes/SpikeBall/spike_ball4.tscn" id="10_al4ne"]
 [ext_resource type="PackedScene" uid="uid://8gca4pdxw6d5" path="res://UpPlat.tscn" id="10_ebiu7"]
 [ext_resource type="PackedScene" uid="uid://cyj5xfwgycu48" path="res://Scenes/SpikeBall/spike_ball2.tscn" id="12_ebiu7"]
@@ -1010,8 +1010,8 @@ position = Vector2(2348, -508)
 
 [node name="Boss" type="Node" parent="."]
 
-[node name="TankBoss" parent="Boss" instance=ExtResource("9_wlg5s")]
-position = Vector2(1547, -63)
+[node name="TankBoss" parent="Boss" instance=ExtResource("9_4hp5x")]
+position = Vector2(1509, -62)
 
 [node name="UpPlat" type="Node" parent="."]
 

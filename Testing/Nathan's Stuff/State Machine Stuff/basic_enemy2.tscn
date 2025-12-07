@@ -459,7 +459,7 @@ height = 54.4
 size = Vector2(26.9, 63.6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmj5o"]
-size = Vector2(288, 90.125)
+size = Vector2(288, 81.125)
 
 [node name="Basic Enemy" type="CharacterBody2D"]
 collision_mask = 3
@@ -529,7 +529,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="StateCollision" type="CollisionShape2D" parent="StateArea"]
-position = Vector2(0, -23.9375)
+position = Vector2(0, -19.4375)
 shape = SubResource("RectangleShape2D_vmj5o")
 
 [node name="Health" type="Node" parent="."]
@@ -542,6 +542,7 @@ wait_time = 2.0
 autostart = true
 
 [node name="Label" type="Label" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
