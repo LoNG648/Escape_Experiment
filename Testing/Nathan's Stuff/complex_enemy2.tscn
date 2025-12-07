@@ -425,13 +425,13 @@ radius = 16.0
 height = 54.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kri20"]
-size = Vector2(80.8, 63)
+size = Vector2(79.8, 63)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rpcp"]
 size = Vector2(80, 68.4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40lm1"]
-size = Vector2(302, 115.5)
+size = Vector2(295, 106.5)
 
 [node name="Complex Enemy" type="CharacterBody2D"]
 collision_mask = 3
@@ -459,7 +459,7 @@ target_position = Vector2(14, 0)
 
 [node name="Player Detect Raycast" type="RayCast2D" parent="."]
 position = Vector2(-10, 5)
-target_position = Vector2(-141, 0)
+target_position = Vector2(-137, 0)
 collision_mask = 2
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_7xa6p")]
@@ -467,7 +467,7 @@ collision_mask = 2
 damage = 20.0
 
 [node name="Hurtbox Collision" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(60.6, 4.5)
+position = Vector2(60.1, 3.5)
 shape = SubResource("RectangleShape2D_kri20")
 disabled = true
 
@@ -478,7 +478,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="Detectionbox Collision" type="CollisionShape2D" parent="Detectionbox"]
-position = Vector2(55, 5.00001)
+position = Vector2(55, 3.00001)
 shape = SubResource("RectangleShape2D_3rpcp")
 
 [node name="StateArea" type="Area2D" parent="."]
@@ -486,7 +486,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="StateCollision" type="CollisionShape2D" parent="StateArea"]
-position = Vector2(0, -25.25)
+position = Vector2(0.5, -24.75)
 shape = SubResource("RectangleShape2D_40lm1")
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -574,4 +574,5 @@ enemy = NodePath("../..")
 [connection signal="body_exited" from="Detectionbox" to="State Machine/EnemyFollow" method="_on_front_detectionbox_body_exited"]
 [connection signal="body_exited" from="Detectionbox" to="State Machine/EnemyAttack" method="_on_front_detectionbox_body_exited"]
 [connection signal="body_entered" from="StateArea" to="State Machine/EnemyIdle" method="_on_body_entered"]
+[connection signal="body_exited" from="StateArea" to="State Machine/EnemyFollow" method="_on_body_exited"]
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]

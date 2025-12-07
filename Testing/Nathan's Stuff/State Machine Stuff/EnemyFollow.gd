@@ -25,8 +25,8 @@ func Physics_Update(delta):
 	var direction_to_player = (player.global_position - enemy.global_position).normalized()
 	
 	if go_to_idle == true:
+		#go_to_idle = false
 		Transitioned.emit(self, "EnemyIdle")
-		go_to_idle = false
 	
 	enemy.velocity.x = direction_to_player.x * move_speed
 	if !enemy.is_on_floor():
