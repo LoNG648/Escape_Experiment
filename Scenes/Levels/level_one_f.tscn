@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cpxpvarbloji3" path="res://break_wall.tscn" id="4_cpv8i"]
 [ext_resource type="AudioStream" uid="uid://by6qryu1tex63" path="res://Testing/Max's Stuff/ambience noise.mp3" id="5_4hp5x"]
 [ext_resource type="PackedScene" uid="uid://ug1rfgs0rbkb" path="res://MovingPlat.tscn" id="6_al4ne"]
-[ext_resource type="PackedScene" uid="uid://bh2xfihntbwfq" path="res://Scenes/Complex Enemy.tscn" id="8_mu652"]
-[ext_resource type="PackedScene" uid="uid://8egxs5xr1c6s" path="res://Scenes/tank_boss.tscn" id="9_wlg5s"]
+[ext_resource type="PackedScene" uid="uid://txxbav1a02mo" path="res://Testing/Nathan's Stuff/complex_enemy2.tscn" id="8_q4kvp"]
+[ext_resource type="PackedScene" uid="uid://cjyis04sfvrgw" path="res://Testing/Nathan's Stuff/tank_boss2.tscn" id="9_4hp5x"]
 [ext_resource type="PackedScene" uid="uid://dtbs07fxaokwr" path="res://Scenes/SpikeBall/spike_ball4.tscn" id="10_al4ne"]
 [ext_resource type="PackedScene" uid="uid://8gca4pdxw6d5" path="res://UpPlat.tscn" id="10_ebiu7"]
 [ext_resource type="PackedScene" uid="uid://cyj5xfwgycu48" path="res://Scenes/SpikeBall/spike_ball2.tscn" id="12_ebiu7"]
@@ -26,7 +26,7 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_55xnf"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_55xnf"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4hp5x"]
 texture = ExtResource("1_tam7p")
 0:0/0 = 0
 1:0/0 = 0
@@ -162,7 +162,7 @@ texture = ExtResource("1_tam7p")
 2:15/0 = 0
 3:15/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0dh0j"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q4kvp"]
 texture = ExtResource("1_tam7p")
 0:0/0 = 0
 1:0/0 = 0
@@ -313,7 +313,7 @@ polygon = PackedVector2Array(-8, 8, 8, 8, 8, 8, -8, 8)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_433lr"]
 polygon = PackedVector2Array(-8, 8, 8, 8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wlg5s"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kb5kv"]
 texture = ExtResource("2_55xnf")
 45:18/0 = 0
 45:18/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_433lr")
@@ -882,9 +882,9 @@ texture = ExtResource("2_55xnf")
 uv_clipping = true
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_55xnf")
-sources/1 = SubResource("TileSetAtlasSource_0dh0j")
-sources/3 = SubResource("TileSetAtlasSource_wlg5s")
+sources/0 = SubResource("TileSetAtlasSource_4hp5x")
+sources/1 = SubResource("TileSetAtlasSource_q4kvp")
+sources/3 = SubResource("TileSetAtlasSource_kb5kv")
 
 [node name="Level One F" type="Node2D"]
 
@@ -993,25 +993,25 @@ position = Vector2(579, -353)
 
 [node name="Comp Enemys" type="Node" parent="."]
 
-[node name="Complex Enemy" parent="Comp Enemys" instance=ExtResource("8_mu652")]
-position = Vector2(391, 167)
+[node name="Complex Enemy" parent="Comp Enemys" instance=ExtResource("8_q4kvp")]
+position = Vector2(407, 164)
 
-[node name="Complex Enemy3" parent="Comp Enemys" instance=ExtResource("8_mu652")]
-position = Vector2(1280, 149)
+[node name="Complex Enemy2" parent="Comp Enemys" instance=ExtResource("8_q4kvp")]
+position = Vector2(1245, 149)
 
-[node name="Complex Enemy4" parent="Comp Enemys" instance=ExtResource("8_mu652")]
-position = Vector2(1243, -828)
+[node name="Complex Enemy3" parent="Comp Enemys" instance=ExtResource("8_q4kvp")]
+position = Vector2(1230, -828)
 
-[node name="Complex Enemy5" parent="Comp Enemys" instance=ExtResource("8_mu652")]
-position = Vector2(1595, -459)
+[node name="Complex Enemy4" parent="Comp Enemys" instance=ExtResource("8_q4kvp")]
+position = Vector2(1591, -461)
 
-[node name="Complex Enemy6" parent="Comp Enemys" instance=ExtResource("8_mu652")]
-position = Vector2(2337, -507)
+[node name="Complex Enemy5" parent="Comp Enemys" instance=ExtResource("8_q4kvp")]
+position = Vector2(2348, -508)
 
 [node name="Boss" type="Node" parent="."]
 
-[node name="TankBoss" parent="Boss" instance=ExtResource("9_wlg5s")]
-position = Vector2(1547, -63)
+[node name="TankBoss" parent="Boss" instance=ExtResource("9_4hp5x")]
+position = Vector2(1509, -62)
 
 [node name="UpPlat" type="Node" parent="."]
 
@@ -1107,6 +1107,7 @@ position = Vector2(1474, -854)
 position = Vector2(1839, 186)
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 visibility_layer = 5
 z_index = -1000
 offset_left = -481.0

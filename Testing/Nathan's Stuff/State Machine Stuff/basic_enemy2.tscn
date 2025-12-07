@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://c1e3nvh3aqr4x"]
+[gd_scene load_steps=71 format=3 uid="uid://c1e3nvh3aqr4x"]
 
 [ext_resource type="Script" uid="uid://c0plbduf4xlp5" path="res://Testing/Nathan's Stuff/basic_enemy_state.gd" id="1_wek8t"]
 [ext_resource type="Texture2D" uid="uid://b1bssce881pl2" path="res://Assets/Enemy Assets/NightBorne/NightBorne.png" id="2_vmj5o"]
@@ -29,17 +29,9 @@ region = Rect2(880, 160, 80, 80)
 atlas = ExtResource("2_vmj5o")
 region = Rect2(0, 160, 80, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gckoq"]
-atlas = ExtResource("2_vmj5o")
-region = Rect2(80, 160, 80, 80)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_vrwm8"]
 atlas = ExtResource("2_vmj5o")
 region = Rect2(160, 160, 80, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rknva"]
-atlas = ExtResource("2_vmj5o")
-region = Rect2(240, 160, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vvh2f"]
 atlas = ExtResource("2_vmj5o")
@@ -268,16 +260,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_gaw13")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gckoq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gckoq")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_vrwm8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rknva")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vvh2f")
@@ -296,7 +279,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"1windup",
-"speed": 8.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -406,7 +389,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hit",
-"speed": 7.5
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -473,10 +456,10 @@ radius = 13.0
 height = 54.4
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xno3g"]
-size = Vector2(27.8, 64.8)
+size = Vector2(26.9, 63.6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmj5o"]
-size = Vector2(326.25, 104.25)
+size = Vector2(288, 81.125)
 
 [node name="Basic Enemy" type="CharacterBody2D"]
 collision_mask = 3
@@ -484,7 +467,7 @@ script = ExtResource("1_wek8t")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4q34a")
-animation = &"idle"
+animation = &"1windup"
 autoplay = "idle"
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
@@ -494,13 +477,18 @@ shape = SubResource("CapsuleShape2D_3pxrr")
 [node name="Floor Raycast" type="RayCast2D" parent="."]
 light_mask = 16
 visibility_layer = 16
-position = Vector2(16, 9)
-target_position = Vector2(0, 27)
+position = Vector2(14, 13)
+target_position = Vector2(0, 20)
+
+[node name="Player Detect Raycast" type="RayCast2D" parent="."]
+position = Vector2(-10, 5)
+target_position = Vector2(-134, 0)
+collision_mask = 2
 
 [node name="Wall Raycast" type="RayCast2D" parent="."]
 light_mask = 0
 visibility_layer = 16
-position = Vector2(12, 16)
+position = Vector2(12, 15)
 target_position = Vector2(13, 0)
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_cqefd")]
@@ -523,7 +511,7 @@ collision_mask = 2
 [node name="Detectionbox Collision" type="CollisionShape2D" parent="Detectionbox"]
 light_mask = 0
 visibility_layer = 1023
-position = Vector2(27, -2.8)
+position = Vector2(26.55, -2.2)
 shape = SubResource("RectangleShape2D_xno3g")
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -541,7 +529,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="StateCollision" type="CollisionShape2D" parent="StateArea"]
-position = Vector2(0, -32)
+position = Vector2(0, -19.4375)
 shape = SubResource("RectangleShape2D_vmj5o")
 
 [node name="Health" type="Node" parent="."]
@@ -611,8 +599,10 @@ enemy = NodePath("../..")
 [node name="EnemyAbsorb" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("12_fiwu0")
 enemy = NodePath("../..")
+static_time = 5.0
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="Sprite" to="State Machine/EnemyAttack" method="_on_sprite_animation_finished"]
 [connection signal="animation_finished" from="Sprite" to="State Machine/EnemyHit" method="_animation_finished"]
 [connection signal="body_entered" from="Detectionbox" to="State Machine/EnemyFollow" method="_on_front_detectionbox_body_entered"]
 [connection signal="body_exited" from="Detectionbox" to="State Machine/EnemyAttack" method="_on_front_detectionbox_body_exited"]

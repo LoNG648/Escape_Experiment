@@ -236,7 +236,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"1holster",
-"speed": 6.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -244,12 +244,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kdfq0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kdfq0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q2gu4")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_q2gu4")
@@ -262,7 +256,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"1windup",
-"speed": 6.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -356,7 +350,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hit",
-"speed": 5.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -422,22 +416,23 @@ radius = 16.0
 height = 54.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kri20"]
-size = Vector2(80.8, 66.4)
+size = Vector2(79.8, 63)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rpcp"]
 size = Vector2(80, 68.4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40lm1"]
-size = Vector2(405, 121)
+size = Vector2(304, 88.5)
 
 [node name="Complex Enemy" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_t4jyk")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(-37, -9)
+position = Vector2(37, -9)
+scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_mvyao")
-animation = &"ability"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
@@ -446,19 +441,24 @@ position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_vjjuq")
 
 [node name="Floor Raycast" type="RayCast2D" parent="."]
-position = Vector2(-17, 6)
-target_position = Vector2(0, 47)
+position = Vector2(16, 27)
+target_position = Vector2(0, 19)
 
 [node name="Wall Raycast" type="RayCast2D" parent="."]
-position = Vector2(-17, 27)
-target_position = Vector2(-13, 0)
+position = Vector2(16, 28)
+target_position = Vector2(14, 0)
+
+[node name="Player Detect Raycast" type="RayCast2D" parent="."]
+position = Vector2(-10, 5)
+target_position = Vector2(-142, 0)
+collision_mask = 2
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_7xa6p")]
 collision_mask = 2
 damage = 20.0
 
 [node name="Hurtbox Collision" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-62.4, 4.8)
+position = Vector2(60.1, 3.5)
 shape = SubResource("RectangleShape2D_kri20")
 disabled = true
 
@@ -469,7 +469,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="Detectionbox Collision" type="CollisionShape2D" parent="Detectionbox"]
-position = Vector2(-58, 5.00001)
+position = Vector2(55, 3.00001)
 shape = SubResource("RectangleShape2D_3rpcp")
 
 [node name="StateArea" type="Area2D" parent="."]
@@ -477,7 +477,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="StateCollision" type="CollisionShape2D" parent="StateArea"]
-position = Vector2(2.5, -25.5)
+position = Vector2(0, -12.75)
 shape = SubResource("RectangleShape2D_40lm1")
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -493,7 +493,7 @@ shape = SubResource("CapsuleShape2D_vjjuq")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("5_nyohx")
-maxHealth = 100.0
+maxHealth = 75.0
 metadata/_custom_type_script = "uid://ccjfqwc5vm62o"
 
 [node name="DirectionTimer" type="Timer" parent="."]
@@ -501,6 +501,7 @@ wait_time = 2.0
 autostart = true
 
 [node name="Label" type="Label" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -512,6 +513,21 @@ offset_right = 20.0
 offset_bottom = -8.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -39.5
+offset_right = 75.0
+offset_bottom = -16.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press 'Q' to Absorb!"
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_4joww")
@@ -542,6 +558,7 @@ enemy = NodePath("../..")
 [node name="EnemyAbsorb" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("12_8addd")
 enemy = NodePath("../..")
+static_time = 5.0
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Detectionbox" to="." method="_on_detect_player_body_entered"]
@@ -550,4 +567,5 @@ enemy = NodePath("../..")
 [connection signal="body_exited" from="Detectionbox" to="State Machine/EnemyFollow" method="_on_front_detectionbox_body_exited"]
 [connection signal="body_exited" from="Detectionbox" to="State Machine/EnemyAttack" method="_on_front_detectionbox_body_exited"]
 [connection signal="body_entered" from="StateArea" to="State Machine/EnemyIdle" method="_on_body_entered"]
+[connection signal="body_exited" from="StateArea" to="State Machine/EnemyFollow" method="_on_body_exited"]
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]

@@ -5,31 +5,55 @@ class_name EnemyHit
 
 @onready var animation_player = $"../../Sprite"
 @onready var hitbox_collision = $"../../Hitbox/Hitbox Collision"
-@onready var enemy_attack = $"../EnemyAttack"
+@onready var hurtbox_collision = $"../../Hurtbox/Hurtbox Collision"
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var hit_ms = 0
-var in_hit = false
 
 func Enter():
+	# Immediate disable for this frame
 	#hitbox_collision.disabled = true
-	#in_hit = true
+	#hurtbox_collision.disabled = true
 	hitbox_collision.set_deferred("disabled", true)
+	hurtbox_collision.set_deferred("disabled", true)
+	
+	# Set global immunity timer (runs during hit anim + extra time after)
+	var state_machine = get_parent()
+	state_machine.set_hit_immunity(randf_range(state_machine.hit_immunity_duration_min, state_machine.hit_immunity_duration_max))
+	
 	animation_player.play("hit")
-	#Transitioned.emit(self, "EnemyFollow")
+	animation_player.animation_finished.connect(_on_animation_finished)
+	flash_white()
+
+func flash_white():
+	# Reset to normal color first
+	enemy.modulate = Color.WHITE
+	
+	# Create a quick double-flash tween for punchy hit feedback
+	var tween = create_tween()
+	tween.set_parallel(false)  # Chain sequentially for flash-flash-back
+	
+	# Flash 1: Bright white
+	tween.tween_property(enemy, "modulate", Color(1.8, 1.8, 1.8, 1.0), 0.08).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	
+	# Back to normal briefly
+	tween.tween_property(enemy, "modulate", Color.WHITE, 0.06).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	
+	# Flash 2: Slightly brighter for extra pop
+	tween.tween_property(enemy, "modulate", Color(2.0, 2.0, 2.0, 1.0), 0.08).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	
+	# Final reset to normal
+	tween.tween_property(enemy, "modulate", Color.WHITE, 0.08).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+
 
 func Physics_Update(delta):
-	#hitbox_collision.disabled = true
 	enemy.velocity.x = hit_ms
-	enemy.velocity.y = gravity * delta
-
-func _animation_finished():
-	var current_animation = animation_player.get_animation()
-	if current_animation == "hit":
-		Transitioned.emit(self, "EnemyFollow")
+	enemy.velocity.y += gravity * delta
 
 func exit():
-	enemy_attack.from_hit = true
-	#in_hit = false
-	#hitbox_collision.disabled = false
-	hitbox_collision.set_deferred("disabled", false)
+	animation_player.animation_finished.disconnect(_on_animation_finished)
+	enemy.modulate = Color.WHITE  # Safety reset
+
+func _on_animation_finished():
+	if animation_player.animation == "hit":
+		Transitioned.emit(self, "EnemyFollow")

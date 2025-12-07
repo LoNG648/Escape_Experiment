@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Basic_Enemy2
+class_name Tank_Boss2
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_left = false
@@ -9,11 +9,14 @@ var flip = false
 
 @onready var detection_box = $"Detectionbox/Detectionbox Collision"
 @onready var hurtbox_collision = $"Hurtbox/Hurtbox Collision"
-@onready var collision = $Collisionbox
+@onready var collision = $CollisionBox
 @onready var floor_raycast = $"Floor Raycast"
 @onready var wall_raycast = $"Wall Raycast"
 @onready var hitbox_collision = $"Hitbox/Hitbox Collision"
 @onready var player_raycast: RayCast2D = $"Player Detect Raycast"
+@onready var state_collision = $StateArea/StateCollision
+@onready var special_detection = $"DetectionBoxSpecial/DetectionboxS Collision"
+@onready var special_hurtbox = $"HurtboxSpecial/Hurtbox Special Collision"
 
 @onready var state_machine = $"State Machine"
 
@@ -42,6 +45,9 @@ func update_facing(dir: float):
 	collision.position.x = abs(collision.position.x) * s
 	player_raycast.position.x = abs(player_raycast.position.x) * s
 	player_raycast.scale = abs(player_raycast.scale) * s
+	state_collision.position.x = abs(state_collision.position.x) * s
+	special_detection.position.x = abs(special_detection.position.x) * s
+	special_hurtbox.position.x = abs(special_hurtbox.position.x) * s
 	$Sprite.flip_h = (s < 0)
 
 

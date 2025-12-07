@@ -2,6 +2,7 @@ extends State
 class_name EnemyAbsorb
 
 @export var enemy: CharacterBody2D
+@export var static_time : float
 
 @onready var animation_player = $"../../Sprite"
 
@@ -12,7 +13,7 @@ func Enter():
 	animation_player.play("absorb")
 	await animation_player.animation_finished
 	animation_player.play("absorb_static")
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(static_time).timeout
 	Transitioned.emit(self, "EnemyDead")
 
 func exit():
