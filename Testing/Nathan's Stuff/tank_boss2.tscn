@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cjyis04sfvrgw"]
+[gd_scene load_steps=46 format=3 uid="uid://cjyis04sfvrgw"]
 
 [ext_resource type="Script" uid="uid://blc7a21qec8dy" path="res://Testing/Nathan's Stuff/tank_boss_2.gd" id="1_ldecf"]
 [ext_resource type="Texture2D" uid="uid://b2dmt32vy2lnw" path="res://Assets/Enemy Assets/Boss Assets/Boss Attack/Boss_Attack-4.png" id="2_l0i85"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b3sl0o37x1ehq" path="res://Assets/Enemy Assets/Boss Assets/Boss Block/Boss_Block-1.png" id="5_7sing"]
 [ext_resource type="Texture2D" uid="uid://bwj7wbq8r1w6n" path="res://Assets/Enemy Assets/Boss Assets/Boss Block/Boss_Block-2.png" id="6_wc1gi"]
 [ext_resource type="Texture2D" uid="uid://knbqu3le3jiw" path="res://Assets/Enemy Assets/Boss Assets/Boss Walk/Boss_Idle-1.png" id="7_imwiq"]
+[ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="8_k6sxp"]
 [ext_resource type="Texture2D" uid="uid://drmaht6nriual" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Attack/Boss_Special-5.png" id="8_ldecf"]
 [ext_resource type="Texture2D" uid="uid://bcs7o6m1hveya" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Attack/Boss_Special-6.png" id="9_k6sxp"]
 [ext_resource type="Texture2D" uid="uid://c1bbl51bbmge5" path="res://Assets/Enemy Assets/Boss Assets/Boss Special Attack/Boss_Special-1.png" id="10_twvfl"]
@@ -50,7 +51,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"1attack",
-"speed": 3.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -64,14 +65,11 @@ animations = [{
 }],
 "loop": false,
 "name": &"1holster",
-"speed": 3.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("16_811nt")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_ay37l")
 }, {
 "duration": 1.0,
 "texture": ExtResource("17_ay37l")
@@ -84,17 +82,29 @@ animations = [{
 }],
 "loop": false,
 "name": &"1windup",
-"speed": 3.0
+"speed": 8.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wc1gi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xeow0")
+}],
 "loop": false,
 "name": &"absorb",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wc1gi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xeow0")
+}],
 "loop": true,
 "name": &"absorb_static",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -104,10 +114,22 @@ animations = [{
 "name": &"blocking",
 "speed": 2.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_k6sxp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_k6sxp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_k6sxp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_k6sxp")
+}],
 "loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -132,9 +154,6 @@ animations = [{
 "speed": 2.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_wc1gi")
-}, {
 "duration": 1.0,
 "texture": ExtResource("6_wc1gi")
 }],
@@ -264,7 +283,7 @@ script = ExtResource("1_ldecf")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_q5qam")
-animation = &"special windup"
+animation = &"1windup"
 autoplay = "run"
 
 [node name="GroundThing" type="AnimatedSprite2D" parent="."]
@@ -392,6 +411,7 @@ text = "Press 'Q' to Absorb!"
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("28_k6sxp")
 initial_state = NodePath("EnemyIdle")
+hit_immunity_duration_max = 0.4
 
 [node name="EnemyIdle" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("29_twvfl")

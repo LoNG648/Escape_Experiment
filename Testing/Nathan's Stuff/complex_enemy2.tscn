@@ -233,9 +233,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y3coo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y3coo")
 }],
 "loop": false,
 "name": &"1holster",
@@ -247,12 +244,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kdfq0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kdfq0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q2gu4")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_q2gu4")
@@ -359,7 +350,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hit",
-"speed": 12.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -441,7 +432,7 @@ script = ExtResource("1_t4jyk")
 position = Vector2(37, -9)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_mvyao")
-animation = &"death"
+animation = &"1attack"
 autoplay = "idle"
 
 [node name="Collisionbox" type="CollisionShape2D" parent="."]
