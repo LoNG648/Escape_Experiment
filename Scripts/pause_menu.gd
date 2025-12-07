@@ -32,6 +32,7 @@ func _ready() -> void:
 
 func resume():
 	paused = false
+	Engine.time_scale = 1.0
 	get_tree().paused = false
 
 func pause():
