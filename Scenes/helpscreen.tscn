@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cflvpl4nssa6m"]
+[gd_scene load_steps=7 format=3 uid="uid://cflvpl4nssa6m"]
 
 [ext_resource type="Texture2D" uid="uid://ddhd81cb6nhdk" path="res://User Interface/MainMenu/Day/1.png" id="1_ehrq8"]
 [ext_resource type="Script" uid="uid://bml6ba4w0u7s5" path="res://Scripts/helpscreen.gd" id="1_l2h4o"]
 [ext_resource type="Texture2D" uid="uid://buyfgn0n7jpia" path="res://User Interface/MainMenu/Day/2.png" id="2_l2h4o"]
 [ext_resource type="Texture2D" uid="uid://duhwor80ydx6s" path="res://User Interface/MainMenu/Day/3.png" id="3_4reyw"]
 [ext_resource type="Texture2D" uid="uid://2otlrnf0c53b" path="res://User Interface/MainMenu/Day/5.png" id="4_ju1qs"]
+[ext_resource type="Texture2D" uid="uid://dlphcr47ocv4o" path="res://Assets/NEW UI assets/main menu bg.png" id="6_y6y2k"]
 
 [node name="helpscreen" type="Control"]
 layout_mode = 3
@@ -16,6 +17,7 @@ grow_vertical = 2
 script = ExtResource("1_l2h4o")
 
 [node name="Background" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,6 +27,7 @@ grow_vertical = 2
 texture = ExtResource("1_ehrq8")
 
 [node name="Background 2" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,6 +37,7 @@ grow_vertical = 2
 texture = ExtResource("2_l2h4o")
 
 [node name="Background 3" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,6 +47,7 @@ grow_vertical = 2
 texture = ExtResource("3_4reyw")
 
 [node name="Background 4" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,6 +56,15 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_ju1qs")
 
+[node name="actual bg" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_y6y2k")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -58,13 +72,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 115
+theme_override_constants/separation = 60
 alignment = 1
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_font_sizes/font_size = 50
 text = "Controls:"
