@@ -1,4 +1,4 @@
-class_name Complex_Enemy
+class_name Complex_Enemy_Old
 extends CharacterBody2D
 
 var speed = -110.0

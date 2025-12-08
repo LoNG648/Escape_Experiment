@@ -1,4 +1,4 @@
-class_name Tank_Boss
+class_name Tank_Boss_Old
 extends CharacterBody2D
 
 var speed = -60

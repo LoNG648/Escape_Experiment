@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Tank_Boss2
+class_name Tank_Boss
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_left = false

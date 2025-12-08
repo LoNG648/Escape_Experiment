@@ -5,7 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cooxth6rfditg" path="res://Scenes/player.tscn" id="3_2u06y"]
 [ext_resource type="PackedScene" uid="uid://cvnafhg5v34po" path="res://Scenes/Basic Enemy.tscn" id="4_ih1fe"]
 [ext_resource type="Texture2D" uid="uid://62yarb6hreki" path="res://Assets/Tilemap/world_tileset.png" id="5_658rx"]
-[ext_resource type="PackedScene" uid="uid://c1e3nvh3aqr4x" path="res://Testing/Nathan's Stuff/State Machine Stuff/basic_enemy2.tscn" id="7_12n40"]
+[ext_resource type="PackedScene" uid="uid://c1e3nvh3aqr4x" path="res://Testing/Nathan's Stuff/basic_enemy2.tscn" id="7_12n40"]
+
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xrcdf"]
 texture = ExtResource("5_658rx")

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Basic_Enemy2
+class_name Basic_Enemy
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_left = false

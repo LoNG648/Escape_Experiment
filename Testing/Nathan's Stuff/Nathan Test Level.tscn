@@ -2,12 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://cooxth6rfditg" path="res://Scenes/player.tscn" id="1_nt7fk"]
 [ext_resource type="Texture2D" uid="uid://bs8is031pi6s0" path="res://Assets/icon.svg" id="3_yrtag"]
-[ext_resource type="PackedScene" uid="uid://c1e3nvh3aqr4x" path="res://Testing/Nathan's Stuff/State Machine Stuff/basic_enemy2.tscn" id="4_6yxtt"]
+[ext_resource type="PackedScene" uid="uid://c1e3nvh3aqr4x" path="res://Testing/Nathan's Stuff/basic_enemy2.tscn" id="4_6yxtt"]
 [ext_resource type="PackedScene" uid="uid://csiimkywevom7" path="res://Scenes/Hurtbox.tscn" id="4_oosjv"]
 [ext_resource type="Texture2D" uid="uid://62yarb6hreki" path="res://Assets/Tilemap/world_tileset.png" id="5_iwbx0"]
 [ext_resource type="Texture2D" uid="uid://rpq84rlxesxg" path="res://Assets/Tilemap/purplecity.png" id="6_be063"]
 [ext_resource type="PackedScene" uid="uid://txxbav1a02mo" path="res://Testing/Nathan's Stuff/complex_enemy2.tscn" id="6_vmh8c"]
 [ext_resource type="PackedScene" uid="uid://cjyis04sfvrgw" path="res://Testing/Nathan's Stuff/tank_boss2.tscn" id="8_be063"]
+
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tam7p"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)

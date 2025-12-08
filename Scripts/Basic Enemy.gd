@@ -1,4 +1,4 @@
-class_name Basic_Enemy
+class_name Basic_Enemy_Old
 extends CharacterBody2D
 
 @export var change_direction : float = 2.0
