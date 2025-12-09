@@ -45,7 +45,7 @@ func takeDamage(body: Node2D, damage: float, hurtbox, lifesteal: bool) -> void:
 		print(body.name, " ", currentHealth)
 	#Causes body to die if the health is lowered to 0 or below
 	if currentHealth <= 0:
-		if body == Player or hurtbox.get_parent().name == "Player" and body.get_script().get_global_name() in hurtbox.get_parent().absorbed:
+		if body.get_script().get_global_name() == "Player" or hurtbox.get_parent().name == "Player" and body.get_script().get_global_name() in hurtbox.get_parent().absorbed:
 			body.death()
 		else:
 			body.absorb()

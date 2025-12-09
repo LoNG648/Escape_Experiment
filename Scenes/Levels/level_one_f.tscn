@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://b4va0b6yqyfge"]
+[gd_scene load_steps=38 format=4 uid="uid://b4va0b6yqyfge"]
 
 [ext_resource type="Texture2D" uid="uid://62yarb6hreki" path="res://Assets/Tilemap/world_tileset.png" id="1_tam7p"]
 [ext_resource type="PackedScene" uid="uid://cooxth6rfditg" path="res://Scenes/player.tscn" id="2_0dh0j"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cipqvcd8y46n5" path="res://Scenes/SpikeBall/spike_ball3.tscn" id="13_jjn6m"]
 [ext_resource type="PackedScene" uid="uid://b601u3327g8xu" path="res://Scenes/SpikeBall/spike_ball.tscn" id="14_4hp5x"]
 [ext_resource type="PackedScene" uid="uid://cmfsc40rx18fr" path="res://Scenes/SpikeBall/spikes.tscn" id="15_jjn6m"]
+[ext_resource type="Texture2D" uid="uid://dktnvaa73p58f" path="res://Assets/NEW UI assets/game background.png" id="17_q4kvp"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tam7p"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -1201,11 +1202,10 @@ tile_set = SubResource("TileSet_56xpi")
 use_kinematic_bodies = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Map"]
-visible = false
 light_mask = 0
 position = Vector2(692, -183)
 scale = Vector2(3, 3)
-color = Color(0.277528, 0.277528, 0.277528, 1)
+color = Color(0.41598, 0.41598, 0.41598, 1)
 
 [node name="BreakableWall" parent="Map" instance=ExtResource("4_cpv8i")]
 position = Vector2(116, -419)
@@ -1406,12 +1406,16 @@ position = Vector2(1474, -854)
 [node name="Spike Ball11" parent="Traps" instance=ExtResource("14_4hp5x")]
 position = Vector2(1839, 186)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-visibility_layer = 5
+[node name="ColorRect" type="TextureRect" parent="."]
+show_behind_parent = true
 z_index = -1000
-offset_left = -482.0
-offset_top = -2788.0
-offset_right = 5800.0
-offset_bottom = 606.0
-color = Color(0.421243, 0.343239, 0.791049, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -578.0
+offset_top = -1587.0
+offset_right = 3422.0
+offset_bottom = 913.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_q4kvp")

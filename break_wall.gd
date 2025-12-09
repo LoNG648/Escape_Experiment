@@ -8,3 +8,6 @@ func death():
 	
 func got_hit():
 	pass
+
+func absorb():
+	queue_free()

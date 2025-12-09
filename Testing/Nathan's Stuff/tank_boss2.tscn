@@ -376,7 +376,8 @@ autostart = true
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("27_leek8")
-maxHealth = 100.0
+maxHealth = 175.0
+resistance = 50.0
 metadata/_custom_type_script = "uid://ccjfqwc5vm62o"
 
 [node name="Label" type="Label" parent="."]

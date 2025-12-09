@@ -238,7 +238,7 @@ resistance = 25.0
 
 [node name="Collector Counter Attack Hurtbox" parent="." instance=ExtResource("3_vgqql")]
 collision_mask = 4
-damage = 50.0
+damage = 25.0
 
 [node name="Collector Counter Attack Hurtbox Collision" type="CollisionShape2D" parent="Collector Counter Attack Hurtbox"]
 position = Vector2(24.5, -36)
@@ -290,8 +290,6 @@ one_shot = true
 [node name="Animation Timer" type="Timer" parent="Timers"]
 one_shot = true
 
-[node name="HealthUI" parent="." instance=ExtResource("7_52ee3")]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("29_kih0c")]
@@ -300,6 +298,8 @@ offset_left = 9.0
 offset_top = 18.0
 offset_right = 9.0
 offset_bottom = 18.0
+
+[node name="HealthUI" parent="." instance=ExtResource("7_52ee3")]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 y_sort_enabled = true
