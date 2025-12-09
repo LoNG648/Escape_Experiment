@@ -37,11 +37,7 @@ theme_override_constants/separation = 25
 
 [node name="Resume" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "Resume"
-
-[node name="Controls" type="Button" parent="PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Controls & Abilities"
+text = "          Resume          "
 
 [node name="Restart" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -52,7 +48,6 @@ layout_mode = 2
 text = "Quit"
 
 [node name="Abilities" type="PanelContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -77,15 +72,48 @@ theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 35
 text = "Abilities:"
 
+[node name="Divider" type="Label" parent="Abilities/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "------------------"
+
+[node name="Innate" type="Label" parent="Abilities/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Innate - Absorb the abilities of 
+enemies when they are slain"
+horizontal_alignment = 1
+
+[node name="Divider2" type="Label" parent="Abilities/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "------------------"
+
 [node name="PassiveList" type="MenuButton" parent="Abilities/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
+theme_override_constants/outline_size = 0
 text = "Passive: The Collector"
 item_count = 1
 popup/item_0/text = "The Collector"
 popup/item_0/id = 0
+
+[node name="PassiveDescription" type="Label" parent="Abilities/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "Lifesteal on hit"
+
+[node name="Divider3" type="Label" parent="Abilities/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "------------------"
 
 [node name="AttackList" type="MenuButton" parent="Abilities/VBoxContainer"]
 layout_mode = 2
@@ -97,6 +125,12 @@ item_count = 1
 popup/item_0/text = "The Collector"
 popup/item_0/id = 0
 
+[node name="Divider4" type="Label" parent="Abilities/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "------------------"
+
 [node name="SpecialList" type="MenuButton" parent="Abilities/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -107,6 +141,12 @@ item_count = 1
 popup/item_0/text = "The Collector"
 popup/item_0/id = 0
 
+[node name="Divider5" type="Label" parent="Abilities/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "------------------"
+
 [node name="CounterList" type="MenuButton" parent="Abilities/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -116,6 +156,12 @@ text = "Counter Attack: The Collector"
 item_count = 1
 popup/item_0/text = "The Collector"
 popup/item_0/id = 0
+
+[node name="Divider6" type="Label" parent="Abilities/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "------------------"
 
 [node name="BlockList" type="MenuButton" parent="Abilities/VBoxContainer"]
 layout_mode = 2
@@ -128,7 +174,6 @@ popup/item_0/text = "The Collector"
 popup/item_0/id = 0
 
 [node name="Controls" type="PanelContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -180,6 +225,5 @@ text = "E - Interact
 ESC - Pause/Unpause"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

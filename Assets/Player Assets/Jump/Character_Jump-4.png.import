@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cky4o7tdo7u6"
-path="res://.godot/imported/EE_Death-3.png-3a1c8a497a1aba179e12708e2cdbb4d2.ctex"
+uid="uid://d1gg513rtgg7w"
+path="res://.godot/imported/Character_Jump-4.png-16bdd1e3d49ade2ced41ac4b9b4526c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player Assets/Death/EE_Death-3.png"
-dest_files=["res://.godot/imported/EE_Death-3.png-3a1c8a497a1aba179e12708e2cdbb4d2.ctex"]
+source_file="res://Assets/Player Assets/Jump/Character_Jump-4.png"
+dest_files=["res://.godot/imported/Character_Jump-4.png-16bdd1e3d49ade2ced41ac4b9b4526c5.ctex"]
 
 [params]
 

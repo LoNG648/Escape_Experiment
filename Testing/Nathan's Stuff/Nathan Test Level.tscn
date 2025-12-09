@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://txxbav1a02mo" path="res://Testing/Nathan's Stuff/complex_enemy2.tscn" id="6_vmh8c"]
 [ext_resource type="PackedScene" uid="uid://cjyis04sfvrgw" path="res://Testing/Nathan's Stuff/tank_boss2.tscn" id="8_be063"]
 
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tam7p"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 

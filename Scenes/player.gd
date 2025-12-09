@@ -45,6 +45,7 @@ var block: String = blockMoveset[0]
 @onready var animation_timer: Timer = $"Timers/Animation Timer"
 @onready var health_ui: CanvasLayer = $HealthUI
 @onready var pause_menu: Control = $CanvasLayer/PauseMenu
+@onready var label: Label = $Label
 
 func _ready() -> void:
 	Globals.update_player_position(global_position)
@@ -142,10 +143,14 @@ func _physics_process(delta: float) -> void:
 			if velocity.x < 0 and facing == true:
 				scale.x = abs(scale.x) * -1
 				#Facing is set to false, meaning character is facing left
+				label.scale.x = -1
+				label.position = Vector2(87.5, -100)
 				facing = false
 			if velocity.x > 0 and facing == false:
 				scale.x = abs(scale.x) * -1
 				#Facing is set to true, meaning character is facing right
+				label.scale.x = 1
+				label.position = Vector2(-87.5, -100)
 				facing = true
 		
 		#Attack Mechanic
@@ -435,6 +440,9 @@ func _physics_process(delta: float) -> void:
 #Handles what happens when player takes damage
 func got_hit(damage: float):
 	if blocking == false:
+		label.visible = true
+		label.text = "-" + str(damage)
+		label.add_theme_color_override("font_color", Color.RED)
 		#Calculates stun based on percentage of health lost
 		var original = damage/health.maxHealth
 		var stun = remap(original,0,1,0.5,1.25)
@@ -457,6 +465,9 @@ func got_hit(damage: float):
 			collector_sprite.visible = true
 		#Plays the hurt animation for the total duration of the stun
 		collector_sprite.play("Hit",(1/animation_timer.get_time_left()))
+		await get_tree().create_timer(1.2).timeout
+		label.visible = false
+		label.remove_theme_color_override("font_color")
 
 #Handles what happens when the player dies
 func death():
@@ -464,7 +475,6 @@ func death():
 	if health.currentHealth <= 0 and dead == false:
 		dead = true
 		#Fixes improper sprite direction
-		collector_sprite.flip_h = true
 		collector_sprite.play("Dying", 0.5)
 		#Halves game speed to indicate how dying is slow painful process
 		Engine.time_scale = 0.5
@@ -486,19 +496,31 @@ func death():
 
 #Adds moveset of the tank after he is absorbed
 func _on_tank_boss_defeated() -> void:
+	label.visible = true
+	label.text = "Tank Moveset has now been unlocked in the pause menu!"
 	attackMoveset.append_array(["tankAttack"])
 	specialMoveset.append_array(["tankSpecial"])
 	counterMoveset.append_array(["tankCounter"])
 	blockMoveset.append_array(["tankBlock"])
 	pause_menu.addBossMoveset()
 	absorbed.append_array(["Tank_Boss"])
+	await get_tree().create_timer(2.5).timeout
+	label.visible = false
 
 #Adds basic enemy's passive after they are absorbed
 func _on_basic_enemy_defeated() -> void:
+	label.visible = true
+	label.text = "Basic Enemy Passive has now been unlocked in the pause menu!"
 	pause_menu.addBasicEnemyPassive()
 	absorbed.append_array(["Basic_Enemy"])
+	await get_tree().create_timer(2.5).timeout
+	label.visible = false
 
 #Adds complex enemy's passive after they are absorbed
 func _on_complex_enemy_defeated() -> void:
+	label.visible = true
+	label.text = "Complex Enemy Passive has now been unlocked in the pause menu!"
 	pause_menu.addComplexEnemyPassive()
 	absorbed.append_array(["Complex_Enemy"])
+	await get_tree().create_timer(2.5).timeout
+	label.visible = false

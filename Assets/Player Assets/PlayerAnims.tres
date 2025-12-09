@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=39 format=3 uid="uid://ddcusyusn8m1a"]
+[gd_resource type="SpriteFrames" load_steps=40 format=3 uid="uid://ddcusyusn8m1a"]
 
 [ext_resource type="Texture2D" uid="uid://j747i2arxfya" path="res://Assets/Player Assets/Basic Attack/EE_Attack-1.png" id="1_fckkl"]
 [ext_resource type="Texture2D" uid="uid://dbl0wdvcfm64u" path="res://Assets/Player Assets/Basic Attack/EE_Attack-2.png" id="2_66aaw"]
@@ -22,14 +22,15 @@
 [ext_resource type="Texture2D" uid="uid://bue6cg1u3ngbj" path="res://Assets/Player Assets/Counter attack/EE_Counter-5.png" id="11_5g6q5"]
 [ext_resource type="Texture2D" uid="uid://bofrc6gohr1rk" path="res://Assets/Player Assets/Counter attack/EE_Counter-6.png" id="12_vwsun"]
 [ext_resource type="Texture2D" uid="uid://dhe8kuhbfn0f5" path="res://Assets/Player Assets/Counter attack/EE_Counter-7.png" id="13_m4ffc"]
-[ext_resource type="Texture2D" uid="uid://b6fe5xkpkofw7" path="res://Assets/Player Assets/Death/EE_Death-1.png" id="14_36686"]
-[ext_resource type="Texture2D" uid="uid://cesppmys4gxy1" path="res://Assets/Player Assets/Death/EE_Death-2.png" id="15_cg42t"]
-[ext_resource type="Texture2D" uid="uid://xccgo00fe6lg" path="res://Assets/Player Assets/Death/EE_Death-3.png" id="16_ietyy"]
-[ext_resource type="Texture2D" uid="uid://bd482i1qu6n30" path="res://Assets/Player Assets/Death/EE_Death-4.png" id="17_fhs7n"]
-[ext_resource type="Texture2D" uid="uid://dsmvgy22yul10" path="res://Assets/Player Assets/Death/EE_Death-5.png" id="18_ix35n"]
-[ext_resource type="Texture2D" uid="uid://dnn7f6k7eqj7c" path="res://Assets/Player Assets/Jump/Character_Jump-1.png" id="20_vwsun"]
-[ext_resource type="Texture2D" uid="uid://cjp33htnbhw5t" path="res://Assets/Player Assets/Jump/Character_Jump-2.png" id="21_m4ffc"]
-[ext_resource type="Texture2D" uid="uid://8td3tmkper5j" path="res://Assets/Player Assets/Jump/Character_Jump-3.png" id="22_imeh1"]
+[ext_resource type="Texture2D" uid="uid://diajes4bamkl4" path="res://Assets/Player Assets/Death/EE_Death-1.png" id="14_36686"]
+[ext_resource type="Texture2D" uid="uid://c6slt7fvc8jpp" path="res://Assets/Player Assets/Death/EE_Death-2.png" id="15_cg42t"]
+[ext_resource type="Texture2D" uid="uid://cky4o7tdo7u6" path="res://Assets/Player Assets/Death/EE_Death-3.png" id="16_ietyy"]
+[ext_resource type="Texture2D" uid="uid://cjwiuddu0docc" path="res://Assets/Player Assets/Death/EE_Death-4.png" id="17_fhs7n"]
+[ext_resource type="Texture2D" uid="uid://b0h5ues6f0coh" path="res://Assets/Player Assets/Death/EE_Death-5.png" id="18_ix35n"]
+[ext_resource type="Texture2D" uid="uid://dtxf3orixw16u" path="res://Assets/Player Assets/Jump/Character_Jump-1.png" id="20_vwsun"]
+[ext_resource type="Texture2D" uid="uid://b68bceiqj5deg" path="res://Assets/Player Assets/Jump/Character_Jump-2.png" id="21_m4ffc"]
+[ext_resource type="Texture2D" uid="uid://upkmy8pek5dl" path="res://Assets/Player Assets/Jump/Character_Jump-3.png" id="22_imeh1"]
+[ext_resource type="Texture2D" uid="uid://d1gg513rtgg7w" path="res://Assets/Player Assets/Jump/Character_Jump-4.png" id="23_vwsun"]
 [ext_resource type="Texture2D" uid="uid://bslqqirvkwcqy" path="res://Assets/Player Assets/Special Attack/EE_Special-1.png" id="31_5g6q5"]
 [ext_resource type="Texture2D" uid="uid://bat71fqauf066" path="res://Assets/Player Assets/Special Attack/EE_Special-2.png" id="32_vwsun"]
 [ext_resource type="Texture2D" uid="uid://dwi6lg65y5ye3" path="res://Assets/Player Assets/Special Attack/EE_Special-3.png" id="33_m4ffc"]
@@ -149,10 +150,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("22_imeh1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_vwsun")
 }],
 "loop": false,
 "name": &"Jump",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,

@@ -65,6 +65,9 @@ func go_to_hit():
 func go_to_absorb():
 	Transitioned.emit(self, "EnemyAbsorb")
 
+func go_to_dead():
+	Transitioned.emit(self, "EnemyDead")
+
 func _on_animation_finished() -> void:
 	var finished_anim = animation_player.animation
 	if finished_anim == "1windup":

@@ -50,4 +50,7 @@ func got_hit(_damage: float):
 	$"State Machine/EnemyAttack".go_to_hit()
 
 func death():
+	$"State Machine/EnemyAttack".go_to_dead()
+
+func absorb():
 	$"State Machine/EnemyAttack".go_to_absorb()

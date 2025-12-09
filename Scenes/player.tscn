@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cooxth6rfditg"]
+[gd_scene load_steps=40 format=3 uid="uid://cooxth6rfditg"]
 
 [ext_resource type="Script" uid="uid://ba8iqvap47p8y" path="res://Scenes/player.gd" id="1_onrkg"]
 [ext_resource type="SpriteFrames" uid="uid://ddcusyusn8m1a" path="res://Assets/Player Assets/PlayerAnims.tres" id="2_6t5aa"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b2dmt32vy2lnw" path="res://Assets/Enemy Assets/Boss Assets/Boss Attack/Boss_Attack-4.png" id="6_qidb7"]
 [ext_resource type="PackedScene" uid="uid://dk15s7tqgmiid" path="res://Scenes/health_ui.tscn" id="7_52ee3"]
 [ext_resource type="Texture2D" uid="uid://b3sl0o37x1ehq" path="res://Assets/Enemy Assets/Boss Assets/Boss Block/Boss_Block-1.png" id="7_70hv0"]
+[ext_resource type="Texture2D" uid="uid://gdsaim0iftxn" path="res://Assets/Enemy Assets/Boss Assets/Boss Attack/Boss_Attack-5.png" id="7_lyrkg"]
 [ext_resource type="Texture2D" uid="uid://bwj7wbq8r1w6n" path="res://Assets/Enemy Assets/Boss Assets/Boss Block/Boss_Block-2.png" id="8_8flut"]
 [ext_resource type="Texture2D" uid="uid://t2alrm087tvo" path="res://Assets/Enemy Assets/Boss Assets/Boss Block/Boss_Block-3.png" id="9_u7x0b"]
 [ext_resource type="Texture2D" uid="uid://knbqu3le3jiw" path="res://Assets/Enemy Assets/Boss Assets/Boss Walk/Boss_Idle-1.png" id="10_utwlt"]
@@ -44,10 +45,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_qidb7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lyrkg")
 }],
 "loop": false,
 "name": &"Attack",
-"speed": 2.0
+"speed": 2.25
 }, {
 "frames": [{
 "duration": 1.0,
@@ -180,7 +184,7 @@ position = Vector2(2, -32)
 rotation = 3.14159
 scale = Vector2(1.11726, -1.12674)
 sprite_frames = SubResource("SpriteFrames_bfbt0")
-animation = &"Idle"
+animation = &"Attack"
 
 [node name="Shockwave Sprite" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -303,3 +307,13 @@ position = Vector2(0, -40)
 scale = Vector2(5, 5)
 shadow_enabled = true
 texture = ExtResource("29_83xs0")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = -87.5
+offset_top = -100.0
+offset_right = 87.5
+offset_bottom = -60.0
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+autowrap_mode = 3

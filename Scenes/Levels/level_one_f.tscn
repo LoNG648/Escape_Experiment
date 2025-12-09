@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=4 uid="uid://b4va0b6yqyfge"]
 
 [ext_resource type="Texture2D" uid="uid://62yarb6hreki" path="res://Assets/Tilemap/world_tileset.png" id="1_tam7p"]
-[ext_resource type="PackedScene" uid="uid://cooxth6rfditg" path="res://Scenes/player.tscn" id="2_0dh0j"]
+[ext_resource type="PackedScene" uid="uid://cooxth6rfditg" path="res://Scenes/Player.tscn" id="2_0dh0j"]
 [ext_resource type="Texture2D" uid="uid://rpq84rlxesxg" path="res://Assets/Tilemap/purplecity.png" id="2_55xnf"]
 [ext_resource type="PackedScene" uid="uid://c1e3nvh3aqr4x" path="res://Testing/Nathan's Stuff/basic_enemy2.tscn" id="3_0dh0j"]
 [ext_resource type="PackedScene" uid="uid://6yhm037kvuba" path="res://Scenes/torch.tscn" id="3_56xpi"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://cipqvcd8y46n5" path="res://Scenes/SpikeBall/spike_ball3.tscn" id="13_jjn6m"]
 [ext_resource type="PackedScene" uid="uid://b601u3327g8xu" path="res://Scenes/SpikeBall/spike_ball.tscn" id="14_4hp5x"]
 [ext_resource type="PackedScene" uid="uid://cmfsc40rx18fr" path="res://Scenes/SpikeBall/spikes.tscn" id="15_jjn6m"]
-
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tam7p"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)

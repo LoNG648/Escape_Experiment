@@ -16,11 +16,18 @@ func _ready() -> void:
 		print(currentHealth)
 
 func heal(healAmount: float) -> void:
+	var parent = get_parent()
 	currentHealth += healAmount
 	currentHealth = clamp(currentHealth, 0, maxHealth)
 	if Globals.DeveloperMode == true:
 		print("Healed for ", healAmount, " amount")
 		print(currentHealth)
+	parent.label.visible = true
+	parent.label.text = "+" + str(healAmount)
+	parent.label.add_theme_color_override("font_color", Color.GREEN)
+	await get_tree().create_timer(1.2).timeout
+	parent.label.visible = false
+	parent.label.remove_theme_color_override("font_color")
 
 #Function to handle taking damage, which is only triggered when a character enters a hurtbox
 func takeDamage(body: Node2D, damage: float, hurtbox, lifesteal: bool) -> void:
@@ -38,7 +45,10 @@ func takeDamage(body: Node2D, damage: float, hurtbox, lifesteal: bool) -> void:
 		print(body.name, " ", currentHealth)
 	#Causes body to die if the health is lowered to 0 or below
 	if currentHealth <= 0:
-		body.death()
+		if body == Player or hurtbox.get_parent().name == "Player" and body.get_script().get_global_name() in hurtbox.get_parent().absorbed:
+			body.death()
+		else:
+			body.absorb()
 	#Otherwise body just takes the respective damage amount
 	else:
 		body.got_hit(damage)

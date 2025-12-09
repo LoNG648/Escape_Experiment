@@ -9,6 +9,7 @@ extends Control
 @onready var counter_list: MenuButton = $Abilities/VBoxContainer/CounterList
 @onready var block_list: MenuButton = $Abilities/VBoxContainer/BlockList
 @onready var passive_list: MenuButton = $Abilities/VBoxContainer/PassiveList
+@onready var passive_description: Label = $Abilities/VBoxContainer/PassiveDescription
 
 #Regular Variables
 var paused: bool = false
@@ -62,14 +63,6 @@ func _process(_delta):
 		$".".hide()
 	test_escape()
 
-func _on_controls_pressed() -> void:
-	if controls.visible == false:
-		controls.show()
-		abilities.show()
-	elif controls.visible == true:
-		controls.hide()
-		abilities.hide()
-
 func addBossMoveset() -> void:
 	attack_list.get_popup().add_item("The Tank", 1)
 	special_list.get_popup().add_item("The Tank", 1)
@@ -85,17 +78,26 @@ func addComplexEnemyPassive() -> void:
 
 func AbilityChanged(id, PopUpMenu) -> void:
 	if PopUpMenu == passiveOptions:
+		if id != 1:
+			player.health.resistance = 25
+			print(player.health.resistance)
 		if id == 0:
 			passive_list.text = "Passive: The Collector"
+			passive_description.text = "Lifesteal on hit"
 			player.passive = player.passiveSet[0]
 		elif id == 1:
 			passive_list.text = "Passive: The Tank"
+			passive_description.text = "Unstoppable attacks and increased resistances"
 			player.passive = player.passiveSet[1]
+			player.health.resistance = 50
+			print(player.health.resistance)
 		elif id == 2:
 			passive_list.text = "Passive: Basic Enemy"
+			passive_description.text = "Faster Basic and Counter Attacks"
 			player.passive = player.passiveSet[2]
 		elif id == 3:
 			passive_list.text = "Passive: Complex Enemy"
+			passive_description.text = "Stronger Special Attack"
 			player.passive = player.passiveSet[3]
 	elif PopUpMenu == attackOptions:
 		if id == 0:

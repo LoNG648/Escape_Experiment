@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://62yarb6hreki" path="res://Assets/Tilemap/world_tileset.png" id="5_658rx"]
 [ext_resource type="PackedScene" uid="uid://c1e3nvh3aqr4x" path="res://Testing/Nathan's Stuff/basic_enemy2.tscn" id="7_12n40"]
 
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xrcdf"]
 texture = ExtResource("5_658rx")
 0:0/0 = 0
